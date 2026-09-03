@@ -1,6 +1,31 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import type { Itinerary } from '../src/types';
+
+interface ItineraryStop {
+  time: string;
+  place: string;
+  category?: string;
+  notes: string;
+  durationMinutes?: number;
+}
+
+interface ItineraryDay {
+  dayNumber: number;
+  title: string;
+  theme: string;
+  stops: ItineraryStop[];
+  tips?: string;
+}
+
+interface Itinerary {
+  destinationId: string;
+  destinationName: string;
+  totalDays: number;
+  pace: string;
+  interests: string[];
+  days: ItineraryDay[];
+  generatedAt: Date;
+}
 
 const CANDIDATE_MODELS = [
   'gemini-flash-latest',
