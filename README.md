@@ -1,342 +1,398 @@
 <div align="center">
 
-# 🧭 VOYAGER
-### Next-Generation Travel Explorer & AI Trip Engine
+# VOYAGER
+### Next-Generation Travel Discovery Platform & AI Itinerary Engine
 
-[![Live Application](https://img.shields.io/badge/Live_Demo-voyager--cyan.vercel.app-285ccc?style=for-the-badge&logo=vercel&logoColor=white)](https://voyager-cyan.vercel.app)
-[![React 18](https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript_5-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://aistudio.google.com/)
-[![OpenWeather](https://img.shields.io/badge/OpenWeather-EB6E4B?style=for-the-badge&logo=openweathermap&logoColor=white)](https://openweathermap.org/)
-[![Pexels](https://img.shields.io/badge/Pexels_API-05A081?style=for-the-badge&logo=pexels&logoColor=white)](https://www.pexels.com/)
+[![Live Deployment](https://img.shields.io/badge/Production-voyager--cyan.vercel.app-2563eb?style=for-the-badge&logo=vercel&logoColor=white)](https://voyager-cyan.vercel.app)
+[![React 18](https://img.shields.io/badge/React_18-20232a?style=for-the-badge&logo=react&logoColor=61dafb)](https://react.dev/)
+[![TypeScript 5](https://img.shields.io/badge/TypeScript_5-1e3a8a?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-0f766e?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini-4338ca?style=for-the-badge&logo=google&logoColor=white)](https://aistudio.google.com/)
+[![OpenWeather](https://img.shields.io/badge/OpenWeather-c2410c?style=for-the-badge&logo=openweathermap&logoColor=white)](https://openweathermap.org/)
+[![Pexels API](https://img.shields.io/badge/Pexels_API-047857?style=for-the-badge&logo=pexels&logoColor=white)](https://www.pexels.com/)
 
 <p align="center">
-  A design-led, full-stack travel platform featuring glassmorphism aesthetics, live GPS distance calculations, real-time weather telemetry, dynamic destination photography, and conversational AI trip planning — with all budget estimates tailored in Indian Rupees (₹ INR).
+  <strong>An editorial-grade global travel platform featuring glassmorphism architecture, dual-engine location discovery, real-time meteorological telemetry, dynamic photography, and conversational AI trip planning — with budget estimates localized in Indian Rupees (₹ INR).</strong>
 </p>
 
-[🌐 Live Website](https://voyager-cyan.vercel.app) • [🚀 Quick Start](#-quick-start-3-minutes) • [✨ Features](#-features-walkthrough) • [🛠️ Tech Stack](#-tech-stack--architecture) • [❓ FAQ](#-frequently-asked-questions)
+[Live Application](https://voyager-cyan.vercel.app) • [Architecture](#system-architecture) • [Key Capabilities](#core-capabilities) • [Quick Start](#quick-start) • [API Setup](#api-configuration) • [FAQ](#frequently-asked-questions)
 
 ---
 
 </div>
 
-## 📖 Table of Contents
+## Table of Contents
 
-- [🧭 What is Voyager?](#-what-is-voyager)
-- [✨ Features Walkthrough](#-features-walkthrough)
-- [🚀 Quick Start (3 Minutes)](#-quick-start-3-minutes)
-- [🔑 How to Get Free API Keys](#-how-to-get-free-api-keys)
-- [🎨 Design System & Dual Themes](#-design-system--dual-themes)
-- [🛠️ Tech Stack & Architecture](#-tech-stack--architecture)
-- [📁 Folder Structure Explained](#-folder-structure-explained)
-- [❓ Frequently Asked Questions](#-frequently-asked-questions)
-- [📄 License & Credits](#-license--credits)
+- [Overview](#overview)
+- [User Discovery Flow](#user-discovery-flow)
+- [Core Capabilities](#core-capabilities)
+- [System Architecture](#system-architecture)
+- [Quick Start](#quick-start)
+- [API Configuration](#api-configuration)
+- [Design System & Dual Themes](#design-system--dual-themes)
+- [Project Directory Structure](#project-directory-structure)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [License & Attributions](#license--attributions)
 
 ---
 
-## 🧭 What is Voyager?
+## Overview
 
-**Voyager** is an open-source travel discovery web application built to make planning your next journey effortless, beautiful, and intelligent. 
+**Voyager** is a modern, high-performance web platform designed to streamline travel research and trip synthesis into a single unified workspace. 
 
-Instead of jumping across 5 different websites to check distances, check weather, view photos, read reviews, and build an itinerary, **Voyager brings everything into one unified, glassmorphic workspace**:
+By unifying geodesic proximity algorithms, real-time satellite weather streams, curated visual media, and generative AI reasoning, Voyager eliminates fragmented tabs and delivers actionable travel insights within seconds.
 
+---
+
+## User Discovery Flow
+
+The diagram below illustrates the end-to-end user journey across Voyager's client subsystems:
+
+```mermaid
+flowchart LR
+    Start(["User Lands on Voyager"]) --> LocChoice{"Location Input"}
+
+    LocChoice -->|Live GPS Permission| Haversine["Geodesic Engine<br/>(Haversine Distance in km)"]
+    LocChoice -->|Manual Search| Geocoding["OpenWeather Geocoding<br/>(Any Origin City)"]
+
+    Haversine --> Catalog["Global Directory<br/>(34 Hand-Curated Destinations)"]
+    Geocoding --> Catalog
+
+    Catalog --> Filters["Command Dock Filters<br/>(Continents · Vibes · INR Budget)"]
+    Filters --> Detail["Destination View"]
+
+    Detail --> Weather["Live Weather Telemetry<br/>(OpenWeather °C & Conditions)"]
+    Detail --> Pexels["Dynamic Photography<br/>(Verified Pexels Media)"]
+    Detail --> Places["Landmark Modals<br/>(Focus-Trapped Detail Cards)"]
+
+    Detail --> AI_Assistant["Voyager AI Assistant<br/>(Conversational Guide in ₹ INR)"]
+    Detail --> Itinerary["Day-by-Day Itinerary Engine<br/>(Structured Timeline in ₹ INR)"]
+
+    classDef primary fill:#0f172a,stroke:#3b82f6,stroke-width:1.5px,color:#f8fafc;
+    classDef highlight fill:#1e3a8a,stroke:#60a5fa,stroke-width:2px,color:#ffffff,font-weight:bold;
+    classDef nodeStyle fill:#022c22,stroke:#10b981,stroke-width:1.5px,color:#f8fafc;
+
+    class Start,LocChoice primary;
+    class Haversine,Geocoding,Catalog,Filters highlight;
+    class Weather,Pexels,Places,AI_Assistant,Itinerary nodeStyle;
 ```
-Your Location  ──►  Calculate Real Distances (km)
-                     └──►  Browse 34 Global Escapes
-                            └──►  Check Live Weather (°C)
-                                   └──►  View Verified Pexels Photos
-                                          └──►  Generate AI Itinerary (₹ INR)
+
+---
+
+## Core Capabilities
+
+<details open>
+<summary><strong>✦ Cinematic Video Landing Experience</strong></summary>
+<br>
+
+- **High-Definition Looping Hero**: High-definition ambient travel background video with frosted glass overlays.
+- **Glass Command Search**: Instant keystroke search capsule filtering destinations, vibes, and countries in real time.
+- **Proximity Call-to-Action**: Direct trigger to measure geodesic distance to destinations worldwide.
+- **Theme Switcher**: Instant switching between Light Mode (*Buttermilk & Mid Blue*) and Dark Mode (*Cosmic Obsidian*).
+
+</details>
+
+<details open>
+<summary><strong>✦ Dual-Engine Location Intelligence</strong></summary>
+<br>
+
+- **Subsystem 1 — Live Device GPS**: Calculates precise spherical geodesic distance (in kilometers) to all 34 destinations using the Haversine formula.
+- **Subsystem 2 — Global City Geocoding**: If browser GPS is denied, users can type any city on Earth (*e.g., London, Tokyo, Mumbai, New York*) to measure relative proximity.
+- **Preset Quick Launchers**: Instant selection chips for major transit hubs (*Mumbai, Delhi, London, Tokyo, New York*).
+
+</details>
+
+<details open>
+<summary><strong>✦ Destination Explorer & Filter Dock</strong></summary>
+<br>
+
+- **34 Global Escapes**: Curated destinations across all 7 continents with live status tags and cost tiers.
+- **Glass Command Dock (`.glass-dock`)**: Unified floating control dock with integrated search, live result counter, and active chip tags.
+- **INR Daily Budget Segments**: Quick filtering by budget brackets (`< ₹5k`, `₹5k – ₹15k`, `> ₹15k` per day).
+- **Atmosphere Vibes Matrix**: Multi-tag filtering (*Ancient History, Street Food, Coastlines, Alpine Treks, Wildlife Safari, Romantic Escapes*).
+
+</details>
+
+<details open>
+<summary><strong>✦ Curated Landmarks & Must-Visit Places</strong></summary>
+<br>
+
+- **Attraction Intelligence**: 3–5 notable places per destination with category tags, descriptions, and recommended visit hours.
+- **Verified Pexels Photography**: Dynamic high-resolution imagery fetched on demand with embedded photographer attribution.
+- **Interactive Modals**: Accessible focus-trapped glass dialogs featuring detailed photography and visit metrics.
+
+</details>
+
+<details open>
+<summary><strong>✦ Live Weather Telemetry (OpenWeatherMap)</strong></summary>
+<br>
+
+- **Real-Time Data Streams**: Current temperature in °C, animated condition badges, feels-like readings, humidity (%), wind speed (km/h), and visibility metrics.
+- **Graceful Error Recovery**: Dedicated alert cards with interactive retry triggers if upstream weather services experience downtime.
+
+</details>
+
+<details open>
+<summary><strong>✦ Voyager AI Assistant & Itinerary Engine (Google Gemini)</strong></summary>
+<br>
+
+- **Conversational Guide**: Floating drawer assistant available 24/7 for packing advice, transit logistics, and cultural etiquette.
+- **Strict INR Localization**: All price quotes, daily budgets, transit passes, and meal estimates are calculated and displayed in **Indian Rupees (₹ INR)**.
+- **Multi-Model Resilience Cascade**: Automatic waterfall across Gemini models (`gemini-flash-latest`, `gemini-flash-lite`, `gemini-3.5-flash-lite`) preventing API 429 quota exhaustion.
+- **Timeline Generator**: Form-based day-by-day itinerary planner producing structured schedules with activity durations and dining tips.
+
+</details>
+
+<details open>
+<summary><strong>✦ 100% Keyboard-Only Accessibility (WCAG 2.1 Compliant)</strong></summary>
+<br>
+
+- **Animated Skip Navigation**: First `Tab` keystroke displays a high-contrast *"Skip to main content"* button.
+- **Luminous Focus Indicators (`:focus-visible`)**: Dual-ring 2.5px accent borders with 3.5px offset and radiant glow.
+- **Modal Focus Trapping**: Dialogs strictly retain keyboard focus within active elements; pressing `Escape` closes overlays and restores focus to invoking trigger.
+- **Custom Select Navigation**: Full arrow-key (`ArrowDown` / `ArrowUp`) navigation, `Enter` selection, and `Escape` dismissal.
+
+</details>
+
+---
+
+## System Architecture
+
+The following architectural flowchart outlines the separation between client execution, edge serverless layers, and external service providers:
+
+```mermaid
+flowchart TD
+    subgraph ClientLayer["Frontend Application (React 18 · Vite · TypeScript)"]
+        UI["Modern Glassmorphic UI<br/>(Tailwind CSS + Framer Motion)"]
+        State["State Management<br/>(TanStack Query + Theme Context)"]
+        GeoModule["Dual-Mode Location Engine<br/>(Haversine Geodesics)"]
+        UI <--> State
+        State <--> GeoModule
+    end
+
+    subgraph DirectServices["External Data Providers (Client Keys)"]
+        OW_Weather["OpenWeatherMap API<br/>/data/2.5/weather · Live °C Telemetry"]
+        OW_Geo["OpenWeather Geocoding API<br/>/geo/1.0/direct · City Search"]
+        Pexels_API["Pexels Media API<br/>/v1/search · Dynamic Photography"]
+    end
+
+    subgraph EdgeLayer["Vercel Serverless Functions (Node.js Edge)"]
+        ChatHandler["/api/chat<br/>(Gemini AI Assistant Endpoint)"]
+        ItinHandler["/api/itinerary<br/>(Structured Trip Planning Endpoint)"]
+        DevProxy["server/index.cjs<br/>(Local Express Proxy Parity)"]
+    end
+
+    subgraph AIRunningPool["Google Gemini Resilience Pool"]
+        M1["gemini-flash-latest<br/>Primary Inference Engine"]
+        M2["gemini-flash-lite<br/>Secondary Quota Fallback"]
+        M3["gemini-3.5-flash-lite<br/>Tertiary High-Availability Model"]
+        SmartFallback["Intelligent Local INR Engine<br/>Zero-Failure Graceful State"]
+    end
+
+    State -->|Direct Fetch| OW_Weather
+    GeoModule -->|Direct Fetch| OW_Geo
+    State -->|Direct Fetch| Pexels_API
+
+    UI -->|POST JSON| ChatHandler
+    UI -->|POST JSON| ItinHandler
+    UI -.->|Dev Environment| DevProxy
+
+    ChatHandler & ItinHandler & DevProxy --> M1
+    M1 -.->|On Rate Limit / 429| M2
+    M2 -.->|On Rate Limit / 429| M3
+    M3 -.->|On Quota Depletion| SmartFallback
+
+    classDef clientStyle fill:#0f172a,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc;
+    classDef apiStyle fill:#1e1b4b,stroke:#818cf8,stroke-width:1.5px,color:#f8fafc;
+    classDef edgeStyle fill:#022c22,stroke:#34d399,stroke-width:1.5px,color:#f8fafc;
+    classDef aiStyle fill:#311042,stroke:#c084fc,stroke-width:1.5px,color:#f8fafc;
+
+    class UI,State,GeoModule clientStyle;
+    class OW_Weather,OW_Geo,Pexels_API apiStyle;
+    class ChatHandler,ItinHandler,DevProxy edgeStyle;
+    class M1,M2,M3,SmartFallback aiStyle;
 ```
 
 ---
 
-## ✨ Features Walkthrough
+## Quick Start
 
-<details open>
-<summary><strong>1. 🎥 Cinematic Video Landing Experience</strong></summary>
-<br>
+Get Voyager running locally in under 3 minutes:
 
-- **High-Definition Looping Hero**: Plays an ambient travel film with frosted glass overlays.
-- **Floating Command Search**: Type any destination name, vibe, or country to jump straight to matches.
-- **Quick Location Prompt**: Tap "Detect Live Location" directly from the hero to measure distances instantly.
-- **Theme Switcher**: Seamlessly toggle between Light Mode (Buttermilk & Blue) and Dark Mode (Cosmic Obsidian).
-
-</details>
-
-<details open>
-<summary><strong>2. 📍 Dual-Mode Location Intelligence (GPS + City Search)</strong></summary>
-<br>
-
-- **Mode 1 (Live Device GPS)**: Calculates real geodesic distances in kilometers to all 34 destinations using the Haversine spherical algorithm.
-- **Mode 2 (Global City Search)**: If location permissions are denied, users can type any city on Earth (e.g., *London*, *Delhi*, *Tokyo*, *New York*) to measure distances from that specific starting point.
-- **One-Click Presets**: Quick buttons for popular origins (*Mumbai*, *Delhi*, *London*, *Tokyo*, *New York*).
-
-</details>
-
-<details open>
-<summary><strong>3. 🌍 Destination Explorer & Filter Dock</strong></summary>
-<br>
-
-- **34 Hand-Curated Destinations**: Spanning all 7 continents (Asia, Europe, Africa, North America, South America, Oceania, Antarctica).
-- **Glass Command Dock**: Unified floating toolbar with real-time text search and live match counter.
-- **Budget Selector**: Quick filter by daily budget tier in Indian Rupees (`₹ <5k`, `₹ 5k-15k`, `₹ >15k`).
-- **Atmosphere Vibes Matrix**: Filter by travel themes (*Ancient History*, *Street Food*, *Beaches*, *Mountain Treks*, *Wildlife & Safari*, *Romantic Getaway*).
-
-</details>
-
-<details open>
-<summary><strong>4. 🏛️ Landmarks & Must-Visit Places</strong></summary>
-<br>
-
-- **Curated Attractions**: 3–5 famous spots per destination with category tags, descriptions, and recommended visit hours.
-- **Dynamic Pexels Photography**: Photos fetched on the fly with verified photographer credits and direct links.
-- **Interactive Modals**: Click any landmark card to open a focus-trapped glass modal with high-res imagery.
-
-</details>
-
-<details open>
-<summary><strong>5. ☀️ Live Weather Telemetry (OpenWeatherMap)</strong></summary>
-<br>
-
-- **Real-Time Metrics**: Current temperature in °C, animated condition badges, feels-like readings, humidity (%), wind speed (km/h), and visibility.
-- **Error Protection**: Includes an interactive retry button and informative error messages if network requests drop.
-
-</details>
-
-<details open>
-<summary><strong>6. 🤖 Voyager AI Assistant & Itinerary Engine (Google Gemini)</strong></summary>
-<br>
-
-- **Conversational Travel Assistant**: Floating AI drawer ready 24/7 to answer packing, transit, food, and culture questions.
-- **Pricing in ₹ INR**: Every cost estimate, ticket price, and budget recommendation is automatically converted and formatted in Indian Rupees.
-- **Multi-Model Fallback Cascade**: Employs an automated resilience pool across Google Gemini models (`gemini-flash-latest`, `gemini-flash-lite`, `gemini-3.5-flash-lite`) to avoid rate limits and 500 errors.
-- **Interactive Day-by-Day Accordion**: Generates customized multi-day schedules with activity timestamps, durations, and dining advice.
-
-</details>
-
-<details open>
-<summary><strong>7. ⌨️ 100% Keyboard-Only Accessibility (WCAG Compliant)</strong></summary>
-<br>
-
-- **Animated Skip Link**: Press `Tab` once on any page to reveal the "Skip to main content" pill.
-- **Luminous Focus Rings (`:focus-visible`)**: Dual-ring neon aura with a 3.5px offset ensures every active element is clearly visible.
-- **Focus Trapping**: Modals trap `Tab` cycles within the dialog; pressing `Escape` dismisses overlays and restores focus to the trigger button.
-- **Accessible Custom Select**: Navigate dropdowns with `ArrowUp` / `ArrowDown`, select with `Enter`, and close with `Escape`.
-
-</details>
-
----
-
-## 🚀 Quick Start (3 Minutes)
-
-Follow these simple steps to run Voyager on your own computer:
-
-### Step 1: Clone the Repository
-Open your terminal (PowerShell, Command Prompt, or Terminal) and run:
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/sujithkumar09042005-a11y/Voyager.git
 cd Voyager
 ```
 
-### Step 2: Install Dependencies
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### Step 3: Set Up Environment Variables
-Create a file named `.env` in the root folder and add your keys:
+### 3. Configure Environment Variables
+Create a `.env` file in the project root:
 ```env
-# Client-Side Keys
-VITE_OPENWEATHER_API_KEY=your_openweather_key_here
-VITE_PEXELS_API_KEY=your_pexels_key_here
+# Client-Side Keys (Vite)
+VITE_OPENWEATHER_API_KEY=your_openweather_key
+VITE_PEXELS_API_KEY=your_pexels_key
 
-# Server-Side Key
-GEMINI_API_KEY=your_gemini_key_here
+# Server-Side Key (Kept safe from client bundle)
+GEMINI_API_KEY=your_gemini_key
 
-# Runtime
+# Environment
 NODE_ENV=development
 ```
-*(Don't have keys yet? See the [API Key Guide](#-how-to-get-free-api-keys) below — they are 100% free!)*
 
-### Step 4: Run the Development Server
+### 4. Start Development Server
 ```bash
 npm run dev
 ```
-Voyager will launch locally at:
-- **Frontend App**: `http://localhost:5173/`
-- **Backend Proxy**: `http://localhost:3001/`
+Voyager will be available at:
+- **Frontend**: `http://localhost:5173/`
+- **Proxy Server**: `http://localhost:3001/`
 
 ---
 
-## 🔑 How to Get Free API Keys
+## API Configuration
 
-All APIs used in Voyager offer generous **free tiers** with no credit card required:
+All external APIs used in Voyager include accessible free tiers with zero credit card requirements:
 
 <details>
-<summary><strong>1. Google Gemini AI Key (Free)</strong> — Click to expand</summary>
+<summary><strong>✦ Google Gemini AI Studio Key (Free)</strong> — Click to expand</summary>
 <br>
 
-1. Visit **[Google AI Studio](https://aistudio.google.com/app/apikey)**.
+1. Navigate to **[Google AI Studio](https://aistudio.google.com/app/apikey)**.
 2. Sign in with any Google account.
-3. Click the blue **"Create API Key"** button.
-4. Select **"Create API key in new project"**.
-5. Copy your key and paste it into `.env` as `GEMINI_API_KEY=your_key`.
+3. Select **"Create API Key"** → **"Create API key in new project"**.
+4. Set in `.env`: `GEMINI_API_KEY=your_key`.
 
 </details>
 
 <details>
-<summary><strong>2. OpenWeatherMap API Key (Free)</strong> — Click to expand</summary>
+<summary><strong>✦ OpenWeatherMap API Key (Free)</strong> — Click to expand</summary>
 <br>
 
-1. Visit **[OpenWeatherMap Sign Up](https://home.openweathermap.org/users/sign_up)**.
-2. Create a free account.
-3. Go to the **API Keys** tab in your profile.
-4. Copy your default key and paste it into `.env` as `VITE_OPENWEATHER_API_KEY=your_key`.
+1. Register at **[OpenWeatherMap](https://home.openweathermap.org/users/sign_up)**.
+2. Navigate to your profile's **API Keys** section.
+3. Copy the default key and set in `.env`: `VITE_OPENWEATHER_API_KEY=your_key`.
 
 </details>
 
 <details>
-<summary><strong>3. Pexels Photography API Key (Free)</strong> — Click to expand</summary>
+<summary><strong>✦ Pexels Photography API Key (Free)</strong> — Click to expand</summary>
 <br>
 
-1. Visit **[Pexels API Portal](https://www.pexels.com/api/)**.
-2. Create a free account and click **"Get Started"**.
-3. Fill in a brief description (e.g., *"Personal travel explorer project"*).
-4. Copy your API Key and paste it into `.env` as `VITE_PEXELS_API_KEY=your_key`.
+1. Register at **[Pexels API Portal](https://www.pexels.com/api/)**.
+2. Click **"Get Started"** and complete the short project registration.
+3. Copy the key and set in `.env`: `VITE_PEXELS_API_KEY=your_key`.
 
 </details>
 
 ---
 
-## 🎨 Design System & Dual Themes
+## Design System & Dual Themes
 
-Voyager features an editorial aesthetic crafted with custom CSS tokens:
+Voyager is built upon a dual-theme design system engineered for visual contrast and reading comfort:
 
-| Element | Light Theme (Soft Luxury) | Dark Theme (Cosmic Obsidian) |
+| Design Token | Light Theme (*Soft Luxury*) | Dark Theme (*Cosmic Obsidian*) |
 |---|---|---|
-| **Background** | Ivory Buttermilk (`#faf7ee`) | Cosmic Obsidian (`#060a14`) |
-| **Accent Primary** | Mid Blue (`#285ccc`) | Electric Sapphire (`#3b82f6`) |
-| **Accent Secondary** | Warm Buttermilk (`#fff2bd`) | Champagne Gold (`#fde047`) |
-| **Glass Panels** | Frosted white sheen (`rgba(255,255,255,0.7)`) | Obsidian glass (`rgba(10,18,32,0.75)`) |
-| **Text Primary** | Deep Navy (`#061128`) | Crisp White (`#f8fafc`) |
-| **Typography** | Headlines: **Outfit** • Body: **Plus Jakarta Sans** | Headlines: **Outfit** • Body: **Plus Jakarta Sans** |
+| **Canvas Background** | Ivory Buttermilk (`#faf7ee`) | Cosmic Obsidian (`#060a14`) |
+| **Primary Accent** | Mid Blue (`#285ccc`) | Electric Sapphire (`#3b82f6`) |
+| **Secondary Accent** | Warm Buttermilk (`#fff2bd`) | Champagne Gold (`#fde047`) |
+| **Glass Substrates** | Translucent White (`rgba(255,255,255,0.7)`) | Obsidian Glass (`rgba(10,18,32,0.75)`) |
+| **Primary Typography** | Deep Navy (`#061128`) | Crisp Slate White (`#f8fafc`) |
+| **Display Font** | **Outfit** (Tightened `-0.025em`) | **Outfit** (Tightened `-0.025em`) |
+| **Body Font** | **Plus Jakarta Sans** | **Plus Jakarta Sans** |
 
 ---
 
-## 🛠️ Tech Stack & Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Voyager Client (React 18)                │
-│       Vite · TypeScript · Tailwind CSS · Framer Motion      │
-└──────────────┬───────────────────────────────┬──────────────┘
-               │                               │
-        Client Direct Calls             Serverless Proxy
-        (Rate-limited keys)            (Secret protection)
-               │                               │
-       ┌───────┴────────┐             ┌────────┴────────┐
-       │                │             │                 │
-┌──────▼──────┐  ┌──────▼──────┐┌─────▼───────┐  ┌──────▼───────┐
-│ OpenWeather │  │   Pexels    ││  /api/chat  │  │/api/itinerary│
-│ (Live Temp) │  │(Photography)││(Gemini-3.6) │  │(Gemini-3.6)  │
-└─────────────┘  └─────────────┘└─────────────┘  └──────────────┘
-```
-
-- **Frontend**: [React 18](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)
-- **Styling & Motion**: [Tailwind CSS](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/)
-- **Iconography**: [Lucide React](https://lucide.dev/) (pure vector icons)
-- **Data Fetching**: [TanStack Query](https://tanstack.com/query)
-- **APIs**: [Google Gemini AI](https://deepmind.google/technologies/gemini/), [OpenWeatherMap](https://openweathermap.org/), [Pexels](https://www.pexels.com/)
-- **Deployment**: [Vercel](https://vercel.com/) (Edge Serverless Functions)
-
----
-
-## 📁 Folder Structure Explained
+## Project Directory Structure
 
 <details>
-<summary><strong>Click to view the directory tree</strong></summary>
+<summary><strong>✦ Click to expand the repository directory tree</strong></summary>
 <br>
 
 ```text
 voyager/
-├── api/                        # Vercel Serverless Functions (Backend)
-│   ├── chat.ts                 # Gemini AI assistant with multi-model fallback
-│   └── itinerary.ts            # Gemini AI structured trip planner
-├── public/                     # Static media files
-│   ├── Hero_Video.mp4          # Ambient looping video
-│   ├── favicon.ico             # Browser tab icon (multi-resolution)
-│   ├── favicon.png             # 128x128 circular PNG tab icon
-│   ├── favicon-32x32.png       # 32x32 circular PNG tab icon
-│   ├── favicon.svg             # Self-contained circular SVG
+├── api/                        # Vercel Serverless Edge Functions
+│   ├── chat.ts                 # Multi-model Gemini AI assistant
+│   └── itinerary.ts            # Structured day-by-day itinerary engine
+├── public/                     # Static assets served at root
+│   ├── Hero_Video.mp4          # High-definition looping hero video
+│   ├── favicon.ico             # Standard browser favicon
+│   ├── favicon.png             # 128x128 circular PNG icon
+│   ├── favicon-32x32.png       # 32x32 circular PNG icon
+│   ├── favicon.svg             # Self-contained circular vector icon
 │   └── icon.png                # Original brand asset
-├── server/                     # Local Express development proxy
-│   └── index.cjs               # Mirrors Vercel serverless functions locally
-├── src/                        # React Frontend Source Code
-│   ├── components/             # Reusable UI building blocks
-│   │   ├── ui/                 # Buttons, Badges, Modals, Custom Select, Cursor
+├── server/                     # Local development proxy
+│   └── index.cjs               # Express proxy providing Vercel parity locally
+├── src/                        # React client source code
+│   ├── components/             # Reusable UI component library
+│   │   ├── ui/                 # Buttons, Badges, Modals, CustomSelect, Cursor
 │   │   ├── Navbar.tsx          # Frosted header with mobile drawer & theme toggle
-│   │   ├── Footer.tsx          # 5-column glassmorphic footer
-│   │   ├── LocationDetectorModal.tsx # Dual-mode GPS & City Geocoding modal
-│   │   └── WeatherWidget.tsx   # Live OpenWeather display widget
+│   │   ├── Footer.tsx          # 5-column luxury glassmorphic footer
+│   │   ├── LocationDetectorModal.tsx # Dual-mode GPS & geocoding dialog
+│   │   └── WeatherWidget.tsx   # Live OpenWeather telemetry widget
 │   ├── data/
-│   │   └── destinations.json   # 34 global destinations catalog
-│   ├── features/               # Main page features
-│   │   ├── hero/               # HeroSection with search capsule
-│   │   ├── explorer/           # ExplorerPage & DestinationCard grid
-│   │   ├── destination-detail/ # Single destination page & place modals
+│   │   └── destinations.json   # 34 global destinations and curated landmarks
+│   ├── features/               # Modular application feature views
+│   │   ├── hero/               # HeroSection with looping video & search capsule
+│   │   ├── explorer/           # ExplorerPage & DestinationCard catalog
+│   │   ├── destination-detail/ # DestinationDetailPage & Place modals
 │   │   ├── chatbot/            # Floating Voyager AI conversational drawer
-│   │   └── itinerary/          # Day-by-day itinerary builder
-│   ├── hooks/                  # Custom React hooks (weather, search, pexels)
-│   ├── lib/                    # API client configurations
+│   │   └── itinerary/          # ItineraryPage with timeline accordion
+│   ├── hooks/                  # Custom React hooks (weather, geolocation, pexels)
+│   ├── lib/                    # API client abstractions
 │   ├── styles/
-│   │   └── tokens.css          # Glassmorphic CSS design system tokens
+│   │   └── tokens.css          # Design system variables & glassmorphism classes
 │   └── types/                  # TypeScript interface definitions
-├── .gitignore                  # Keeps .env safe from git
-├── package.json                # Project dependencies
-├── vercel.json                 # Vercel routing & serverless configuration
-└── vite.config.ts              # Vite configuration
+├── .gitignore                  # Security guardrail (prevents .env commits)
+├── package.json                # Project dependencies & build scripts
+├── tailwind.config.js          # Custom theme tokens & keyframes
+├── vercel.json                 # Vercel SPA rewrites & serverless routing
+└── vite.config.ts              # Vite compiler configuration
 ```
 
 </details>
 
 ---
 
-## ❓ Frequently Asked Questions
+## Frequently Asked Questions
 
 <details>
-<summary><strong>Q: What happens if I deny browser location permissions?</strong></summary>
+<summary><strong>How does the application handle denied location permissions?</strong></summary>
 <br>
-Voyager is built with graceful fallbacks. If you deny GPS permission, the app automatically shows a friendly banner and enables the <strong>Global City Search Bar</strong>. You can type any city (e.g. <em>London</em> or <em>Mumbai</em>) to calculate distances from there instead.
+Voyager implements graceful degradation. When GPS access is denied by the user, an informative status badge appears and the <strong>Global City Search</strong> bar activates automatically. Users can search any city globally (e.g., <em>London</em> or <em>Mumbai</em>) to calculate geodesic distances from that chosen point.
 </details>
 
 <details>
-<summary><strong>Q: Why are all budgets and prices quoted in Indian Rupees (₹ INR)?</strong></summary>
+<summary><strong>Why are travel expenses and budgets standardized in Indian Rupees (₹)?</strong></summary>
 <br>
-Voyager's AI engine and destination database standardize estimates in Indian Rupees (₹) to provide clear, consistent budgeting across hotel stays, dining, transit, and landmark tickets.
+Voyager standardizes all financial estimations into Indian Rupees (₹ INR) across hotel bookings, daily meals, local transit, and attraction entrance tickets to maintain a predictable, reliable baseline for travelers.
 </details>
 
 <details>
-<summary><strong>Q: How does the AI Assistant handle Google rate limits?</strong></summary>
+<summary><strong>How does the Gemini AI engine avoid rate-limit interruptions?</strong></summary>
 <br>
-Voyager features a multi-model resilience pool. If Google's primary model is busy or hits a rate limit, the serverless function cascades across <code>gemini-flash-latest</code>, <code>gemini-flash-lite</code>, and <code>gemini-3.5-flash-lite</code> in milliseconds. If all external APIs are temporarily offline, an intelligent fallback guide is generated in ₹ INR so users never see an error banner.
+The backend serverless layer operates a multi-model fallback cascade across <code>gemini-flash-latest</code>, <code>gemini-flash-lite</code>, and <code>gemini-3.5-flash-lite</code>. If Google's primary model hits capacity or a rate limit, the function automatically tries the next model in milliseconds. In the event of complete upstream downtime, a structured local fallback itinerary is synthesized in ₹ INR, ensuring zero HTTP 500 error banners.
 </details>
 
 <details>
-<summary><strong>Q: Can I navigate the entire website using only my keyboard?</strong></summary>
+<summary><strong>Is the application fully operable without a mouse?</strong></summary>
 <br>
-Yes! Voyager is 100% keyboard accessible. You can press <code>Tab</code> to reveal the skip link, navigate cards with bright luminous focus rings, press <code>Enter</code> to open modals, navigate custom dropdowns with <code>ArrowUp</code> / <code>ArrowDown</code>, and press <code>Escape</code> to close any popup.
+Yes. Voyager conforms to WCAG 2.1 keyboard navigation standards: pressing <code>Tab</code> displays the animated skip link, all interactive elements display prominent dual-ring luminous focus indicators (<code>:focus-visible</code>), modals trap focus with <code>Escape</code> dismiss, and custom selects support full <code>ArrowUp</code> / <code>ArrowDown</code> navigation.
 </details>
 
 ---
 
-## 📄 License & Credits
+## License & Attributions
 
-- **License**: [MIT License](LICENSE) © 2026 Voyager. Free for personal and educational use.
-- **Photography**: Dynamically powered by the [Pexels API](https://www.pexels.com) with embedded photographer credits.
-- **Weather Telemetry**: Live data powered by [OpenWeatherMap](https://openweathermap.org/).
-- **AI Intelligence**: Conversational planning powered by [Google Gemini AI](https://deepmind.google/technologies/gemini/).
+- **Code License**: [MIT License](LICENSE) © 2026 Voyager. Open for personal and educational use.
+- **Visual Assets**: Photography dynamically provided by the [Pexels API](https://www.pexels.com) with photographer attribution.
+- **Meteorological Data**: Weather telemetry provided by [OpenWeatherMap](https://openweathermap.org/).
+- **AI Intelligence**: Travel inference provided by [Google Gemini AI](https://deepmind.google/technologies/gemini/).
 
 <div align="center">
-  <sub>Crafted with precision & passion. Star ⭐ this repository if you enjoyed exploring Voyager!</sub>
+  <sub>Built with care and attention to detail. Star this repository if you find Voyager useful!</sub>
 </div>
