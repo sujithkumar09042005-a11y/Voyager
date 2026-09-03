@@ -1,0 +1,1203 @@
+[
+  {
+    "id": "rajasthan-india",
+    "name": "Jaipur & Udaipur",
+    "country": "India",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 26.9124,
+      "lng": 75.7873
+    },
+    "tagline": "Royal palaces, shimmering lakes, and living heritage of Rajasthan",
+    "description": "The Land of Kings, showcasing fairy-tale fortresses, vibrant bazaars, royal Rajput architecture, and the regal City Palace beside Lake Pichola.",
+    "bestTimeToVisit": "October–March",
+    "avgDailyBudget": "₹3,500 – ₹7,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "culture",
+      "history",
+      "food",
+      "photography",
+      "heritage"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=1200&q=80",
+    "places": [
+      {
+        "id": "amber-fort",
+        "name": "Amber Fort & Palace",
+        "category": "Fort",
+        "description": "Perched atop a rugged hill with stunning mirror mosaic palaces (Sheesh Mahal) and sweeping views over Maota Lake.",
+        "recommendedTime": "3–4 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&q=80"
+      },
+      {
+        "id": "lake-pichola",
+        "name": "Lake Pichola & City Palace",
+        "category": "Palace",
+        "description": "A tranquil boat cruise along Udaipur's romantic waters, flanked by marble ghats and the historic white palace.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1615836245337-f5b9b2303f10?w=800&q=80"
+      },
+      {
+        "id": "hawa-mahal",
+        "name": "Hawa Mahal (Palace of Winds)",
+        "category": "Monument",
+        "description": "A five-storey pink sandstone façade with 953 ornate lattice windows designed for royal ladies to view city life.",
+        "recommendedTime": "1–2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1603262110263-fb010d6e75dc?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "kerala-india",
+    "name": "Kerala Backwaters",
+    "country": "India",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 9.4981,
+      "lng": 76.3388
+    },
+    "tagline": "God's Own Country, emerald canals, and Ayurvedic tranquility",
+    "description": "A palm-fringed labyrinth of lagoons, lakes, and rivers where traditional kettuvallam houseboats glide through serene tropical waters.",
+    "bestTimeToVisit": "September–March",
+    "avgDailyBudget": "₹3,000 – ₹6,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "nature",
+      "wellness",
+      "romance",
+      "food"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80",
+    "places": [
+      {
+        "id": "alleppey-houseboat",
+        "name": "Alleppey Houseboat Cruise",
+        "category": "Experience",
+        "description": "Sail along serene palm-canopied canals, observing village life, paddy fields, and spectacular sunsets.",
+        "recommendedTime": "Full day / Overnight",
+        "fallbackImage": "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80"
+      },
+      {
+        "id": "munnar-tea",
+        "name": "Munnar Tea Plantations",
+        "category": "Nature",
+        "description": "Rolling hills blanketed in manicured tea gardens, cool mountain mist, and rare waterfalls in the Western Ghats.",
+        "recommendedTime": "Half day",
+        "fallbackImage": "https://images.unsplash.com/photo-1596401057633-54a8fe8ef647?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "kyoto-japan",
+    "name": "Kyoto",
+    "country": "Japan",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 35.0116,
+      "lng": 135.7681
+    },
+    "tagline": "Temples, gardens, and the quiet weight of centuries",
+    "description": "Former imperial capital where tradition and modernity coexist in extraordinary harmony. Thousands of shrines, geisha districts, bamboo forests, and exquisite kaiseki cuisine.",
+    "bestTimeToVisit": "March–May, October–November",
+    "avgDailyBudget": "₹8,500 – ₹14,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "culture",
+      "food",
+      "nature",
+      "history"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=80",
+    "places": [
+      {
+        "id": "fushimi-inari",
+        "name": "Fushimi Inari Taisha",
+        "category": "Shrine",
+        "description": "Thousands of vermilion torii gates climb the mountainside in a mesmerizing tunnel, each donated by a Japanese business.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=800&q=80"
+      },
+      {
+        "id": "arashiyama-bamboo",
+        "name": "Arashiyama Bamboo Grove",
+        "category": "Nature",
+        "description": "A towering canopy of bamboo that filters light into something otherworldly.",
+        "recommendedTime": "30–60 minutes",
+        "fallbackImage": "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80"
+      },
+      {
+        "id": "gion-district",
+        "name": "Gion District",
+        "category": "Neighborhood",
+        "description": "Kyoto's most storied geisha district, lined with traditional ochaya teahouses.",
+        "recommendedTime": "2–4 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1576670159805-381a9ee2dc3f?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "paris-france",
+    "name": "Paris",
+    "country": "France",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 48.8566,
+      "lng": 2.3522
+    },
+    "tagline": "Every arrondissement a world, every café a stage",
+    "description": "The City of Light — Haussmann's boulevards and the Seine frame an unmatched collection of art, haute cuisine, and architecture.",
+    "bestTimeToVisit": "April–June, September–November",
+    "avgDailyBudget": "₹12,000 – ₹22,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "culture",
+      "food",
+      "romance",
+      "art"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1200&q=80",
+    "places": [
+      {
+        "id": "eiffel-tower",
+        "name": "Eiffel Tower",
+        "category": "Landmark",
+        "description": "Gustave Eiffel's 1889 iron lattice masterpiece offering breathtaking views of the Paris skyline.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=800&q=80"
+      },
+      {
+        "id": "louvre",
+        "name": "Musée du Louvre",
+        "category": "Museum",
+        "description": "The world's foremost art museum, home to the Mona Lisa, Venus de Milo, and Winged Victory.",
+        "recommendedTime": "3–5 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1431274172761-fcdab704a114?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "santorini-greece",
+    "name": "Santorini",
+    "country": "Greece",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 36.3932,
+      "lng": 25.4615
+    },
+    "tagline": "White-washed cliffs and Aegean sunsets that stop time",
+    "description": "A volcanic crescent in the Aegean Sea where caldera-edge villages cascade down sheer cliffs into the azure sea.",
+    "bestTimeToVisit": "April–June, September–October",
+    "avgDailyBudget": "₹11,000 – ₹20,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "romance",
+      "beaches",
+      "food",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1200&q=80",
+    "places": [
+      {
+        "id": "oia-village",
+        "name": "Oia Village",
+        "category": "Village",
+        "description": "Iconic blue-domed churches and whitewashed windmills overlooking dramatic sunset caldera vistas.",
+        "recommendedTime": "Half day",
+        "fallbackImage": "https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "dubai-uae",
+    "name": "Dubai",
+    "country": "United Arab Emirates",
+    "region": "Middle East",
+    "coordinates": {
+      "lat": 25.2048,
+      "lng": 55.2708
+    },
+    "tagline": "Futuristic skyline rising like a mirage above Arabian golden sands",
+    "description": "A city of superlatives — home to the world's tallest skyscraper, palm-shaped artificial islands, desert safaris, and ultra-luxurious lifestyle.",
+    "bestTimeToVisit": "November–March",
+    "avgDailyBudget": "₹14,000 – ₹28,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "luxury",
+      "architecture",
+      "shopping",
+      "adventure"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80",
+    "places": [
+      {
+        "id": "burj-khalifa",
+        "name": "Burj Khalifa",
+        "category": "Landmark",
+        "description": "The world's tallest structure standing at 828m, featuring high-speed observation decks overlooking the Persian Gulf.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800&q=80"
+      },
+      {
+        "id": "desert-safari",
+        "name": "Arabian Desert Dune Safari",
+        "category": "Adventure",
+        "description": "Dune bashing, camel riding, and traditional Bedouin dining under starry Arabian skies.",
+        "recommendedTime": "5–6 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "rome-italy",
+    "name": "Rome",
+    "country": "Italy",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 41.9028,
+      "lng": 12.4964
+    },
+    "tagline": "The Eternal City of gladiators, baroque fountains, and legendary pasta",
+    "description": "Nearly three millennia of globally influential art, architecture, and culture on display across the Colosseum, Vatican, and cobbled piazzas.",
+    "bestTimeToVisit": "April–May, September–October",
+    "avgDailyBudget": "₹10,500 – ₹19,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "history",
+      "culture",
+      "food",
+      "architecture"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200&q=80",
+    "places": [
+      {
+        "id": "colosseum",
+        "name": "The Colosseum",
+        "category": "Historical Site",
+        "description": "The largest ancient amphitheatre ever built, hosting gladiator battles in Imperial Rome.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80"
+      },
+      {
+        "id": "trevi-fountain",
+        "name": "Trevi Fountain",
+        "category": "Monument",
+        "description": "Baroque masterwork where travelers toss a coin to ensure their return to Rome.",
+        "recommendedTime": "1 hour",
+        "fallbackImage": "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "amalfi-coast-italy",
+    "name": "Amalfi Coast",
+    "country": "Italy",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 40.6333,
+      "lng": 14.6029
+    },
+    "tagline": "Lemon groves, pastel villages, and a sea that invented the color blue",
+    "description": "A UNESCO-listed stretch of dramatic coastline where cliff-top villages like Positano and Ravello tumble down to turquoise coves.",
+    "bestTimeToVisit": "May–June, September–October",
+    "avgDailyBudget": "₹12,000 – ₹24,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "romance",
+      "food",
+      "beaches",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=1200&q=80",
+    "places": [
+      {
+        "id": "positano",
+        "name": "Positano",
+        "category": "Village",
+        "description": "A cascade of terracotta and pastel buildings clinging to the cliffside above turquoise Mediterranean water.",
+        "recommendedTime": "Full day",
+        "fallbackImage": "https://images.unsplash.com/photo-1512422747500-b870fd893b64?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "barcelona-spain",
+    "name": "Barcelona",
+    "country": "Spain",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 41.3879,
+      "lng": 2.1699
+    },
+    "tagline": "Gaudí’s surrealist wonderland, Mediterranean beaches, and tapas nights",
+    "description": "The cosmopolitan capital of Catalonia, celebrated for Sagrada Família, Park Güell, gothic quarters, and lively beachside promenade.",
+    "bestTimeToVisit": "May–June, September–October",
+    "avgDailyBudget": "₹9,500 – ₹17,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "architecture",
+      "culture",
+      "food",
+      "beaches"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&q=80",
+    "places": [
+      {
+        "id": "sagrada-familia",
+        "name": "Basílica de la Sagrada Família",
+        "category": "Architecture",
+        "description": "Antoni Gaudí's soaring, awe-inspiring basilica combining Gothic and curvilinear Art Nouveau forms.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&q=80"
+      },
+      {
+        "id": "park-guell",
+        "name": "Park Güell",
+        "category": "Park",
+        "description": "A vibrant garden complex composed of colorful mosaic sculptures, serpentine benches, and panoramic views.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1564221710304-0b37c8b9d729?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "istanbul-turkey",
+    "name": "Istanbul",
+    "country": "Turkey",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 41.0082,
+      "lng": 28.9784
+    },
+    "tagline": "Where East embraces West across the sparkling Bosphorus Strait",
+    "description": "Spanning Europe and Asia, Istanbul is rich with Ottoman and Byzantine treasures, aromatic spice markets, and majestic domed mosques.",
+    "bestTimeToVisit": "April–May, September–November",
+    "avgDailyBudget": "₹5,500 – ₹10,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "history",
+      "culture",
+      "food",
+      "shopping"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1200&q=80",
+    "places": [
+      {
+        "id": "hagia-sophia",
+        "name": "Hagia Sophia Grand Mosque",
+        "category": "Historical Site",
+        "description": "A 6th-century architectural marvel featuring massive marble domes and golden Byzantine mosaics.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80"
+      },
+      {
+        "id": "grand-bazaar",
+        "name": "Grand Bazaar",
+        "category": "Market",
+        "description": "One of the world's largest covered markets with over 4,000 stalls selling rugs, teas, lanterns, and spices.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "cappadocia-turkey",
+    "name": "Cappadocia",
+    "country": "Turkey",
+    "region": "Middle East",
+    "coordinates": {
+      "lat": 38.6431,
+      "lng": 34.8289
+    },
+    "tagline": "Fairy chimneys, cave hotels, and hot-air balloons at sunrise",
+    "description": "A surreal moonscape carved by volcanic erosion, dotted with subterranean cities and hundreds of hot-air balloons at golden hour.",
+    "bestTimeToVisit": "April–June, September–October",
+    "avgDailyBudget": "₹6,000 – ₹12,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "adventure",
+      "nature",
+      "photography",
+      "romance"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1641128324972-af3212f0f6bd?w=1200&q=80",
+    "places": [
+      {
+        "id": "balloon-flight",
+        "name": "Sunrise Hot Air Balloon Flight",
+        "category": "Experience",
+        "description": "Soar over Göreme Valley at dawn as hundreds of colorful balloons float above ancient cave dwellings.",
+        "recommendedTime": "3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "bali-indonesia",
+    "name": "Bali",
+    "country": "Indonesia",
+    "region": "Asia",
+    "coordinates": {
+      "lat": -8.3405,
+      "lng": 115.092
+    },
+    "tagline": "Sacred temples, emerald rice terraces, and oceanic wellness",
+    "description": "Island of the Gods where Hindu spirituality, surf beaches, jungle waterfalls, and organic cafes create a tropical haven.",
+    "bestTimeToVisit": "April–October",
+    "avgDailyBudget": "₹4,000 – ₹8,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "culture",
+      "nature",
+      "wellness",
+      "beaches"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80",
+    "places": [
+      {
+        "id": "tegallalang-rice",
+        "name": "Tegallalang Rice Terraces",
+        "category": "Nature",
+        "description": "Cascading emerald stepped paddies supported by ancient cooperative subak water management.",
+        "recommendedTime": "1–2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1531819678-eb0a94a07c00?w=800&q=80"
+      },
+      {
+        "id": "tanah-lot",
+        "name": "Tanah Lot Sea Temple",
+        "category": "Temple",
+        "description": "Ancient Hindu shrine perched dramatically on an offshore sea rock surrounded by crashing waves.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "singapore",
+    "name": "Singapore",
+    "country": "Singapore",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 1.3521,
+      "lng": 103.8198
+    },
+    "tagline": "A futuristic garden city of supertrees, Michelin street food, and wonder",
+    "description": "A dazzling global metropolis seamlessly blending lush tropical conservatories, luxury marina skylines, and heritage hawker centers.",
+    "bestTimeToVisit": "November–April",
+    "avgDailyBudget": "₹11,000 – ₹22,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "urban",
+      "food",
+      "technology",
+      "nature"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=80",
+    "places": [
+      {
+        "id": "gardens-by-the-bay",
+        "name": "Gardens by the Bay",
+        "category": "Garden",
+        "description": "Solar-powered Supertree structures and the breathtaking indoor waterfall of Cloud Forest Dome.",
+        "recommendedTime": "3–4 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1506351421178-63b52a2d2562?w=800&q=80"
+      },
+      {
+        "id": "marina-bay-sands",
+        "name": "Marina Bay Sands SkyPark",
+        "category": "Landmark",
+        "description": "Panoramic observation deck 57 levels above the bay with views across the Singapore Strait.",
+        "recommendedTime": "1–2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "london-uk",
+    "name": "London",
+    "country": "United Kingdom",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 51.5074,
+      "lng": -0.1278
+    },
+    "tagline": "Royal pageantry, West End stages, and centuries of iconic culture",
+    "description": "From Big Ben and Tower Bridge to world-class free museums, London is a grand historic capital with an electric modern beat.",
+    "bestTimeToVisit": "May–September",
+    "avgDailyBudget": "₹13,000 – ₹25,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "history",
+      "culture",
+      "art",
+      "urban"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=80",
+    "places": [
+      {
+        "id": "tower-bridge",
+        "name": "Tower Bridge",
+        "category": "Landmark",
+        "description": "Victorian suspension bridge with glass-floor walkways high above the River Thames.",
+        "recommendedTime": "1–2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80"
+      },
+      {
+        "id": "british-museum",
+        "name": "The British Museum",
+        "category": "Museum",
+        "description": "A vast collection of world history, art, and antiquities including the Rosetta Stone.",
+        "recommendedTime": "3–4 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1574958269340-fa927503f3dd?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "maldives",
+    "name": "Maldives",
+    "country": "Maldives",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 3.2028,
+      "lng": 73.2207
+    },
+    "tagline": "Overwater bungalows floating above turquoise coral paradises",
+    "description": "Over a thousand coral islands in the Indian Ocean, offering the world's most serene overwater villas and vibrant marine life.",
+    "bestTimeToVisit": "November–April",
+    "avgDailyBudget": "₹20,000 – ₹45,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "beaches",
+      "romance",
+      "diving",
+      "luxury"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&q=80",
+    "places": [
+      {
+        "id": "overwater-bungalows",
+        "name": "Overwater Bungalows",
+        "category": "Experience",
+        "description": "Stilted villas directly over translucent lagoons with private ocean stairs and glass flooring.",
+        "recommendedTime": "Your entire stay",
+        "fallbackImage": "https://images.unsplash.com/photo-1540202404-a2f29016b523?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "bangkok-thailand",
+    "name": "Bangkok & Phuket",
+    "country": "Thailand",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 13.7563,
+      "lng": 100.5018
+    },
+    "tagline": "Golden stupas, night markets, and Andaman limestone islands",
+    "description": "A sensory wonderland of ornate Buddhist temples, buzzing canal boats, street food delicacies, and turquoise island escapes.",
+    "bestTimeToVisit": "November–March",
+    "avgDailyBudget": "₹3,500 – ₹7,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "culture",
+      "food",
+      "beaches",
+      "nightlife"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1200&q=80",
+    "places": [
+      {
+        "id": "wat-arun",
+        "name": "Wat Arun (Temple of Dawn)",
+        "category": "Temple",
+        "description": "Stunning riverside spire encrusted with colorful porcelain mosaics rising majestically on the Chao Phraya River.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&q=80"
+      },
+      {
+        "id": "phi-phi",
+        "name": "Phi Phi Islands",
+        "category": "Nature",
+        "description": "Sheer limestone cliffs encircling calm azure bays, ideal for snorkelling and island-hopping.",
+        "recommendedTime": "Full day",
+        "fallbackImage": "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "zurich-switzerland",
+    "name": "Swiss Alps & Interlaken",
+    "country": "Switzerland",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 46.6863,
+      "lng": 7.8632
+    },
+    "tagline": "Snow-capped Alpine summits, glacial lakes, and storybook chalets",
+    "description": "The crown jewel of Europe's mountains — ride cogwheel trains up the Jungfraujoch, cruise crystal lakes, and breathe pure Alpine air.",
+    "bestTimeToVisit": "June–September (hiking), December–March (skiing)",
+    "avgDailyBudget": "₹16,000 – ₹32,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "nature",
+      "adventure",
+      "hiking",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1200&q=80",
+    "places": [
+      {
+        "id": "jungfraujoch",
+        "name": "Jungfraujoch – Top of Europe",
+        "category": "Mountain",
+        "description": "Europe's highest railway station at 3,454m with access to the Great Aletsch Glacier and ice palace.",
+        "recommendedTime": "Full day",
+        "fallbackImage": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "tromso-norway",
+    "name": "Tromsø & Fjords",
+    "country": "Norway",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 69.6492,
+      "lng": 18.9553
+    },
+    "tagline": "Northern lights dancing over frozen fjords on the Arctic rim",
+    "description": "Gateway to the Arctic Circle where deep cobalt fjords meet snowy peaks, offering dog sledding, whale safaris, and aurora borealis.",
+    "bestTimeToVisit": "October–March (aurora), June–August (midnight sun)",
+    "avgDailyBudget": "₹14,000 – ₹26,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "nature",
+      "adventure",
+      "wildlife",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1200&q=80",
+    "places": [
+      {
+        "id": "norway-aurora",
+        "name": "Aurora Chasing Expedition",
+        "category": "Experience",
+        "description": "Venture into Arctic wilderness valleys guided by meteorologists to view ribbons of glowing green aurora.",
+        "recommendedTime": "Night excursion",
+        "fallbackImage": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "cairo-egypt",
+    "name": "Cairo & Giza",
+    "country": "Egypt",
+    "region": "Africa",
+    "coordinates": {
+      "lat": 30.0444,
+      "lng": 31.2357
+    },
+    "tagline": "The Great Pyramids, the Sphinx, and millennia of Pharaonic mystery",
+    "description": "The cradle of ancient civilization standing beside the Nile, home to the only surviving wonder of the ancient world.",
+    "bestTimeToVisit": "October–April",
+    "avgDailyBudget": "₹4,000 – ₹8,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "history",
+      "culture",
+      "archaeology",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=1200&q=80",
+    "places": [
+      {
+        "id": "giza-pyramids",
+        "name": "Great Pyramids & Sphinx of Giza",
+        "category": "Monument",
+        "description": "4,500-year-old royal tombs of Khufu, Khafre, and Menkaure guarded by the enigmatic lion-bodied Sphinx.",
+        "recommendedTime": "Half day",
+        "fallbackImage": "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "tokyo-japan",
+    "name": "Tokyo",
+    "country": "Japan",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 35.6762,
+      "lng": 139.6503
+    },
+    "tagline": "The future, the ancient, and everything delicious — simultaneously",
+    "description": "A hyper-modern megalopolis of neon-lit skyscrapers, tranquil shrines, futuristic digital art, and world-renowned culinary genius.",
+    "bestTimeToVisit": "March–May, September–November",
+    "avgDailyBudget": "₹9,000 – ₹16,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "urban",
+      "food",
+      "culture",
+      "technology"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=80",
+    "places": [
+      {
+        "id": "shibuya-crossing",
+        "name": "Shibuya Crossing",
+        "category": "Landmark",
+        "description": "The world's most choreographed pedestrian intersection, pulsating with Tokyo's kinetic urban energy.",
+        "recommendedTime": "1 hour",
+        "fallbackImage": "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "new-york-usa",
+    "name": "New York City",
+    "country": "United States",
+    "region": "North America",
+    "coordinates": {
+      "lat": 40.7128,
+      "lng": -74.006
+    },
+    "tagline": "Eight million stories in the city that never sleeps",
+    "description": "Broadway theaters, soaring art deco skyscrapers, Central Park greenery, and an unmatched mosaic of international neighborhoods.",
+    "bestTimeToVisit": "April–June, September–November",
+    "avgDailyBudget": "₹15,000 – ₹28,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "urban",
+      "food",
+      "culture",
+      "nightlife"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1200&q=80",
+    "places": [
+      {
+        "id": "central-park",
+        "name": "Central Park",
+        "category": "Park",
+        "description": "843 acres of curated woodlands, lakes, and pathways framed by Manhattan's iconic skyline.",
+        "recommendedTime": "2–4 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1575037614876-c38a4d44f5ed?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "cape-town-south-africa",
+    "name": "Cape Town",
+    "country": "South Africa",
+    "region": "Africa",
+    "coordinates": {
+      "lat": -33.9249,
+      "lng": 18.4241
+    },
+    "tagline": "Where Table Mountain meets two oceans and coastal vineyards",
+    "description": "Flat-topped peaks plunging into two oceans, penguin-dotted beaches, award-winning winelands, and vibrant waterfront culture.",
+    "bestTimeToVisit": "November–April",
+    "avgDailyBudget": "₹6,500 – ₹13,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "nature",
+      "food",
+      "wildlife",
+      "beaches"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=1200&q=80",
+    "places": [
+      {
+        "id": "table-mountain",
+        "name": "Table Mountain",
+        "category": "Natural Wonder",
+        "description": "Ride a rotating cable car to the flat summit for 360-degree views of the Atlantic and Indian oceans.",
+        "recommendedTime": "Half day",
+        "fallbackImage": "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "dubrovnik-croatia",
+    "name": "Dubrovnik",
+    "country": "Croatia",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 42.6507,
+      "lng": 18.0944
+    },
+    "tagline": "Pearl of the Adriatic — medieval stone walls and glass-clear seas",
+    "description": "A pristine walled medieval city rising above the Adriatic, with limestone streets, orange-tiled rooftops, and secluded coves.",
+    "bestTimeToVisit": "May–June, September–October",
+    "avgDailyBudget": "₹8,500 – ₹15,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "history",
+      "beaches",
+      "romance",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1555990793-da11153b2473?w=1200&q=80",
+    "places": [
+      {
+        "id": "old-city-walls",
+        "name": "City Walls of Dubrovnik",
+        "category": "Historical Site",
+        "description": "2 kilometers of medieval fortifications offering sweeping coastal panoramas.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1555990793-da11153b2473?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "machu-picchu-peru",
+    "name": "Machu Picchu",
+    "country": "Peru",
+    "region": "South America",
+    "coordinates": {
+      "lat": -13.1631,
+      "lng": -72.545
+    },
+    "tagline": "The Lost City of the Incas, shrouded in Andean mist",
+    "description": "A 15th-century Inca citadel built high on an Andean mountain ridge, defying gravity and engineering across the centuries.",
+    "bestTimeToVisit": "May–October",
+    "avgDailyBudget": "₹7,000 – ₹13,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "history",
+      "adventure",
+      "hiking",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=1200&q=80",
+    "places": [
+      {
+        "id": "sun-gate",
+        "name": "Inti Punku (Sun Gate)",
+        "category": "Archaeological Site",
+        "description": "The legendary mountain pass framing the first view of the stone citadel at sunrise.",
+        "recommendedTime": "3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1580881112016-d7e6a7b7d48e?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "patagonia-argentina",
+    "name": "Patagonia",
+    "country": "Argentina",
+    "region": "South America",
+    "coordinates": {
+      "lat": -50.3503,
+      "lng": -72.2657
+    },
+    "tagline": "The edge of the world — glaciers, granite spires, and wild steppe",
+    "description": "A raw wilderness of jagged granite towers, massive calving blue glaciers, and wind-scoured golden plains.",
+    "bestTimeToVisit": "November–March",
+    "avgDailyBudget": "₹7,500 – ₹13,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "adventure",
+      "nature",
+      "hiking",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80",
+    "places": [
+      {
+        "id": "perito-moreno",
+        "name": "Perito Moreno Glacier",
+        "category": "Glacier",
+        "description": "A gargantuan ice wall rising 60m above Lago Argentino with thunderous calving events.",
+        "recommendedTime": "Half day",
+        "fallbackImage": "https://images.unsplash.com/photo-1531150113527-23e31f38d4ae?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "iceland",
+    "name": "Iceland",
+    "country": "Iceland",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 64.9631,
+      "lng": -19.0208
+    },
+    "tagline": "Fire, ice, steaming geysers, and auroras on the Arctic frontier",
+    "description": "A dramatic geological wonderland of erupting volcanoes, black-sand beaches, glacial lagoons, and cascading waterfalls.",
+    "bestTimeToVisit": "June–August (summer), September–March (northern lights)",
+    "avgDailyBudget": "₹15,000 – ₹26,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "nature",
+      "adventure",
+      "photography",
+      "wildlife"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1200&q=80",
+    "places": [
+      {
+        "id": "jokulsarlon",
+        "name": "Jökulsárlón Glacier Lagoon",
+        "category": "Natural Wonder",
+        "description": "Luminous blue icebergs floating quietly from glaciers out to black diamond beaches.",
+        "recommendedTime": "3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1474690870753-1b92efa1f2d8?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "sydney-australia",
+    "name": "Sydney",
+    "country": "Australia",
+    "region": "Oceania",
+    "coordinates": {
+      "lat": -33.8688,
+      "lng": 151.2093
+    },
+    "tagline": "Harbour sails, golden surf beaches, and sunlit coastal walks",
+    "description": "A radiant coastal city famous for the architectural Opera House, Bondi surf culture, and pristine national parks.",
+    "bestTimeToVisit": "September–November, March–May",
+    "avgDailyBudget": "₹11,000 – ₹21,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "beaches",
+      "urban",
+      "nature",
+      "food"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&q=80",
+    "places": [
+      {
+        "id": "sydney-opera-house",
+        "name": "Sydney Opera House",
+        "category": "Landmark",
+        "description": "The world-famous expressionist shell structure presiding over Sydney Harbour.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "kathmandu-nepal",
+    "name": "Kathmandu & Pokhara",
+    "country": "Nepal",
+    "region": "Asia",
+    "coordinates": {
+      "lat": 27.7172,
+      "lng": 85.324
+    },
+    "tagline": "Himalayan peaks, serene stupas, and ancient spiritual pathways",
+    "description": "The rooftop of the world — ancient Newari temples in Durbar Square and peaceful mountain lakes reflecting the Annapurna range.",
+    "bestTimeToVisit": "October–December, March–May",
+    "avgDailyBudget": "₹2,500 – ₹5,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "mountains",
+      "culture",
+      "adventure",
+      "hiking"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1200&q=80",
+    "places": [
+      {
+        "id": "boudhanath",
+        "name": "Boudhanath Stupa",
+        "category": "Temple",
+        "description": "One of the largest spherical Buddhist stupas in the world, surrounded by prayer flags and monasteries.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "queenstown-newzealand",
+    "name": "Queenstown",
+    "country": "New Zealand",
+    "region": "Oceania",
+    "coordinates": {
+      "lat": -45.0312,
+      "lng": 168.6626
+    },
+    "tagline": "Adventure capital nestled beside crystal Lake Wakatipu",
+    "description": "Dramatic Remarkables mountain ranges, fjordland cruises, bungee jumping, and pinot noir vineyards on the South Island.",
+    "bestTimeToVisit": "December–February (summer), June–August (snow)",
+    "avgDailyBudget": "₹12,500 – ₹23,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "adventure",
+      "nature",
+      "mountains",
+      "photography"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=1200&q=80",
+    "places": [
+      {
+        "id": "milford-sound",
+        "name": "Milford Sound Fjord",
+        "category": "Natural Wonder",
+        "description": "Described as the eighth wonder of the world with towering Mitre Peak and cascading glacial waterfalls.",
+        "recommendedTime": "Full day",
+        "fallbackImage": "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "marrakech-morocco",
+    "name": "Marrakech",
+    "country": "Morocco",
+    "region": "Africa",
+    "coordinates": {
+      "lat": 31.6295,
+      "lng": -7.9811
+    },
+    "tagline": "A sensory explosion of spice, color, and ancient medina life",
+    "description": "The 'Red City' whose medina is a labyrinth of souks, riads, and medieval monuments with the Atlas Mountains on the horizon.",
+    "bestTimeToVisit": "March–May, September–November",
+    "avgDailyBudget": "₹4,500 – ₹9,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "culture",
+      "food",
+      "shopping",
+      "history"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=1200&q=80",
+    "places": [
+      {
+        "id": "djemaa-el-fna",
+        "name": "Djemaa el-Fna",
+        "category": "Square",
+        "description": "Marrakech's beating heart — storytellers, musicians, and evening grills under glowing lantern smoke.",
+        "recommendedTime": "2–4 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1597212720158-ce4daa17d9b1?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "cancun-mexico",
+    "name": "Cancún & Riviera Maya",
+    "country": "Mexico",
+    "region": "North America",
+    "coordinates": {
+      "lat": 21.1619,
+      "lng": -86.8515
+    },
+    "tagline": "Turquoise Caribbean reefs, mystical cenotes, and Mayan pyramids",
+    "description": "Powder-soft white beaches, crystalline limestone cenote sinkholes, and ancient Mayan ruins overlooking the Caribbean Sea.",
+    "bestTimeToVisit": "December–April",
+    "avgDailyBudget": "₹6,000 – ₹13,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "beaches",
+      "history",
+      "adventure",
+      "food"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1510097467424-192d713fd8c2?w=1200&q=80",
+    "places": [
+      {
+        "id": "chichen-itza",
+        "name": "Chichén Itzá Pyramid",
+        "category": "Archaeological Site",
+        "description": "One of the New Seven Wonders of the World, displaying Mayan astronomical and acoustic genius.",
+        "recommendedTime": "3–4 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1518638150340-f706e86654de?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "amsterdam-netherlands",
+    "name": "Amsterdam",
+    "country": "Netherlands",
+    "region": "Europe",
+    "coordinates": {
+      "lat": 52.3676,
+      "lng": 4.9041
+    },
+    "tagline": "Canals, Golden Age art masterpieces, and cycling culture",
+    "description": "Concentric rings of historic waterways lined with merchant gables, world-class Van Gogh and Rijksmuseum galleries.",
+    "bestTimeToVisit": "April–May (tulips), June–August",
+    "avgDailyBudget": "₹10,000 – ₹18,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "culture",
+      "art",
+      "history",
+      "cycling"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1584003564911-f4ec900c3a38?w=1200&q=80",
+    "places": [
+      {
+        "id": "canal-ring",
+        "name": "Canal Ring (Grachtengordel)",
+        "category": "Neighborhood",
+        "description": "UNESCO-listed waterways best explored by glass-top boat or rented bicycle.",
+        "recommendedTime": "Half day",
+        "fallbackImage": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "petra-jordan",
+    "name": "Petra",
+    "country": "Jordan",
+    "region": "Middle East",
+    "coordinates": {
+      "lat": 30.3285,
+      "lng": 35.4444
+    },
+    "tagline": "A rose-red city carved directly into living sandstone cliffs",
+    "description": "The legendary ancient Nabataean capital hidden deep inside a narrow desert canyon, revealed dramatically through the Siq.",
+    "bestTimeToVisit": "March–May, September–November",
+    "avgDailyBudget": "₹6,500 – ₹12,000",
+    "currency": "INR (₹)",
+    "tags": [
+      "history",
+      "adventure",
+      "photography",
+      "archaeology"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1579606032821-4e6161c81bd3?w=1200&q=80",
+    "places": [
+      {
+        "id": "the-treasury",
+        "name": "Al-Khazneh (The Treasury)",
+        "category": "Monument",
+        "description": "A 43-metre rock-carved Hellenistic façade emerging at the end of the narrow canyon gorge.",
+        "recommendedTime": "2 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1579606032821-4e6161c81bd3?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "rio-de-janeiro-brazil",
+    "name": "Rio de Janeiro",
+    "country": "Brazil",
+    "region": "South America",
+    "coordinates": {
+      "lat": -22.9068,
+      "lng": -43.1729
+    },
+    "tagline": "Samba rhythms, golden coastlines, and mountains diving into the sea",
+    "description": "Dramatic granite peaks overlooking Copacabana and Ipanema beaches, guarded by the iconic open arms of Christ the Redeemer.",
+    "bestTimeToVisit": "December–March",
+    "avgDailyBudget": "₹5,500 – ₹11,500",
+    "currency": "INR (₹)",
+    "tags": [
+      "beaches",
+      "culture",
+      "nightlife",
+      "nature"
+    ],
+    "fallbackImage": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1200&q=80",
+    "places": [
+      {
+        "id": "christ-redeemer",
+        "name": "Christ the Redeemer",
+        "category": "Landmark",
+        "description": "The New Wonder of the World atop Corcovado mountain overlooking Guanabara Bay.",
+        "recommendedTime": "2–3 hours",
+        "fallbackImage": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&q=80"
+      }
+    ]
+  }
+]

@@ -1,0 +1,524 @@
+/* ─── Modern Glassmorphism Design Tokens ──────────────────────────────────────── */
+
+:root {
+  /* ─── Light Mode: Buttermilk (#fff2bd) & Mid Blue (#285ccc) Palette ─── */
+  --color-buttermilk: #fff2bd;
+  --color-buttermilk-light: #fff9db;
+  --color-buttermilk-dark: #fde047;
+  --color-midblue: #285ccc;
+  --color-midblue-hover: #1f4cb0;
+  --color-midblue-light: #3d72e6;
+  --color-midblue-subtle: rgba(40, 92, 204, 0.08);
+
+  --bg-color: #faf7ee; /* Warm, creamy buttermilk-tinted ivory */
+  --mesh-bg: 
+    radial-gradient(at 8% 8%, rgba(255, 242, 189, 0.95) 0px, transparent 50%),
+    radial-gradient(at 92% 8%, rgba(40, 92, 204, 0.16) 0px, transparent 50%),
+    radial-gradient(at 92% 92%, rgba(255, 242, 189, 0.85) 0px, transparent 52%),
+    radial-gradient(at 8% 92%, rgba(40, 92, 204, 0.12) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(255, 255, 255, 0.7) 0px, transparent 65%);
+
+  /* Glassmorphism Variables - Light (Performance Optimized) */
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-bg-subtle: rgba(255, 253, 245, 0.72);
+  --glass-bg-hover: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(40, 92, 204, 0.16);
+  --glass-border-subtle: rgba(40, 92, 204, 0.09);
+  --glass-shadow: rgba(10, 25, 60, 0.07);
+  --glass-blur: 14px;
+  
+  /* Text & Accents - Light: Ultra High-Contrast & Crisp */
+  --text-primary: #061128;     /* Deep rich navy-black for extreme legibility */
+  --text-secondary: #17253f;   /* Clear, dark slate navy */
+  --text-muted: #334460;       /* Solid legible slate */
+  --text-inverse: #ffffff;
+  --input-placeholder: #334460; /* Clear, sharp placeholder color */
+
+  --accent-primary: #285ccc;   /* Mid Blue */
+  --accent-secondary: #d97706; /* Warm buttermilk amber accent */
+  --accent-gradient: linear-gradient(135deg, #285ccc 0%, #3b82f6 55%, #eab308 100%);
+  --card-border: rgba(40, 92, 204, 0.15);
+
+  /* Card Glow Effects - Light */
+  --card-glow-shadow: rgba(40, 92, 204, 0.22);
+  --card-glow-aura: rgba(255, 242, 189, 0.85);
+  --card-glow-border: #285ccc;
+
+  /* Custom Cursor */
+  --cursor-dot-color: #285ccc;
+  --cursor-ring-color: rgba(40, 92, 204, 0.45);
+
+  /* Radius */
+  --radius-sm:  0.5rem;
+  --radius-md:  0.875rem;
+  --radius-lg:  1.25rem;
+  --radius-xl:  1.75rem;
+  --radius-2xl: 2.25rem;
+  --radius-full: 9999px;
+
+  /* Typography: Elegant, Neat & Pristine */
+  --font-display: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+}
+
+[data-theme="dark"] {
+  /* ─── Dark Mode: Cosmic Midnight & Radiant Electric Sapphire / Champagne Gold ─── */
+  --color-buttermilk: #fde047;
+  --color-buttermilk-light: #fef08a;
+  --color-buttermilk-dark: #ca8a04;
+  --color-midblue: #3b82f6;
+  --color-midblue-hover: #60a5fa;
+  --color-midblue-light: #93c5fd;
+  --color-midblue-subtle: rgba(59, 130, 246, 0.12);
+
+  --bg-color: #060a14; /* Deep cosmic obsidian */
+  --mesh-bg: 
+    radial-gradient(at 0% 0%, rgba(40, 92, 204, 0.45) 0px, transparent 55%),
+    radial-gradient(at 100% 0%, rgba(254, 240, 138, 0.14) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(30, 58, 138, 0.5) 0px, transparent 60%),
+    radial-gradient(at 0% 100%, rgba(15, 23, 42, 0.95) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(10, 18, 36, 0.9) 0px, transparent 60%);
+
+  /* Glassmorphism Variables - Dark (Performance Optimized) */
+  --glass-bg: rgba(11, 20, 42, 0.76);
+  --glass-bg-subtle: rgba(13, 23, 48, 0.56);
+  --glass-bg-hover: rgba(22, 38, 77, 0.88);
+  --glass-border: rgba(96, 165, 250, 0.24);
+  --glass-border-subtle: rgba(255, 255, 255, 0.09);
+  --glass-shadow: rgba(0, 0, 0, 0.55);
+  --glass-blur: 15px;
+
+  /* Text & Accents - Dark: Crisp & Luminous */
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-inverse: #060a14;
+  --input-placeholder: #cbd5e1; /* Crystal clear readable placeholder in dark mode */
+
+  --accent-primary: #3b82f6;
+  --accent-secondary: #facc15;
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #fde047 100%);
+  --card-border: rgba(59, 130, 246, 0.24);
+
+  /* Card Glow Effects - Dark */
+  --card-glow-shadow: rgba(40, 92, 204, 0.5);
+  --card-glow-aura: rgba(59, 130, 246, 0.4);
+  --card-glow-border: #60a5fa;
+
+  /* Custom Cursor */
+  --cursor-dot-color: #60a5fa;
+  --cursor-ring-color: rgba(96, 165, 250, 0.55);
+}
+
+/* ─── Smooth & High-Performance Scrolling ─────────────────────────────────────── */
+html {
+  scroll-behavior: smooth !important;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth !important;
+  }
+}
+
+/* ─── Global Reset & Clean Font (Lag Removed) ─────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* NO UNIVERSAL TRANSITIONS HERE - Prevents scroll lag and style calculation bottlenecks */
+}
+
+/* Targeted transitions only for interactive elements */
+a, button, input, select, textarea, [role="button"] {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+/* ─── Correct Placeholder Colors Everywhere ──────────────────────────────────── */
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  color: var(--input-placeholder) !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: var(--input-placeholder) !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: var(--input-placeholder) !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: var(--input-placeholder) !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+}
+
+/* ─── Hide System Cursor When Inside Website (Only Custom Cursor Visible) ─────── */
+@media (pointer: fine) and (hover: hover) {
+  *, *::before, *::after,
+  html, body,
+  a, button, input, select, textarea,
+  [role="button"], label, div, span, p, h1, h2, h3, h4, h5, h6 {
+    cursor: none !important;
+  }
+}
+
+/* ─── Keyboard Accessibility & High-Visibility Dynamic Focus Effects ─────────── */
+:focus-visible {
+  outline: 2.5px solid var(--accent-color) !important;
+  outline-offset: 3.5px !important;
+  box-shadow: 
+    0 0 0 3px var(--accent-glow),
+    0 0 24px var(--accent-glow),
+    0 8px 24px -4px var(--card-glow-shadow) !important;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), outline-offset 0.15s ease !important;
+}
+
+/* Interactive Buttons & Navigation Links: Micro-lift and scale when focused */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  transform: translateY(-2.5px) scale(1.025) translateZ(0) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Glass Cards & Destination / Place Cards when focused via keyboard */
+.glass-card:focus-visible,
+.place-card-interactive:focus-visible,
+.card-glow-hover:focus-visible,
+article:focus-visible,
+a:focus-visible > .glass-card,
+a:focus-visible > article,
+a:focus-visible > div {
+  transform: translateY(-6px) scale(1.02) translateZ(0) !important;
+  background: var(--glass-bg-hover) !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 
+    0 24px 48px -8px var(--card-glow-shadow),
+    0 0 32px var(--card-glow-aura),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Automatically trigger photo zoom inside cards when focused via keyboard */
+a:focus-visible img,
+button:focus-visible img,
+.group:focus-visible img {
+  transform: scale(1.08) !important;
+}
+
+/* Filter Chips, Tags & Segmented Pills: Expand, lift and glow */
+.glass-pill:focus-visible,
+[aria-pressed="true"]:focus-visible,
+.filter-chip:focus-visible {
+  transform: translateY(-2.5px) scale(1.06) translateZ(0) !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 2px var(--accent-color), 0 0 18px var(--accent-glow) !important;
+}
+
+/* Form Inputs & Custom Selects: Luminous glass glow */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  transform: scale(1.01) translateZ(0) !important;
+  background: var(--glass-bg-hover) !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow), 0 0 22px var(--accent-glow) !important;
+}
+
+/* Day Accordions in Itinerary when focused via keyboard */
+.glass-panel button:focus-visible {
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: scale(1.01) translateZ(0) !important;
+}
+
+/* Accessible Skip Link */
+.skip-to-content {
+  position: fixed;
+  top: -120px;
+  left: 1.5rem;
+  z-index: 99999;
+  background: var(--accent-color);
+  color: #ffffff !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.875rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.skip-to-content:focus-visible {
+  top: 1.5rem !important;
+  outline: 3px solid #ffffff !important;
+  outline-offset: 3px !important;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography Elegance ─────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+  color: var(--text-primary);
+}
+
+p, span, li, a {
+  letter-spacing: -0.01em;
+}
+
+/* ─── GPU Hardware-Accelerated Ambient Mesh Background (Zero Lag) ─────────────── */
+.background-mesh {
+  position: fixed;
+  inset: -10%;
+  width: 120vw;
+  height: 120vh;
+  background-image: var(--mesh-bg);
+  background-size: 100% 100%;
+  animation: mesh-gpu-drift 28s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -20;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+@keyframes mesh-gpu-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(-2%, 2%, 0) scale(0.98);
+  }
+}
+
+/* ─── Glassmorphism Utility Classes (Rich Specular Sheen & Depth) ────────────── */
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%), var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 28px 0 var(--glass-shadow), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+  transform: translateZ(0); /* Hardware accelerated layer */
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%), var(--glass-bg-subtle);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border-subtle);
+  box-shadow: 0 6px 22px 0 var(--glass-shadow), inset 0 1px 1px 0 rgba(255, 255, 255, 0.28);
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  transform: translateZ(0);
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%), var(--glass-bg-hover);
+  border-color: var(--card-glow-border);
+  box-shadow: 0 18px 38px -8px var(--card-glow-shadow), 0 0 24px -4px var(--card-glow-aura), inset 0 1px 2px 0 rgba(255, 255, 255, 0.45);
+  transform: translateY(-5px) translateZ(0);
+}
+
+.glass-dock {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 100%), var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 16px 40px 0 var(--glass-shadow), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.4);
+  transform: translateZ(0);
+}
+
+/* ─── Glowing Place Cards Effect ────────────────────────────────────────────── */
+.place-card-interactive,
+.card-glow-hover {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  transform: translateZ(0);
+}
+
+.place-card-interactive:hover,
+.card-glow-hover:hover {
+  transform: translateY(-5px) scale(1.012) translateZ(0);
+  box-shadow: 
+    0 22px 46px -10px var(--card-glow-shadow),
+    0 0 28px -3px var(--card-glow-aura),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.6) !important;
+  border-color: var(--card-glow-border) !important;
+}
+
+.place-card-interactive:active {
+  transform: translateY(-2px) scale(0.99) translateZ(0);
+}
+
+.glass-subtle {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border-subtle);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-pill {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.glass-dark {
+  background: rgba(8, 14, 28, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Vibrant Gradient Text ───────────────────────────────────────────────────── */
+.text-gradient-accent {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Custom Cursor Elements (Fluid 60+ FPS Tracking) ─────────────────────────── */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  background-color: var(--cursor-dot-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 14px var(--cursor-dot-color), 0 0 4px var(--cursor-dot-color);
+  will-change: transform;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--cursor-ring-color);
+  background: rgba(40, 92, 204, 0.04);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.custom-cursor-ring.active {
+  width: 60px;
+  height: 60px;
+  border-color: var(--cursor-dot-color);
+  background: rgba(40, 92, 204, 0.14);
+  box-shadow: 0 0 24px var(--card-glow-shadow);
+}
+
+@media (pointer: coarse), (hover: none) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(40, 92, 204, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(40, 92, 204, 0.55);
+}
+
+/* ─── Chat Assistant Markdown ────────────────────────────────────────────────── */
+.chat-markdown {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: inherit;
+  word-break: break-word;
+}
+.chat-markdown p {
+  margin-bottom: 0.6rem;
+}
+.chat-markdown p:last-child {
+  margin-bottom: 0;
+}
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3,
+.chat-markdown h4 {
+  font-weight: 700;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  color: inherit;
+}
+.chat-markdown ul,
+.chat-markdown ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+.chat-markdown ul {
+  list-style-type: disc;
+}
+.chat-markdown ol {
+  list-style-type: decimal;
+}
+.chat-markdown li {
+  margin-bottom: 0.25rem;
+}
+.chat-markdown strong {
+  font-weight: 700;
+  color: inherit;
+}
+.chat-markdown code {
+  background: rgba(0, 0, 0, 0.12);
+  padding: 0.125rem 0.35rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.85em;
+}
+[data-theme="dark"] .chat-markdown code {
+  background: rgba(255, 255, 255, 0.12);
+}

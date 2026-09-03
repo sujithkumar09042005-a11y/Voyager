@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link id="favicon-png" rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+    <link id="favicon-svg" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#285ccc" />
+
+    <!-- SEO -->
+    <title>Voyager — Modern Glassmorphism Travel Explorer</title>
+    <meta
+      name="description"
+      content="Voyager is a smart, glassmorphic travel discovery platform with real-time location detection, live weather, Pexels photography, and AI-powered trip itineraries."
+    />
+    <meta name="keywords" content="voyager, travel, destinations, itinerary, AI travel planner, weather, pexels, glassmorphism" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Voyager — Plan Your Next Great Adventure" />
+    <meta property="og:description" content="Discover extraordinary global destinations, detect real-time location suggestions, and generate AI-crafted itineraries." />
+    <meta property="og:image" content="/icon.png" />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts: Refined, Elegant & Neat Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Theme & Circular Favicon Generator Script -->
+    <script>
+      (function() {
+        // Theme initialization
+        const savedTheme = localStorage.getItem('voyager-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Circular Tab Favicon generator
+        try {
+          const img = new Image();
+          img.src = '/icon.png';
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const size = 128;
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            // Clip circle
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2 - 2, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.clip();
+
+            // Draw image scaled
+            ctx.drawImage(img, 0, 0, size, size);
+
+            // Add fine outer ring with theme accent
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2 - 2, 0, Math.PI * 2);
+            ctx.strokeStyle = '#285ccc';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            const roundUrl = canvas.toDataURL('image/png');
+            const pngLink = document.getElementById('favicon-png');
+            if (pngLink) pngLink.href = roundUrl;
+
+            // Persist to public/favicon.png via proxy
+            fetch('http://localhost:3001/api/save-favicon', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ dataUrl: roundUrl, filename: 'favicon.png' })
+            }).catch(() => {});
+          };
+        } catch (e) {
+          console.error(e);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
