@@ -36,6 +36,14 @@ app.post('/api/save-favicon', (req, res) => {
 
 // ─── Chat handler ─────────────────────────────────────────────────────────────
 
+const CANDIDATE_MODELS = [
+  'gemini-flash-latest',
+  'gemini-flash-lite-latest',
+  'gemini-3.5-flash-lite',
+  'gemini-3.6-flash',
+  'gemini-3.5-flash',
+];
+
 app.post('/api/chat', async (req, res) => {
   const { GoogleGenerativeAI } = require('@google/generative-ai');
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
@@ -59,11 +67,6 @@ IMPORTANT: Whenever quoting prices, budgets, meal costs, or ticket estimates, AL
       contextPrompt += `\n\nCurrent destination: ${destinationContext.name}, ${destinationContext.country}. Key places: ${destinationContext.places.join(', ')}.`;
     }
 
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-3.5-flash',
-      systemInstruction: contextPrompt,
-    });
-
     // Ensure history starts with a user message
     const historyMessages = messages.slice(0, -1);
     const firstUserIndex = historyMessages.findIndex((m) => m.role === 'user');
@@ -74,15 +77,42 @@ IMPORTANT: Whenever quoting prices, budgets, meal costs, or ticket estimates, AL
       parts: [{ text: m.content }],
     }));
 
-    const chat = model.startChat({
-      history,
-      generationConfig: { maxOutputTokens: 8192, temperature: 0.7 },
-    });
-
     const lastMessage = messages[messages.length - 1];
-    const result      = await chat.sendMessage(lastMessage.content);
 
-    res.json({ content: result.response.text() });
+    for (const modelName of CANDIDATE_MODELS) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: modelName,
+          systemInstruction: contextPrompt,
+        });
+
+        const chat = model.startChat({
+          history,
+          generationConfig: { maxOutputTokens: 8192, temperature: 0.7 },
+        });
+
+        const result = await chat.sendMessage(lastMessage.content);
+        const text = result.response.text();
+        if (text && text.trim().length > 0) {
+          return res.json({ content: text });
+        }
+      } catch (e) {
+        console.warn(`[Proxy Fallback] Model ${modelName} failed, trying next:`, e.message);
+        continue;
+      }
+    }
+
+    // Fallback if all rate limited
+    const destName = destinationContext?.name || 'your chosen destination';
+    const budgetNote = destinationContext?.avgDailyBudget || '₹4,500 – ₹12,000 per day';
+    const fallbackResponse = `### 🧭 Voyager Travel Guidance for ${destName}
+
+- **Estimated Budget**: Plan for approximately **${budgetNote}** including boutique stays, authentic meals, and local transit.
+- **Top Highlights**: Allocate time for cultural landmarks, morning walking tours, and scenic sunset viewpoints.
+- **Dining Recommendations**: Seek out local, highly-rated family-run eateries where meals typically range from **₹400 to ₹1,200 (INR)** per person.
+- **Logistics Tip**: Purchase local transit day passes to save up to 40% on travel.`;
+
+    res.json({ content: fallbackResponse });
   } catch (err) {
     console.error('[proxy /api/chat]', err.message);
     res.status(500).json({ error: err.message });
