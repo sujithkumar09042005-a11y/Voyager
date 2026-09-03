@@ -1,52 +1,58 @@
-# 🧭 Voyager — Next-Generation Glassmorphic Travel Explorer
+<div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://voyager-cyan.vercel.app)
-[![React](https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+# 🧭 VOYAGER
+### Next-Generation Glassmorphic Travel Explorer & AI Trip Engine
+
+[![Live Application](https://img.shields.io/badge/Live_App-voyager--cyan.vercel.app-285ccc?style=for-the-badge&logo=vercel&logoColor=white)](https://voyager-cyan.vercel.app)
+[![React 18](https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript_5-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://aistudio.google.com/)
 [![OpenWeather](https://img.shields.io/badge/OpenWeather-EB6E4B?style=for-the-badge&logo=openweathermap&logoColor=white)](https://openweathermap.org/)
 [![Pexels](https://img.shields.io/badge/Pexels_API-05A081?style=for-the-badge&logo=pexels&logoColor=white)](https://www.pexels.com/)
 
-> **Voyager** is an intelligent, design-led global travel platform. It seamlessly merges state-of-the-art glassmorphism aesthetics with real-time meteorological intelligence, dual-mode location discovery, dynamic photography, and conversational AI trip planning.
+<p align="center">
+  <strong>An intelligent, design-led global travel platform combining tactile glassmorphism aesthetics, dual-mode location discovery, live meteorological data, dynamic photography, and conversational AI trip planning in Indian Rupees (₹ INR).</strong>
+</p>
 
-🔗 **Live Production URL**: [https://voyager-cyan.vercel.app](https://voyager-cyan.vercel.app)  
-📂 **GitHub Repository**: [https://github.com/sujithkumar09042005-a11y/Voyager](https://github.com/sujithkumar09042005-a11y/Voyager)
+[Explore Live Demo](https://voyager-cyan.vercel.app) • [View Source](https://github.com/sujithkumar09042005-a11y/Voyager) • [Report Issue](https://github.com/sujithkumar09042005-a11y/Voyager/issues)
 
----
-
-## 🌟 Platform Overview & Key Capabilities
-
-Voyager was conceived to rethink modern digital travel discovery with tactile depth, intelligent automation, and fluid responsiveness:
-
-| Feature | Description |
-|---|---|
-| **🎥 Cinematic Landing Experience** | Immersive full-viewport looping video hero (`Hero_Video.mp4`), glassmorphic instant search capsule, live GPS distance trigger, and featured destination rail. |
-| **🌍 Worldwide Destination Directory** | **34 hand-curated destinations** spanning all 7 continents with continent filters, atmosphere vibes matrix, and daily budget controls in Indian Rupees (`₹` INR). |
-| **🏛️ Must-Visit Landmarks & Places** | Famous places for each destination with category tags, descriptions, recommended visit durations, verified Pexels photography, and interactive focus-trapped detail modals. |
-| **📍 Dual-Mode Location Engine** | **Dual Geo Intelligence**: (1) Live device GPS calculating geodesic distance in kilometers using the Haversine formula; (2) Instant city search powered by OpenWeather Geocoding so users can explore proximity from any starting city on Earth. |
-| **☀️ Live Meteorological Intelligence** | Real-time OpenWeather integration displaying temperature in °C, animated condition badges, feels-like readings, humidity, wind speed, visibility, and interactive retry states. |
-| **📸 Dynamic High-Res Photography** | High-definition destination imagery fetched dynamically via the Pexels API with verified photographer credits and curated local fallback protection. |
-| **🤖 Voyager AI Travel Assistant** | Built-in conversational guide with a multi-model Google Gemini cascade, providing comprehensive travel advice, cultural etiquette, and dining estimates quoted in **₹ INR**. |
-| **🗓️ Day-by-Day AI Itinerary Generator** | Interactive trip planner (`/itinerary`) that synthesizes customized day-by-day accordion timeline schedules with activity timestamps, durations, and local tips in **₹ INR**. |
+</div>
 
 ---
 
-## 🎨 Design System & Aesthetic Philosophy
+## 🌟 Core Highlights & Capabilities
+
+Voyager redefines modern travel discovery by blending editorial aesthetic restraint with real-time distributed web services:
+
+- **🎥 Cinematic Landing Experience**: High-definition looping video background hero with an integrated glass command search capsule, live geodesic distance trigger, and featured destination rail.
+- **🌍 Global Destination Directory**: **34 hand-curated escapes** spanning all 7 continents. Features instant multi-tag filtering, continental ribbons, expandable atmosphere vibes, and daily budget sliders in Indian Rupees (`₹` INR).
+- **🏛️ Must-Visit Landmarks & Places**: Landmark directory with category tags, descriptions, recommended visit durations, verified Pexels photography, and interactive focus-trapped detail modals.
+- **📍 Dual-Engine Location Discovery**:
+  - **Live GPS Proximity**: Uses device geolocation to calculate geodesic distance in kilometers via the Haversine formula.
+  - **Global City Geocoding**: Direct city search (powered by OpenWeather Geocoding API) allows users to measure distances from any origin on Earth even when GPS is disabled.
+- **☀️ Live Meteorological Telemetry**: Real-time OpenWeather integration displaying temperature in °C, animated condition badges, feels-like readings, humidity, wind speed, visibility, and interactive retry states.
+- **📸 High-Resolution Dynamic Photography**: High-definition photography dynamically fetched via the Pexels API with verified photographer attribution links and local fallback protection.
+- **🤖 Voyager AI Travel Concierge**: Integrated conversational travel assistant built with a resilient Google Gemini multi-model cascade, providing comprehensive travel advice, cultural etiquette, and dining estimates quoted in **₹ INR**.
+- **🗓️ Day-by-Day AI Itinerary Generator**: Custom trip planner (`/itinerary`) that synthesizes customized day-by-day accordion timeline schedules with activity timestamps, durations, and local dining tips in **₹ INR**.
+
+---
+
+## 🎨 Design System & Aesthetics
 
 ### 1. Glassmorphic Architecture
-- **Layered Frosted Glass**: Built with high-translucency panels (`backdrop-blur-2xl`) and specular top-edge light reflections (`inset 0 1px 1px 0 rgba(255,255,255,0.45)`).
-- **GPU Hardware-Accelerated Ambient Mesh**: Fluid radial gradient backdrop animating on GPU composites (`translate3d`), guaranteeing stutter-free 60fps scrolling.
+- **Layered Frosted Glass**: Built with translucent frosted panels (`backdrop-blur-2xl`) and specular top-edge light reflections (`inset 0 1px 1px 0 rgba(255,255,255,0.45)`).
+- **GPU Hardware-Accelerated Ambient Mesh**: Fluid radial gradient backdrop animating on GPU composites (`translate3d`), ensuring stutter-free 60fps scrolling.
 - **Glass Command Dock (`.glass-dock`)**: Unified floating control center housing search inputs, budget toggles, and filter ribbons.
 
-### 2. Dual-Mode Curated Themes
+### 2. Curated Dual Themes
 - **Light Theme**: Soft warm Buttermilk (`#fff2bd`) and vibrant Mid Blue (`#285ccc`) over an ivory base (`#faf7ee`) with high-contrast deep navy typography (`#061128`).
 - **Dark Theme**: Deep cosmic obsidian (`#060a14`) paired with electric sapphire (`#3b82f6`) and moonlight champagne gold (`#fde047`).
 
 ### 3. Typography & Micro-Interactions
 - **Display Headlines**: Styled in **Outfit** with tightened tracking (`-0.025em`) for an editorial travel publication feel.
 - **Body & Controls**: Styled in **Plus Jakarta Sans** for clean legibility across small handheld viewports.
-- **Pure Vector Iconography**: Sleek Lucide React vector icons replacing cartoon emojis for a unified, modern aesthetic.
+- **Pure Vector Iconography**: Sleek Lucide React vector icons replacing cartoon emojis for a unified, modern visual language.
 - **Fluid Custom Cursor**: Dual-element magnetic glass cursor with active hover expansion (native touch restored automatically on mobile and tablets).
 
 ### 4. 100% Keyboard-Only Accessibility
@@ -76,16 +82,16 @@ Voyager was conceived to rethink modern digital travel discovery with tactile de
 └─────────────┘  └─────────────┘└─────────────┘  └──────────────┘
 ```
 
-| Service / Tool | Implementation | Purpose |
+| Technology / Service | Implementation | Purpose |
 |---|---|---|
-| **React 18** | Single Page Application (SPA) | Component-driven UI with fluid state management |
-| **TypeScript 5** | Strict Type System | End-to-end type safety across API responses and UI models |
-| **Tailwind CSS** | Custom Tokens & Utility Architecture | Rapid, responsive styling adhering to glassmorphic tokens |
+| **React 18** | Single Page Application (SPA) | Component-driven UI with fluid client-side state |
+| **TypeScript 5** | Strict Type System | End-to-end type safety across API schemas and components |
+| **Tailwind CSS** | Custom Design Tokens | Rapid, responsive styling adhering to glassmorphic tokens |
 | **Framer Motion** | Declarative Animation Engine | Smooth page transitions, modal spring physics, and list animations |
-| **OpenWeatherMap** | REST API (`/weather` & `/geo`) | Live weather metrics and geodesic city search |
+| **OpenWeatherMap** | REST API (`/weather` & `/geo`) | Real-time weather telemetry and geodesic city search |
 | **Pexels API** | REST API (`/v1/search`) | Dynamic travel and landmark photography |
-| **Google Gemini AI** | Multi-Model Cascade (`gemini-flash`) | Conversational travel guidance and custom day-by-day itineraries |
-| **Vercel Serverless** | Node.js Functions (`api/*.ts`) | Serverless endpoints ensuring AI keys remain secure |
+| **Google Gemini AI** | Multi-Model Cascade (`gemini-flash`) | Conversational travel guidance and structured trip itineraries |
+| **Vercel Serverless** | Node.js Functions (`api/*.ts`) | Edge endpoints keeping Gemini API keys securely on the server |
 
 ---
 
@@ -155,7 +161,7 @@ Validates TypeScript types (`tsc -b`) and produces an optimized production bundl
 
 Voyager is pre-configured for zero-configuration deployment on **Vercel**:
 1. Connect the GitHub repository in [Vercel](https://vercel.com/new).
-2. Set the 4 Environment Variables in the project settings:
+2. Set the 4 Environment Variables in project settings:
    - `VITE_OPENWEATHER_API_KEY`
    - `VITE_PEXELS_API_KEY`
    - `GEMINI_API_KEY`
@@ -214,5 +220,5 @@ voyager/
 
 - **License**: MIT License © 2026 Voyager.
 - **Photography**: Dynamically sourced via [Pexels API](https://www.pexels.com) with photographer attribution.
-- **Weather Data**: Powered by [OpenWeatherMap](https://openweathermap.org/).
+- **Weather Telemetry**: Powered by [OpenWeatherMap](https://openweathermap.org/).
 - **AI Intelligence**: Powered by [Google Gemini AI](https://deepmind.google/technologies/gemini/).
