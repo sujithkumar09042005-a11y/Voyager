@@ -64,7 +64,7 @@ function SuggestionItem({ destination, distance, onClose }: SuggestionItemProps)
       onClick={onClose}
       className="block group focus:outline-none"
     >
-      <div className="glass-card place-card-interactive overflow-hidden rounded-2xl flex flex-col sm:flex-row items-center border border-[var(--glass-border)] hover:border-accent-500 transition-all p-3 sm:p-4 gap-4 cursor-pointer">
+      <div className="card-ledger overflow-hidden flex flex-col sm:flex-row items-center border border-[var(--glass-border)] hover:border-accent-500 transition-all p-3 sm:p-4 gap-4 cursor-pointer">
         <div className="relative w-full sm:w-36 h-32 rounded-xl overflow-hidden flex-shrink-0 bg-[var(--surface-sunken)]">
           <img
             src={imageSrc}

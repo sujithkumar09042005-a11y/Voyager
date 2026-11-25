@@ -20,7 +20,7 @@ const ALL_DESTINATIONS = destinations as Destination[];
 
 // ─── Place Card ───────────────────────────────────────────────────────────────
 
-function PlaceCard({ place, onClick }: { place: Place; onClick: () => void }) {
+function PlaceCard({ place, onClick, index = 0 }: { place: Place; onClick: () => void; index?: number }) {
   const [imgError, setImgError] = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
   const { data: pexelsData, isLoading } = usePlaceImage(place.name, place.fallbackImage);
@@ -29,17 +29,18 @@ function PlaceCard({ place, onClick }: { place: Place; onClick: () => void }) {
     ? place.fallbackImage
     : (pexelsData?.url ?? place.fallbackImage);
 
+  // Alternate a small tilt so the grid reads as photos laid on a table
+  const tilt = ['-1.2deg', '0.9deg', '-0.6deg'][index % 3];
+
   return (
-    <motion.button
+    <button
+      type="button"
       onClick={onClick}
-      className="group text-left glass-card place-card-interactive overflow-hidden w-full flex flex-col h-full rounded-2xl border border-[var(--glass-border)] cursor-pointer"
-      whileHover={{ y: -4 }}
-      whileTap={{ scale: 0.99 }}
-      transition={{ duration: 0.25, ease: 'easeOut' }}
+      className="group card-polaroid text-left cursor-pointer"
+      style={{ '--tilt': tilt } as React.CSSProperties}
       aria-label={`View details for ${place.name}`}
     >
-      {/* Image */}
-      <div className="relative h-52 overflow-hidden bg-[var(--surface-sunken)] w-full">
+      <div className="polaroid-photo">
         {imgFailed && (
           <div className="absolute inset-0 flex items-center justify-center p-4 text-center font-display text-lg text-[var(--text-muted)]" aria-hidden="true">
             {place.name}
@@ -47,44 +48,37 @@ function PlaceCard({ place, onClick }: { place: Place; onClick: () => void }) {
         )}
         <img
           src={imageSrc}
-          alt={imgFailed ? '' : place.name}
+          alt=""
           loading="lazy"
+          decoding="async"
           onError={() => (imageSrc === place.fallbackImage ? setImgFailed(true) : setImgError(true))}
-          className={`w-full h-full object-cover group-hover:scale-108 transition-all duration-700 ${
-            isLoading || imgFailed ? 'opacity-0' : 'opacity-100'
-          }`}
+          className={`w-full h-full object-cover ${isLoading || imgFailed ? 'opacity-0' : 'opacity-100'}`}
         />
-        <div className="absolute top-3 left-3">
-          <span className="glass-dark text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">
-            {place.category}
-          </span>
-        </div>
         {pexelsData?.photographer && (
-          <div className="absolute bottom-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity">
-            <span className="glass-dark text-white/95 text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
-              <Camera size={10} />
-              {pexelsData.photographer}
-            </span>
-          </div>
+          <span className="absolute bottom-2 right-2 glass-dark text-xs px-2 py-0.5 rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
+            <Camera size={10} aria-hidden="true" />
+            {pexelsData.photographer}
+          </span>
         )}
       </div>
 
-      {/* Content */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
-        <div>
-          <h3 className="font-display font-bold text-lg text-[var(--text-primary)] mb-1 group-hover:text-accent-500 transition-colors">
-            {place.name}
-          </h3>
-          <p className="text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-2 mb-3 leading-relaxed">
-            {place.description}
-          </p>
-        </div>
-        <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-medium pt-2 border-t border-[var(--glass-border-subtle)]">
-          <Clock size={12} className="text-accent-500" />
-          <span>{place.recommendedTime}</span>
-        </div>
+      {/* Caption strip, like the white border of an instant photo */}
+      <div className="pt-4 px-1 flex-1 flex flex-col">
+        <p className="legend-label mb-1" style={{ fontSize: '0.65rem' }}>
+          {String(index + 1).padStart(2, '0')} / {place.category}
+        </p>
+        <h3 className="font-display text-xl leading-snug text-[var(--text-primary)] group-hover:text-accent-500 transition-colors">
+          {place.name}
+        </h3>
+        <p className="mt-1.5 text-sm text-[var(--text-secondary)] line-clamp-2 leading-relaxed">
+          {place.description}
+        </p>
+        <p className="mt-auto pt-3 flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-medium">
+          <Clock size={12} className="text-accent-500" aria-hidden="true" />
+          {place.recommendedTime}
+        </p>
       </div>
-    </motion.button>
+    </button>
   );
 }
 
@@ -165,7 +159,7 @@ export function DestinationDetailPage() {
   if (!destination) {
     return (
       <main className="min-h-screen flex items-center justify-center pt-24 px-4">
-        <div className="text-center glass-panel p-8 rounded-2xl max-w-md">
+        <div className="text-center card-ledger p-8 max-w-md">
           <p className="font-display text-2xl font-bold text-[var(--text-primary)] mb-4">Destination not found</p>
           <Button onClick={() => navigate('/explore')} leftIcon={<ArrowLeft size={16} />}>
             Back to Voyager Explorer
@@ -307,16 +301,12 @@ export function DestinationDetailPage() {
                     value: `${destination.currency}`
                   },
                 ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="glass-card p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
+                  <div key={label} className="card-ledger p-4 sm:p-5 flex flex-col justify-between">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-7 h-7 rounded-lg glass-subtle flex items-center justify-center text-accent-500 flex-shrink-0">
-                        <Icon size={14} />
-                      </div>
-                      <span className="text-xs text-[var(--text-muted)] font-bold uppercase tracking-wider">
-                        {label}
-                      </span>
+                      <Icon size={14} className="text-accent-500 flex-shrink-0" aria-hidden="true" />
+                      <span className="ledger-label">{label}</span>
                     </div>
-                    <p className="text-sm sm:text-base font-bold text-[var(--text-primary)]">{value}</p>
+                    <p className="font-display text-lg text-[var(--text-primary)] leading-snug">{value}</p>
                   </div>
                 ))}
               </div>
@@ -349,7 +339,7 @@ export function DestinationDetailPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.2 + index * 0.06 }}
                   >
-                    <PlaceCard place={place} onClick={() => setSelectedPlace(place)} />
+                    <PlaceCard place={place} index={index} onClick={() => setSelectedPlace(place)} />
                   </motion.div>
                 ))}
               </div>
@@ -374,7 +364,7 @@ export function DestinationDetailPage() {
             </motion.div>
 
             {/* Location on the atlas */}
-            <section className="glass-panel p-4 rounded-2xl space-y-3" aria-label={`${destination.name} on the map`}>
+            <section className="card-ledger p-4 space-y-3" aria-label={`${destination.name} on the map`}>
               <p className="legend-label">Location</p>
               <AtlasMap compact focusId={destination.id} visibleIds={[destination.id]} />
               <p className="text-xs text-[var(--text-muted)]">
@@ -384,7 +374,7 @@ export function DestinationDetailPage() {
 
             {/* AI Itinerary Planner CTA */}
             <motion.div
-              className="glass-panel p-6 rounded-2xl space-y-4 border border-accent-500/30"
+              className="card-ledger is-accent p-6 space-y-4"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -415,7 +405,7 @@ export function DestinationDetailPage() {
 
             {/* Chatbot CTA */}
             <motion.div
-              className="glass-panel p-6 rounded-2xl space-y-4"
+              className="card-ledger p-6 space-y-4"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}

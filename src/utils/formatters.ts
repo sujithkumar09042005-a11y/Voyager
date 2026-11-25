@@ -63,3 +63,10 @@ export function capitalizeWord(text: string): string {
   if (!text) return '';
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
+
+/** 35.01, 135.77 -> "35.01 N / 135.77 E" for postcard captions. */
+export function formatCoordinates(lat: number, lng: number): string {
+  const ns = lat >= 0 ? 'N' : 'S';
+  const ew = lng >= 0 ? 'E' : 'W';
+  return `${Math.abs(lat).toFixed(2)}\u00b0${ns} ${Math.abs(lng).toFixed(2)}\u00b0${ew}`;
+}

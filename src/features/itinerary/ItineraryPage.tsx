@@ -31,7 +31,7 @@ function DayAccordion({ day }: { day: ItineraryDay }) {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="glass-panel overflow-hidden rounded-2xl border border-[var(--glass-border)] shadow-glass-sm">
+    <div className="card-ledger overflow-hidden">
       {/* Day header */}
       <button
         onClick={() => setOpen((v) => !v)}
@@ -39,11 +39,12 @@ function DayAccordion({ day }: { day: ItineraryDay }) {
         aria-expanded={open}
       >
         <div className="flex items-center gap-2.5 sm:gap-3.5">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-2xl bg-accent-500 text-onaccent text-xs sm:text-sm font-bold flex items-center justify-center flex-shrink-0 shadow-md">
-            {day.dayNumber}
+          <div className="flex flex-col items-center justify-center w-11 h-12 border border-dashed border-accent-500 text-accent-500 flex-shrink-0 leading-none" aria-hidden="true">
+            <span className="text-[0.55rem] font-bold tracking-widest">DAY</span>
+            <span className="font-display text-xl mt-0.5">{day.dayNumber}</span>
           </div>
           <div>
-            <p className="font-display font-bold text-sm sm:text-lg text-[var(--text-primary)]">{day.title}</p>
+            <p className="font-display text-base sm:text-xl text-[var(--text-primary)]">{day.title}</p>
             <p className="text-xs sm:text-xs text-[var(--text-muted)] font-medium">{day.theme}</p>
           </div>
         </div>
@@ -189,7 +190,7 @@ export function ItineraryPage() {
         {state.status !== 'success' && (
           <motion.form
             onSubmit={handleSubmit}
-            className="glass-panel p-6 sm:p-10 rounded-2xl space-y-8 shadow-glass-md border border-[var(--glass-border)]"
+            className="card-ledger p-6 sm:p-10 space-y-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
@@ -340,7 +341,7 @@ export function ItineraryPage() {
             transition={{ duration: 0.5 }}
           >
             {/* Itinerary Header */}
-            <div className="glass-panel p-6 sm:p-8 rounded-2xl flex items-start justify-between gap-4 flex-wrap">
+            <div className="card-ledger is-accent p-6 sm:p-8 flex items-start justify-between gap-4 flex-wrap">
               <div>
                 <span className="legend-label">
                   AI-drafted route
@@ -374,8 +375,8 @@ export function ItineraryPage() {
             </div>
 
             {/* Where this trip is */}
-            <div className="glass-panel p-4 rounded-2xl">
-              <p className="legend-label mb-3">On the atlas</p>
+            <div className="card-ledger p-4">
+              <p className="ledger-label mb-3">On the atlas</p>
               <AtlasMap compact focusId={state.data.destinationId} visibleIds={[state.data.destinationId]} />
             </div>
 

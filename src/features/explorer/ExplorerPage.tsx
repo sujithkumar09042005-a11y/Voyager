@@ -91,7 +91,7 @@ function getVibeIcon(tag: string) {
 function EmptyState({ onClear }: { onClear: () => void }) {
   return (
     <motion.div
-      className="col-span-full flex flex-col items-center py-20 text-center glass-dock rounded-2xl p-8 sm:p-12 border border-[var(--glass-border)] shadow-glass-md my-6"
+      className="col-span-full flex flex-col items-center py-20 text-center card-ledger p-8 sm:p-12 border border-[var(--glass-border)] shadow-glass-md my-6"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}

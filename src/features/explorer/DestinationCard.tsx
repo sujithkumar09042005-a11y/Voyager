@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { MapPin, Clock, Camera, ArrowRight } from 'lucide-react';
+import { Camera, ArrowRight } from 'lucide-react';
 import type { Destination } from '../../types';
 import { useDestinationImage } from '../../hooks/usePexelsImage';
-import { formatVibeName } from '../../utils/formatters';
+import { formatCoordinates, formatVibeName } from '../../utils/formatters';
 
 interface DestinationCardProps {
   destination: Destination;
@@ -24,98 +23,78 @@ export function DestinationCard({ destination }: DestinationCardProps) {
     ? destination.fallbackImage
     : (pexelsData?.url ?? destination.fallbackImage);
 
+  const { lat, lng } = destination.coordinates;
+
   return (
     <Link
       to={`/destination/${destination.id}`}
-      className="block h-full focus-visible:outline-2 focus-visible:outline-accent-500 rounded-2xl"
+      className="block h-full rounded-md"
+      aria-label={`${destination.name}, ${destination.country}. ${destination.tagline}`}
     >
-      <motion.article
-        className="group relative h-full glass-card place-card-interactive card-glow-hover overflow-hidden flex flex-col rounded-2xl border border-[var(--glass-border)] cursor-pointer"
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
-      >
-        {/* Image Container */}
-        <div className="relative h-56 overflow-hidden bg-[var(--surface-sunken)]">
+      <article className="group card-postcard">
+        {/* Photo, with a perforated stamp and a postmark */}
+        <div className="postcard-photo">
           <img
             src={imageSrc}
-            alt={`${destination.name}, ${destination.country}`}
+            alt=""
             loading="lazy"
+            decoding="async"
             onError={() => setImgError(true)}
-            className={`w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-108 ${
-              imgLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-            }`}
+            className={`w-full h-full object-cover ${imgLoading ? 'opacity-0' : 'opacity-100'}`}
           />
-
-          {/* Region badge overlay */}
-          <div className="absolute top-3 left-3">
-            <span className="glass-dark text-white text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm">
-              {destination.region}
-            </span>
-          </div>
-
-          {/* Photographer attribution badge */}
-          {pexelsData?.photographer && (
-            <div className="absolute bottom-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <span className="glass-dark text-white/95 text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
-                <Camera size={10} />
-                <span>{pexelsData.photographer}</span>
-              </span>
+          <div className="postage-stamp" aria-hidden="true">
+            <div className="stamp-inner">
+              <span className="stamp-code">{destination.currency.match(/[A-Z]{3}/)?.[0] ?? ''}</span>
+              <span>{destination.region}</span>
             </div>
+          </div>
+          <div className={`postmark ${destination.country.length > 10 ? 'is-long' : ''}`} aria-hidden="true">
+            {destination.country}
+          </div>
+          {pexelsData?.photographer && (
+            <span className="absolute bottom-2 right-2 glass-dark text-xs px-2 py-0.5 rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
+              <Camera size={10} aria-hidden="true" />
+              {pexelsData.photographer}
+            </span>
           )}
         </div>
 
-        {/* Content Body */}
-        <div className="p-5 flex-1 flex flex-col justify-between">
-          <div>
-            {/* Title & Location */}
-            <div className="flex items-start justify-between gap-2 mb-1.5">
-              <h3 className="font-display font-semibold text-xl text-[var(--text-primary)] leading-tight group-hover:text-accent-500 transition-colors">
-                {destination.name}
-              </h3>
-              <div className="flex items-center gap-1 text-xs text-[var(--text-muted)] flex-shrink-0 mt-0.5 font-medium">
-                <MapPin size={12} className="text-accent-500" />
-                <span>{destination.country}</span>
-              </div>
-            </div>
+        {/* Message side */}
+        <div className="px-2 pt-4 pb-4 flex-1 flex flex-col">
+          <p className="coords mb-1.5">{formatCoordinates(lat, lng)}</p>
+          <h3 className="font-display text-2xl leading-tight text-[var(--text-primary)] group-hover:text-accent-500 transition-colors">
+            {destination.name}
+          </h3>
+          <p className="mt-1.5 text-sm text-[var(--text-secondary)] line-clamp-2 leading-relaxed italic font-display">
+            {destination.tagline}
+          </p>
 
-            {/* Tagline */}
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-2 leading-relaxed mb-4">
-              {destination.tagline}
-            </p>
-          </div>
-
-          <div>
-            {/* Meta row with Indian Rupee */}
-            <div className="flex items-center justify-between py-2 border-t border-[var(--glass-border-subtle)] mb-3 text-xs text-[var(--text-secondary)]">
-              <span className="flex items-center gap-1.5">
-                <Clock size={12} className="text-accent-500" />
-                <span>{destination.bestTimeToVisit}</span>
-              </span>
-              <span className="font-bold text-accent-500 text-xs sm:text-sm">
-                {destination.avgDailyBudget} <span className="text-xs font-normal text-[var(--text-muted)]">/day</span>
-              </span>
+          <dl className="mt-4 grid grid-cols-2 gap-3 pt-3 border-t border-dotted border-[var(--line)] text-xs">
+            <div>
+              <dt className="legend-label" style={{ fontSize: '0.62rem' }}>Best time</dt>
+              <dd className="mt-0.5 text-[var(--text-primary)] font-medium">{destination.bestTimeToVisit}</dd>
             </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
-              {destination.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-[var(--line)] text-[var(--text-secondary)] text-xs font-medium px-2.5 py-1 rounded-full"
-                >
-                  {formatVibeName(tag)}
-                </span>
-              ))}
+            <div>
+              <dt className="legend-label" style={{ fontSize: '0.62rem' }}>Per day</dt>
+              <dd className="mt-0.5 text-[var(--text-primary)] font-bold">{destination.avgDailyBudget}</dd>
             </div>
-          </div>
+          </dl>
+
+          <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[var(--text-muted)]" aria-label="Themes">
+            {destination.tags.slice(0, 3).map((tag) => (
+              <li key={tag} className="flex items-center gap-1">
+                <span className="text-accent-500" aria-hidden="true">/</span>
+                {formatVibeName(tag)}
+              </li>
+            ))}
+          </ul>
+
+          <span className="mt-auto pt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-500">
+            Open destination
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </span>
         </div>
-
-        {/* Hover CTA Strip */}
-        <div className="bg-gradient-to-r from-accent-500 to-accent-400 text-onaccent text-center py-2.5 text-xs font-bold tracking-wide uppercase flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <span>Explore Destination</span>
-          <ArrowRight size={13} />
-        </div>
-      </motion.article>
+      </article>
     </Link>
   );
 }

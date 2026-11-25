@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, Menu, X, Navigation } from 'lucide-react';
+import { Menu, X, Navigation } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { LocationDetectorModal } from './LocationDetectorModal';
 
@@ -11,237 +11,172 @@ const NAV_LINKS = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [locationModalOpen, setLocationModalOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
-  const rafRef = useRef<number | null>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
-  const isHero = location.pathname === '/';
-  // The atlas hero is a light/dark paper surface, so the nav never needs the old white-on-video mode.
-  const onHeroBeforeScroll = false;
-
-  // Smooth hysteresis scroll listener with requestAnimationFrame to eliminate stutter/glitch
-  useEffect(() => {
-    let lastKnownScroll = window.scrollY;
-
-    const updateScrollState = () => {
-      // Hysteresis: turn on at > 45px, turn off only when back above 15px
-      if (!scrolled && lastKnownScroll > 45) {
-        setScrolled(true);
-      } else if (scrolled && lastKnownScroll < 15) {
-        setScrolled(false);
-      }
-      rafRef.current = null;
-    };
-
-    const handleScroll = () => {
-      lastKnownScroll = window.scrollY;
-      if (rafRef.current === null) {
-        rafRef.current = requestAnimationFrame(updateScrollState);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Check initial position on mount
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, [scrolled]);
-
-  // Close mobile menu on route change & Escape key
+  // Close the drawer on route change
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
 
+  // Escape closes the drawer and returns focus to the menu button; Tab stays inside it
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && mobileOpen) {
+    if (!mobileOpen) return;
+    const drawer = drawerRef.current;
+    const focusables = drawer?.querySelectorAll<HTMLElement>('a, button');
+    focusables?.[0]?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
         setMobileOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (e.key !== 'Tab' || !focusables?.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [mobileOpen]);
 
-  const textPrimaryClass = onHeroBeforeScroll ? 'text-white' : 'text-[var(--text-primary)]';
-  const textSecondaryClass = onHeroBeforeScroll
-    ? 'text-white/85 hover:text-white'
-    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]';
+  const nextTheme = theme === 'dark' ? 'light' : 'dark';
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 h-20 transition-colors duration-300">
-        {/* Hardware-accelerated background layer: eliminates filter re-paint glitches */}
-        <div
-          className={`absolute inset-0 pointer-events-none transition-all duration-400 ease-out ${
-            scrolled
-              ? 'opacity-100 bg-[var(--glass-bg)] backdrop-blur-[16px] border-b border-[var(--glass-border)] shadow-glass-sm'
-              : isHero
-              ? 'opacity-100 bg-transparent'
-              : 'opacity-100 bg-[var(--glass-bg-subtle)] backdrop-blur-md border-b border-[var(--glass-border-subtle)]'
-          }`}
-          aria-hidden="true"
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-          <nav className="flex items-center justify-between h-full" aria-label="Main navigation">
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-md border border-white/30 flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-                <img
-                  src="/icon.png"
-                  alt="Voyager Logo"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className={`font-display font-extrabold text-xl sm:text-2xl tracking-tight flex items-center gap-1.5 transition-colors duration-300 ${textPrimaryClass}`}>
-                  Voyager
-                  <span className="w-2 h-2 rounded-full bg-accent-500 animate-pulse" />
+      <header className="fixed top-0 left-0 right-0 z-40">
+        <div className="nav-shell">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px]">
+            <nav className="flex items-center justify-between h-full" aria-label="Main navigation">
+              {/* Wordmark: the title cartouche */}
+              <Link to="/" className="flex items-center gap-3 group" aria-label="Voyager, home">
+                <span className="w-10 h-10 rounded-full overflow-hidden border border-[var(--line)] flex-shrink-0">
+                  <img src="/icon.png" alt="" className="w-full h-full object-cover" />
                 </span>
-                <span className={`text-2xs font-semibold -mt-1 hidden sm:inline transition-colors duration-300 ${onHeroBeforeScroll ? 'text-white/75' : 'text-[var(--text-muted)]'}`}>
-                  Next-Gen Travel Explorer
+                <span className="flex flex-col leading-none">
+                  <span className="font-display text-2xl text-[var(--text-primary)]">Voyager</span>
+                  <span className="legend-label mt-1 hidden sm:block" style={{ fontSize: '0.6rem' }}>
+                    Atlas of destinations
+                  </span>
                 </span>
-              </div>
-            </Link>
+              </Link>
 
-            {/* Desktop Center Links */}
-            <div className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-sm transition-all duration-300 ${
-              onHeroBeforeScroll
-                ? 'bg-black/35 border-white/20 backdrop-blur-md'
-                : 'glass-subtle border-[var(--glass-border)]'
-            }`}>
-              {NAV_LINKS.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={({ isActive }) => [
-                    'px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-200',
-                    isActive
-                      ? 'bg-accent-500 text-onaccent shadow-md'
-                      : `${textSecondaryClass} hover-tint`,
-                  ].join(' ')}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-
-              <button
-                onClick={() => setLocationModalOpen(true)}
-                className={`px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer ${textSecondaryClass} hover-tint`}
-                title="Detect Real-Time Location"
-              >
-                <Navigation size={13} className="text-accent-500" />
-                <span>Near Me</span>
-              </button>
-            </div>
-
-            {/* Right Controls: Currency Badge, Theme Toggle, Mobile Menu */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Currency Badge */}
-              <div className={`hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border shadow-sm transition-all duration-300 ${
-                onHeroBeforeScroll
-                  ? 'bg-black/35 border-white/20 text-white backdrop-blur-md'
-                  : 'glass-subtle text-[var(--text-primary)] border-[var(--glass-border)]'
-              }`}>
-                <span className="text-accent-500 font-extrabold">₹</span>
-                <span>INR</span>
-              </div>
-
-              {/* Theme Toggle Button */}
-              <button
-                onClick={toggleTheme}
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 focus:outline-none shadow-sm cursor-pointer border ${
-                  onHeroBeforeScroll
-                    ? 'bg-black/35 border-white/20 text-white hover:bg-black/55 backdrop-blur-md'
-                    : 'glass-card border-[var(--glass-border)] text-[var(--text-primary)] hover:border-accent-500'
-                }`}
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-              >
-                {/* Compass: the needle swings between day chart (north) and night chart (south) */}
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <motion.g
-                    initial={false}
-                    animate={{ rotate: theme === 'dark' ? 180 : 0 }}
-                    transition={{ type: 'spring', stiffness: 160, damping: 9 }}
-                    style={{ originX: '12px', originY: '12px' }}
-                  >
-                    <path d="M12 3.5 L14.6 12 L12 11 L9.4 12 Z" fill="var(--accent-color)" />
-                    <path d="M12 20.5 L9.4 12 L12 13 L14.6 12 Z" fill="currentColor" opacity="0.55" />
-                  </motion.g>
-                  <circle cx="12" cy="12" r="1.3" fill="currentColor" />
-                </svg>
-              </button>
-
-              {/* Mobile menu button */}
-              <button
-                className={`md:hidden p-2 rounded-xl border focus:outline-none transition-colors duration-300 ${
-                  onHeroBeforeScroll
-                    ? 'bg-black/35 border-white/20 text-white'
-                    : 'glass-card border-[var(--glass-border)] text-[var(--text-primary)]'
-                }`}
-                onClick={() => setMobileOpen((v) => !v)}
-                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              >
-                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
-          </nav>
-        </div>
-
-        {/* Mobile menu drawer */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              className="md:hidden glass-panel border-t border-[var(--glass-border)] shadow-xl mx-3 mb-3 p-4 space-y-3 rounded-3xl"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="space-y-1">
-                {NAV_LINKS.map((link) => (
-                  <NavLink
-                    key={link.to}
-                    to={link.to}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-colors ${
-                        isActive
-                          ? 'bg-accent-500 text-onaccent shadow-sm'
-                          : 'text-[var(--text-primary)] hover-tint'
-                      }`
-                    }
-                  >
-                    <Compass size={18} />
+              {/* Desktop links: numbered like map sheets */}
+              <div className="hidden md:flex items-center gap-8">
+                {NAV_LINKS.map((link, i) => (
+                  <NavLink key={link.to} to={link.to} className="nav-link">
+                    <span className="nav-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                     {link.label}
                   </NavLink>
                 ))}
-
                 <button
-                  onClick={() => {
-                    setMobileOpen(false);
-                    setLocationModalOpen(true);
-                  }}
-                  className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-[var(--text-primary)] hover-tint transition-colors text-left cursor-pointer"
+                  type="button"
+                  onClick={() => setLocationModalOpen(true)}
+                  className="nav-link"
                 >
-                  <Navigation size={18} className="text-accent-500" />
-                  Detect Location Near Me
+                  <span className="nav-index" aria-hidden="true">03</span>
+                  Near me
+                  <Navigation size={13} className="text-accent-500 self-center" aria-hidden="true" />
                 </button>
               </div>
 
-              <div className="pt-2 border-t border-[var(--glass-border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)] px-2 font-medium">
-                <span>Currency: <strong className="text-accent-500 font-bold">Indian Rupee (₹)</strong></span>
-                <span className="capitalize font-bold">{theme} Mode</span>
+              {/* Right: currency stamp, theme compass, menu */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                <span className="nav-chip hidden sm:inline-flex" title="Prices are shown in Indian rupees">
+                  INR
+                </span>
+
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  className="w-11 h-11 rounded-full flex items-center justify-center border border-[var(--line)] text-[var(--text-primary)] hover:border-accent-500"
+                  aria-label={`Switch to ${nextTheme} chart`}
+                  title={`Switch to ${nextTheme} chart`}
+                >
+                  {/* Compass: the needle swings between day chart (north) and night chart (south) */}
+                  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                    <motion.g
+                      initial={false}
+                      animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+                      transition={{ type: 'spring', stiffness: 160, damping: 9 }}
+                      style={{ originX: '12px', originY: '12px' }}
+                    >
+                      <path d="M12 3.5 L14.6 12 L12 11 L9.4 12 Z" fill="var(--accent-color)" />
+                      <path d="M12 20.5 L9.4 12 L12 13 L14.6 12 Z" fill="currentColor" opacity="0.55" />
+                    </motion.g>
+                    <circle cx="12" cy="12" r="1.3" fill="currentColor" />
+                  </svg>
+                </button>
+
+                <button
+                  ref={menuButtonRef}
+                  type="button"
+                  className="md:hidden w-11 h-11 rounded-full flex items-center justify-center border border-[var(--line)] text-[var(--text-primary)]"
+                  onClick={() => setMobileOpen((v) => !v)}
+                  aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={mobileOpen}
+                  aria-controls="mobile-menu"
+                >
+                  {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
               </div>
+            </nav>
+          </div>
+        </div>
+
+        {/* Mobile drawer: a folded index of sheets */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              id="mobile-menu"
+              ref={drawerRef}
+              className="md:hidden bg-[var(--surface-raised)] border-b-[3px] border-double border-[var(--line)] shadow-[0_24px_40px_-24px_var(--shadow-ink)]"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18 }}
+            >
+              <ul className="px-4 py-3">
+                {NAV_LINKS.map((link, i) => (
+                  <li key={link.to} className="border-b border-dotted border-[var(--line)] last:border-0">
+                    <NavLink
+                      to={link.to}
+                      className="flex items-baseline gap-4 py-4 min-h-[44px] font-display text-xl text-[var(--text-primary)] aria-[current=page]:text-accent-500"
+                    >
+                      <span className="legend-label" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                      {link.label}
+                    </NavLink>
+                  </li>
+                ))}
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setLocationModalOpen(true);
+                    }}
+                    className="w-full flex items-baseline gap-4 py-4 min-h-[44px] font-display text-xl text-[var(--text-primary)] text-left"
+                  >
+                    <span className="legend-label" aria-hidden="true">03</span>
+                    Near me
+                    <Navigation size={16} className="text-accent-500 self-center" aria-hidden="true" />
+                  </button>
+                </li>
+              </ul>
+              <p className="px-4 pb-4 text-xs text-[var(--text-muted)]">
+                Prices in Indian rupees. Currently on the {theme === 'dark' ? 'night' : 'day'} chart.
+              </p>
             </motion.div>
           )}
         </AnimatePresence>
