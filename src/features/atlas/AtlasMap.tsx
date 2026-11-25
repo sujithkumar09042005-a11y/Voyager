@@ -177,7 +177,7 @@ export function AtlasMap({ className = '', visibleIds, focusId, compact = false 
           type="button"
           onClick={() => focusRegion(null)}
           aria-pressed={region === null}
-          className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${region === null ? 'bg-accent-500 text-onaccent border-accent-500' : 'glass-pill text-[var(--text-secondary)]'}`}
+          className={`min-h-[44px] sm:min-h-[36px] px-3 py-1.5 rounded-full text-xs font-semibold border ${region === null ? 'bg-accent-500 text-onaccent border-accent-500' : 'glass-pill text-[var(--text-secondary)]'}`}
         >
           World
         </button>
@@ -187,7 +187,7 @@ export function AtlasMap({ className = '', visibleIds, focusId, compact = false 
             type="button"
             onClick={() => focusRegion(r)}
             aria-pressed={region === r}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${region === r ? 'bg-accent-500 text-onaccent border-accent-500' : 'glass-pill text-[var(--text-secondary)]'}`}
+            className={`min-h-[44px] sm:min-h-[36px] px-3 py-1.5 rounded-full text-xs font-semibold border ${region === r ? 'bg-accent-500 text-onaccent border-accent-500' : 'glass-pill text-[var(--text-secondary)]'}`}
           >
             {r}
           </button>

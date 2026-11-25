@@ -15,7 +15,8 @@ export function useWeather({ lat, lng, enabled = true }: UseWeatherOptions) {
     enabled: enabled && !!lat && !!lng,
     staleTime:    10 * 60 * 1000, // 10 minutes — no need to hammer the API
     gcTime:       30 * 60 * 1000, // Keep in cache for 30 minutes
-    retry: 2,
+    // No key means every retry fails the same way, so fail fast instead of showing a skeleton for seconds
+    retry: import.meta.env.VITE_OPENWEATHER_API_KEY ? 2 : false,
     retryDelay:   (attempt) => Math.min(1000 * 2 ** attempt, 10000),
   });
 }

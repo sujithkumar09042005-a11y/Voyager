@@ -121,7 +121,8 @@ Here is a curated recommendation based on your inquiry:
 
 *(Note: Live Google Gemini quota is temporarily refreshing on the free tier. Your AI travel engine remains ready to assist!)*`;
 
-    return res.status(200).json({ content: fallbackResponse });
+    // `degraded` tells the client this is a canned guide, not a live AI answer.
+    return res.status(200).json({ content: fallbackResponse, degraded: true });
   } catch (err: any) {
     console.error('[/api/chat] Critical Error:', err);
     return res.status(500).json({ error: err?.message || 'Internal server error' });

@@ -25,6 +25,7 @@ export interface ChatRequestPayload {
 
 export interface ChatResponsePayload {
   content: string;
+  degraded?: boolean;
 }
 
 export async function sendChatMessage(

@@ -75,7 +75,7 @@ export function HeroSection() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search destinations, e.g. Kyoto"
+                placeholder="Try Kyoto or Bali"
                 className="flex-1 min-w-0 bg-transparent px-1 py-3 text-base text-[var(--text-primary)] outline-none"
               />
               <button

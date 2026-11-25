@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import destinations from '../data/destinations.json';
 import type { Destination } from '../types';
+import { Flag } from './ui/Flag';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
 import { useDestinationImage } from '../hooks/usePexelsImage';
@@ -56,6 +57,7 @@ interface SuggestionItemProps {
 
 function SuggestionItem({ destination, distance, onClose }: SuggestionItemProps) {
   const { data: pexelsData } = useDestinationImage(destination.name, destination.country, destination.fallbackImage);
+  const [imgFailed, setImgFailed] = useState(false);
   const imageSrc = pexelsData?.url ?? destination.fallbackImage;
 
   return (
@@ -66,13 +68,16 @@ function SuggestionItem({ destination, distance, onClose }: SuggestionItemProps)
     >
       <div className="card-ledger overflow-hidden flex flex-col sm:flex-row items-center border border-[var(--glass-border)] hover:border-accent-500 transition-all p-3 sm:p-4 gap-4 cursor-pointer">
         <div className="relative w-full sm:w-36 h-32 rounded-xl overflow-hidden flex-shrink-0 bg-[var(--surface-sunken)]">
+          {imgFailed && <div className="photo-fallback" aria-hidden="true" />}
           <img
             src={imageSrc}
-            alt={destination.name}
-            className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+            alt=""
+            onError={() => setImgFailed(true)}
+            className={`w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ${imgFailed ? 'opacity-0' : ''}`}
           />
           <div className="absolute top-2 left-2">
-            <span className="glass-dark text-white text-2xs font-bold px-2 py-0.5 rounded-full">
+            <span className="glass-dark text-xs font-semibold pl-1 pr-2.5 py-0.5 rounded-full inline-flex items-center gap-1.5">
+              <Flag country={destination.country} className="w-4 h-4 rounded-full" />
               {destination.country}
             </span>
           </div>
@@ -298,7 +303,7 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
                   Location Explorer
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--text-secondary)] font-medium">
-                  Use your live GPS or search any city to measure geodesic distances to 34 global destinations.
+                  Share your location, or type a city, and we will sort destinations by how far they are from you.
                 </p>
               </div>
             </div>
@@ -376,10 +381,10 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
                     <Navigation size={24} />
                   </div>
                   <h4 className="font-display font-bold text-lg text-[var(--text-primary)] mb-1">
-                    Detect Live GPS Position
+                    Use my location
                   </h4>
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md mx-auto mb-4 leading-relaxed font-medium">
-                    Or click below to automatically read device GPS coordinates and calculate distances.
+                    Your browser will ask for permission first. We only use your coordinates to find your city name and nearby destinations, and we do not store them.
                   </p>
                   <Button
                     variant="primary"
@@ -388,7 +393,7 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
                     leftIcon={<Navigation size={16} />}
                     className="bg-accent-500 hover:bg-accent-600 shadow-lg hover:shadow-accent-500/25 font-bold"
                   >
-                    Use Live Device GPS
+                    Use my location
                   </Button>
                 </div>
               )}
@@ -405,7 +410,7 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
                     Calculating Geodesic Distances...
                   </h4>
                   <p className="text-xs text-[var(--text-secondary)]">
-                    Measuring real-time kilometers across all 34 global destinations...
+                    Measuring distances to every destination...
                   </p>
                 </div>
               )}

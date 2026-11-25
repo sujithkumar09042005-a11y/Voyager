@@ -103,7 +103,7 @@ function EmptyState({ onClear }: { onClear: () => void }) {
         No Matching Escapes Found
       </h3>
       <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md mb-8 leading-relaxed">
-        We couldn't find destinations matching your exact filter criteria. Relax your search term or reset filters to explore all 34 curated global destinations.
+        We couldn't find destinations matching your exact filter criteria. Relax your search term or reset filters to see every destination.
       </p>
       <Button
         variant="primary"
@@ -185,7 +185,7 @@ export function ExplorerPage() {
           <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={() => setLocationModalOpen(true)}
-              className="flex-1 sm:flex-initial glass-dock px-3.5 sm:px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold text-[var(--text-primary)] hover:border-accent-500 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+              className="flex-1 sm:flex-initial glass-dock min-h-[44px] px-3.5 sm:px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold text-[var(--text-primary)] hover:border-accent-500 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
               title="Detect or Search Starting Location"
             >
               <Navigation size={14} className="text-accent-500" />
@@ -195,7 +195,7 @@ export function ExplorerPage() {
             {isFiltered && (
               <button
                 onClick={clearFilters}
-                className="glass-subtle px-3 sm:px-3.5 py-2.5 rounded-full text-xs font-bold text-accent-500 hover:bg-accent-500 hover:text-onaccent transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm flex-shrink-0"
+                className="glass-subtle min-h-[44px] px-3 sm:px-3.5 py-2.5 rounded-full text-xs font-bold text-accent-500 hover:bg-accent-500 hover:text-onaccent transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm flex-shrink-0"
                 title="Reset all active filters"
               >
                 <RotateCcw size={12} />
@@ -223,8 +223,8 @@ export function ExplorerPage() {
                 type="text"
                 value={filters.query}
                 onChange={(e) => setFilters((prev) => ({ ...prev, query: e.target.value }))}
-                placeholder="Search destinations, e.g. Kyoto"
-                className="w-full pl-11 pr-28 py-3.5 rounded-full glass-subtle text-[var(--text-primary)] placeholder-[var(--input-placeholder)] border border-[var(--glass-border)] focus:outline-none focus:border-accent-500 focus:ring-4 focus:ring-accent-500/20 text-xs sm:text-sm font-medium transition-all shadow-inner"
+                placeholder="Search places"
+                className="w-full pl-11 pr-14 sm:pr-28 py-3.5 rounded-full glass-subtle text-[var(--text-primary)] placeholder-[var(--input-placeholder)] border border-[var(--glass-border)] focus:outline-none focus:border-accent-500 focus:ring-4 focus:ring-accent-500/20 text-xs sm:text-sm font-medium transition-all shadow-inner"
                 aria-label="Search destinations"
               />
               <div className="absolute right-3.5 flex items-center gap-1.5">
@@ -232,7 +232,7 @@ export function ExplorerPage() {
                   <button
                     type="button"
                     onClick={() => setFilters((prev) => ({ ...prev, query: '' }))}
-                    className="p-1 rounded-full glass-subtle text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/15 transition-colors focus:outline-none cursor-pointer"
+                    className="w-9 h-9 flex items-center justify-center rounded-full glass-subtle text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors cursor-pointer"
                     aria-label="Clear search input"
                   >
                     <X size={14} />
@@ -264,7 +264,7 @@ export function ExplorerPage() {
                     type="button"
                     onClick={() => setBudgetFilter(id as any)}
                     className={[
-                      'px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap',
+                      'min-h-[44px] sm:min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap',
                       active
                         ? 'bg-accent-500 text-onaccent shadow-md scale-102'
                         : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover-tint',
@@ -281,7 +281,7 @@ export function ExplorerPage() {
               type="button"
               onClick={() => setShowVibeDrawer(!showVibeDrawer)}
               className={[
-                'w-full lg:w-auto px-4 py-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-2 border cursor-pointer flex-shrink-0 shadow-sm',
+                'w-full lg:w-auto min-h-[44px] px-4 py-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-2 border cursor-pointer flex-shrink-0 shadow-sm',
                 showVibeDrawer || filters.tags.length > 0
                   ? 'bg-accent-500/15 border-accent-500 text-accent-500'
                   : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:text-[var(--text-primary)] hover:border-accent-500/40',
@@ -311,7 +311,7 @@ export function ExplorerPage() {
                 type="button"
                 onClick={() => setSingleRegion(null)}
                 className={[
-                  'px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap border cursor-pointer flex-shrink-0',
+                  'min-h-[44px] px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap border cursor-pointer flex-shrink-0',
                   filters.regions.length === 0
                     ? 'bg-accent-500 text-onaccent border-accent-500 shadow-md scale-102'
                     : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:text-[var(--text-primary)] hover:border-accent-500/40',
@@ -334,7 +334,7 @@ export function ExplorerPage() {
                     type="button"
                     onClick={() => toggleRegion(region)}
                     className={[
-                      'px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap border cursor-pointer flex-shrink-0',
+                      'min-h-[44px] px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap border cursor-pointer flex-shrink-0',
                       active
                         ? 'bg-accent-500 text-onaccent border-accent-500 shadow-md scale-102'
                         : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:text-[var(--text-primary)] hover:border-accent-500/40',
@@ -502,7 +502,7 @@ export function ExplorerPage() {
                 type="button"
                 onClick={() => setView(v)}
                 aria-pressed={view === v}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 ${view === v ? 'bg-accent-500 text-onaccent' : 'text-[var(--text-secondary)]'}`}
+                className={`min-h-[44px] sm:min-h-[36px] px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 ${view === v ? 'bg-accent-500 text-onaccent' : 'text-[var(--text-secondary)]'}`}
               >
                 {v === 'list' ? <LayoutGrid size={13} aria-hidden="true" /> : <MapIcon size={13} aria-hidden="true" />}
                 {v === 'list' ? 'List' : 'Map'}

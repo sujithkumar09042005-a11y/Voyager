@@ -25,6 +25,8 @@ interface Itinerary {
   interests: string[];
   days: ItineraryDay[];
   generatedAt: Date;
+  /** True when the AI was unavailable and a generic plan was returned instead. */
+  degraded?: boolean;
 }
 
 const CANDIDATE_MODELS = [
@@ -235,6 +237,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       interests: formValues.interests || ['Culture', 'Sightseeing'],
       generatedAt: new Date(),
       days: fallbackDays,
+      degraded: true, // generic plan built without the AI; the client labels it as an estimate
     };
 
     return res.status(200).json(fallbackItinerary);

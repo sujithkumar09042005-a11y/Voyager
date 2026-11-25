@@ -112,7 +112,7 @@ IMPORTANT: Whenever quoting prices, budgets, meal costs, or ticket estimates, AL
 - **Dining Recommendations**: Seek out local, highly-rated family-run eateries where meals typically range from **₹400 to ₹1,200 (INR)** per person.
 - **Logistics Tip**: Purchase local transit day passes to save up to 40% on travel.`;
 
-    res.json({ content: fallbackResponse });
+    res.json({ content: fallbackResponse, degraded: true });
   } catch (err) {
     console.error('[proxy /api/chat]', err.message);
     res.status(500).json({ error: err.message });

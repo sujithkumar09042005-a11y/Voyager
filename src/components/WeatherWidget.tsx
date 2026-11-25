@@ -66,25 +66,30 @@ export function WeatherWidget({
     return <WeatherWidgetSkeleton />;
   }
 
-  // Error state
+  // Error state. A missing API key is a setup problem, not an outage, so say so plainly.
   if (isError || !data) {
+    const notConfigured = !import.meta.env.VITE_OPENWEATHER_API_KEY;
     return (
-      <div className="rounded-3xl p-6 glass-panel border border-red-500/30">
+      <div className="card-ledger p-5" role="status">
         <div className="flex items-start gap-3">
-          <AlertCircle size={20} className="text-red-400 flex-shrink-0 mt-0.5" />
+          <AlertCircle size={20} className="text-[var(--danger)] flex-shrink-0 mt-0.5" aria-hidden="true" />
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-[var(--text-primary)]">Live Weather Unavailable</p>
-            <p className="text-xs text-[var(--text-secondary)] mt-0.5">
-              Could not retrieve real-time meteorological metrics.
+            <p className="text-sm font-bold text-[var(--text-primary)]">
+              {notConfigured ? 'Weather is not set up yet' : 'Weather is unavailable right now'}
+            </p>
+            <p className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">
+              {notConfigured
+                ? 'Add VITE_OPENWEATHER_API_KEY to your .env file and restart the dev server to see live conditions here.'
+                : 'We could not reach the weather service. Try again in a moment.'}
             </p>
           </div>
-          {onRetry && (
+          {onRetry && !notConfigured && (
             <Button
               variant="outline"
               size="sm"
               onClick={onRetry}
               leftIcon={<RefreshCw size={13} />}
-              className="glass-subtle text-xs"
+              className="text-xs"
             >
               Retry
             </Button>
@@ -95,7 +100,7 @@ export function WeatherWidget({
   }
 
   return (
-    <div className="rounded-3xl p-6 glass-panel space-y-4 border border-[var(--glass-border)] shadow-glass-md">
+    <div className="card-ledger p-6 space-y-4">
       {/* Header row */}
       <div className="flex items-start justify-between">
         <div>

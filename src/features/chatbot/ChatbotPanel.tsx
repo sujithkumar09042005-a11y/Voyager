@@ -189,6 +189,11 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                     >
                       {msg.role === 'assistant' ? (
                         <div className="chat-markdown">
+                          {msg.degraded && (
+                            <p className="mb-2 text-xs font-semibold text-[var(--danger)]" role="note">
+                              Offline guide. The AI is busy, so this is general advice, not an answer to your question.
+                            </p>
+                          )}
                           <ReactMarkdown>{msg.content}</ReactMarkdown>
                         </div>
                       ) : (

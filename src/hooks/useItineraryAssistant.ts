@@ -59,6 +59,7 @@ export function useItineraryAssistant(destination?: Destination) {
           role:      'assistant',
           content:   response.content,
           timestamp: new Date(),
+          degraded:  response.degraded,
         };
 
         setMessages((prev) => [...prev, assistantMessage]);

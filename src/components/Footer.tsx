@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowUp, Sparkles, Globe, MapPin, IndianRupee, Sun, Moon } from 'lucide-react';
+import destinations from '../data/destinations.json';
 import { useTheme } from '../context/ThemeContext';
 
 export function Footer() {
@@ -107,7 +108,7 @@ export function Footer() {
               <li>
                 <Link to="/explore" className="hover:text-accent-500 transition-colors flex items-center gap-1.5">
                   <Globe size={11} className="text-accent-500" />
-                  All 34 Global Destinations
+                  All {destinations.length} Destinations
                 </Link>
               </li>
               <li>
