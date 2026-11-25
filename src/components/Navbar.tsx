@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, Menu, X, Sun, Moon, Navigation } from 'lucide-react';
+import { Compass, Menu, X, Navigation } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { LocationDetectorModal } from './LocationDetectorModal';
 
@@ -19,7 +19,8 @@ export function Navbar() {
   const rafRef = useRef<number | null>(null);
 
   const isHero = location.pathname === '/';
-  const onHeroBeforeScroll = isHero && !scrolled;
+  // The atlas hero is a light/dark paper surface, so the nav never needs the old white-on-video mode.
+  const onHeroBeforeScroll = false;
 
   // Smooth hysteresis scroll listener with requestAnimationFrame to eliminate stutter/glitch
   useEffect(() => {
@@ -83,7 +84,7 @@ export function Navbar() {
             scrolled
               ? 'opacity-100 bg-[var(--glass-bg)] backdrop-blur-[16px] border-b border-[var(--glass-border)] shadow-glass-sm'
               : isHero
-              ? 'opacity-100 bg-gradient-to-b from-black/75 via-black/35 to-transparent'
+              ? 'opacity-100 bg-transparent'
               : 'opacity-100 bg-[var(--glass-bg-subtle)] backdrop-blur-md border-b border-[var(--glass-border-subtle)]'
           }`}
           aria-hidden="true"
@@ -124,8 +125,8 @@ export function Navbar() {
                   className={({ isActive }) => [
                     'px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all duration-200',
                     isActive
-                      ? 'bg-accent-500 text-white shadow-md'
-                      : `${textSecondaryClass} hover:bg-white/10`,
+                      ? 'bg-accent-500 text-onaccent shadow-md'
+                      : `${textSecondaryClass} hover-tint`,
                   ].join(' ')}
                 >
                   {link.label}
@@ -134,7 +135,7 @@ export function Navbar() {
 
               <button
                 onClick={() => setLocationModalOpen(true)}
-                className={`px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer ${textSecondaryClass} hover:bg-white/10`}
+                className={`px-3.5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 focus:outline-none cursor-pointer ${textSecondaryClass} hover-tint`}
                 title="Detect Real-Time Location"
               >
                 <Navigation size={13} className="text-accent-500" />
@@ -165,19 +166,20 @@ export function Navbar() {
                 aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
                 title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
               >
-                <motion.div
-                  key={theme}
-                  initial={{ rotate: -90, scale: 0.6, opacity: 0 }}
-                  animate={{ rotate: 0, scale: 1, opacity: 1 }}
-                  exit={{ rotate: 90, scale: 0.6, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {theme === 'dark' ? (
-                    <Sun size={18} className="text-amber-300" />
-                  ) : (
-                    <Moon size={18} className="text-midblue-500" />
-                  )}
-                </motion.div>
+                {/* Compass: the needle swings between day chart (north) and night chart (south) */}
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <motion.g
+                    initial={false}
+                    animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+                    transition={{ type: 'spring', stiffness: 160, damping: 9 }}
+                    style={{ originX: '12px', originY: '12px' }}
+                  >
+                    <path d="M12 3.5 L14.6 12 L12 11 L9.4 12 Z" fill="var(--accent-color)" />
+                    <path d="M12 20.5 L9.4 12 L12 13 L14.6 12 Z" fill="currentColor" opacity="0.55" />
+                  </motion.g>
+                  <circle cx="12" cy="12" r="1.3" fill="currentColor" />
+                </svg>
               </button>
 
               {/* Mobile menu button */}
@@ -214,8 +216,8 @@ export function Navbar() {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-colors ${
                         isActive
-                          ? 'bg-accent-500 text-white shadow-sm'
-                          : 'text-[var(--text-primary)] hover:bg-white/10'
+                          ? 'bg-accent-500 text-onaccent shadow-sm'
+                          : 'text-[var(--text-primary)] hover-tint'
                       }`
                     }
                   >
@@ -229,7 +231,7 @@ export function Navbar() {
                     setMobileOpen(false);
                     setLocationModalOpen(true);
                   }}
-                  className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-[var(--text-primary)] hover:bg-white/10 transition-colors text-left cursor-pointer"
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-[var(--text-primary)] hover-tint transition-colors text-left cursor-pointer"
                 >
                   <Navigation size={18} className="text-accent-500" />
                   Detect Location Near Me

@@ -67,7 +67,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
         onClick={() => setIsOpen(true)}
         className={[
           'fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full',
-          'bg-accent-500 text-white shadow-2xl hover:bg-accent-600',
+          'bg-accent-500 text-onaccent shadow-2xl hover:bg-accent-600',
           'flex items-center justify-center',
           'transition-all duration-300 hover:scale-110 active:scale-95',
           'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-500',
@@ -79,7 +79,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
       >
         <MessageCircle size={24} />
         {messages.length > 1 && (
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-cyan-400 text-dark-950 text-2xs font-extrabold rounded-full flex items-center justify-center shadow-md">
+          <span className="absolute -top-1 -right-1 w-5 h-5 bg-accent-400 text-onaccent text-2xs font-extrabold rounded-full flex items-center justify-center shadow-md">
             {messages.length - 1}
           </span>
         )}
@@ -119,7 +119,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
               {/* Header */}
               <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--glass-border-subtle)] bg-[var(--glass-bg-subtle)] flex-shrink-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-2xl bg-accent-500 text-white flex items-center justify-center shadow-md">
+                  <div className="w-9 h-9 rounded-2xl bg-accent-500 text-onaccent flex items-center justify-center shadow-md">
                     <Bot size={18} />
                   </div>
                   <div>
@@ -137,7 +137,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                 <div className="flex items-center gap-1">
                   <button
                     onClick={clearChat}
-                    className="p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/10 transition-colors focus:outline-none"
+                    className="p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors focus:outline-none"
                     aria-label="Clear chat history"
                     title="Clear chat"
                   >
@@ -145,7 +145,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                   </button>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/10 transition-colors focus:outline-none"
+                    className="p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors focus:outline-none"
                     aria-label="Close chat"
                   >
                     <X size={17} />
@@ -170,7 +170,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                       className={[
                         'w-8 h-8 rounded-xl flex-shrink-0 flex items-center justify-center text-xs font-bold mt-0.5 shadow-sm',
                         msg.role === 'user'
-                          ? 'bg-accent-500 text-white'
+                          ? 'bg-accent-500 text-onaccent'
                           : 'glass-subtle text-accent-500 border border-accent-500/30',
                       ].join(' ')}
                       aria-hidden="true"
@@ -183,7 +183,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                       className={[
                         'max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm',
                         msg.role === 'user'
-                          ? 'bg-accent-500 text-white rounded-tr-sm shadow-md'
+                          ? 'bg-accent-500 text-onaccent rounded-tr-sm shadow-md'
                           : 'glass-card text-[var(--text-primary)] rounded-tl-sm border border-[var(--glass-border)]',
                       ].join(' ')}
                     >
@@ -259,7 +259,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                     className={[
                       'w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all focus:outline-none shadow-md',
                       input.trim() && !isLoading
-                        ? 'bg-accent-500 hover:bg-accent-600 text-white cursor-pointer hover:scale-105'
+                        ? 'bg-accent-500 hover:bg-accent-600 text-onaccent cursor-pointer hover:scale-105'
                         : 'glass-subtle text-[var(--text-muted)] cursor-not-allowed opacity-50',
                     ].join(' ')}
                     aria-label="Send message"

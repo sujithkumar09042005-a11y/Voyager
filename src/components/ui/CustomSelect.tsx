@@ -247,10 +247,10 @@ export function CustomSelect({
                       className={[
                         'w-full flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl text-left text-sm transition-all cursor-pointer',
                         isSelected
-                          ? 'bg-accent-500 text-white font-bold shadow-sm'
+                          ? 'bg-accent-500 text-onaccent font-bold shadow-sm'
                           : isHighlighted
                           ? 'bg-accent-500/15 text-[var(--text-primary)] font-semibold'
-                          : 'text-[var(--text-secondary)] hover:bg-white/10 hover:text-[var(--text-primary)]',
+                          : 'text-[var(--text-secondary)] hover-tint hover:text-[var(--text-primary)]',
                       ].join(' ')}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
@@ -263,7 +263,7 @@ export function CustomSelect({
                           <span
                             className={[
                               'text-2xs px-2 py-0.5 rounded-full font-medium',
-                              isSelected ? 'bg-white/20 text-white' : 'glass-subtle text-accent-500',
+                              isSelected ? 'bg-black/15 text-onaccent' : 'glass-subtle text-accent-500',
                             ].join(' ')}
                           >
                             {opt.subtext}

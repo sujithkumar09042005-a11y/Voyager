@@ -65,7 +65,7 @@ function SuggestionItem({ destination, distance, onClose }: SuggestionItemProps)
       className="block group focus:outline-none"
     >
       <div className="glass-card place-card-interactive overflow-hidden rounded-2xl flex flex-col sm:flex-row items-center border border-[var(--glass-border)] hover:border-accent-500 transition-all p-3 sm:p-4 gap-4 cursor-pointer">
-        <div className="relative w-full sm:w-36 h-32 rounded-xl overflow-hidden flex-shrink-0 bg-surface-200">
+        <div className="relative w-full sm:w-36 h-32 rounded-xl overflow-hidden flex-shrink-0 bg-[var(--surface-sunken)]">
           <img
             src={imageSrc}
             alt={destination.name}
@@ -282,7 +282,7 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 w-9 h-9 rounded-full glass-subtle flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/10 transition-colors focus:outline-none cursor-pointer"
+              className="absolute top-5 right-5 w-9 h-9 rounded-full glass-subtle flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors focus:outline-none cursor-pointer"
               aria-label="Close modal"
             >
               <X size={18} />
@@ -322,7 +322,7 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
                   variant="primary"
                   size="sm"
                   disabled={searchingCity || !searchQuery.trim()}
-                  className="bg-accent-500 hover:bg-accent-600 text-white shadow-md font-bold px-4 py-2.5 rounded-2xl flex-shrink-0"
+                  className="bg-accent-500 hover:bg-accent-600 text-onaccent shadow-md font-bold px-4 py-2.5 rounded-2xl flex-shrink-0"
                 >
                   {searchingCity ? <Loader2 size={15} className="animate-spin" /> : 'Search'}
                 </Button>
@@ -339,7 +339,7 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
                         calculateAndApplySuggestions(city.lat, city.lon, `${city.name}, ${city.country}`);
                         setCitySearchResults([]);
                       }}
-                      className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-[var(--text-primary)] hover:bg-accent-500 hover:text-white transition-colors flex items-center justify-between"
+                      className="w-full text-left px-3 py-2 rounded-xl text-xs font-semibold text-[var(--text-primary)] hover:bg-accent-500 hover:text-onaccent transition-colors flex items-center justify-between"
                     >
                       <span>{city.name}, {city.state ? `${city.state}, ` : ''}{city.country}</span>
                       <span className="text-2xs opacity-75 font-mono">{city.lat.toFixed(2)}°, {city.lon.toFixed(2)}°</span>
@@ -440,7 +440,7 @@ export function LocationDetectorModal({ isOpen, onClose }: LocationDetectorModal
                   {/* Location Banner */}
                   <div className="p-4 rounded-2xl glass-subtle border border-accent-500/40 flex items-center justify-between flex-wrap gap-2 shadow-sm">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl bg-accent-500 text-white flex items-center justify-center shadow-md">
+                      <div className="w-8 h-8 rounded-xl bg-accent-500 text-onaccent flex items-center justify-center shadow-md">
                         <MapPin size={16} />
                       </div>
                       <div>

@@ -12,7 +12,7 @@ interface BadgeProps {
 }
 
 const VARIANT_CLASSES: Record<BadgeVariant, string> = {
-  default: 'bg-surface-100 text-surface-700',
+  default: 'bg-[var(--surface-sunken)] text-[var(--text-secondary)] border border-[var(--line-subtle)]',
   accent:  'bg-accent-100 text-accent-800',
   success: 'bg-emerald-50 text-emerald-700',
   warning: 'bg-amber-50 text-amber-700',

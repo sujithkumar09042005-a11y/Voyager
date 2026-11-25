@@ -38,7 +38,7 @@ export function Footer() {
             </Link>
 
             <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm">
-              Voyager blends modern glassmorphic aesthetics with real-time GPS location detection, live meteorological intelligence, verified Pexels photography, and Google Gemini AI itinerary crafting.
+              Voyager is a map-led travel companion with real-time GPS location detection, live meteorological intelligence, verified Pexels photography, and Google Gemini AI itinerary crafting.
             </p>
 
             {/* Live Operational Status Badge */}

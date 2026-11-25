@@ -56,7 +56,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             <button
               type="button"
               onClick={onClear}
-              className="absolute right-3.5 p-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-white/10 transition-colors focus:outline-none"
+              className="absolute right-3.5 p-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors focus:outline-none"
               aria-label="Clear input"
             >
               <X size={15} />

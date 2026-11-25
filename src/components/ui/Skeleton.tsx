@@ -29,7 +29,7 @@ export function Skeleton({ className = '', width, height, rounded = 'md' }: Skel
 
 export function DestinationCardSkeleton() {
   return (
-    <div className="rounded-2xl overflow-hidden bg-white shadow-card" aria-hidden="true">
+    <div className="rounded-2xl overflow-hidden glass-card" aria-hidden="true">
       <Skeleton height={220} rounded="sm" className="w-full" />
       <div className="p-4 space-y-3">
         <Skeleton height={20} width="60%" />
@@ -48,7 +48,7 @@ export function DestinationCardSkeleton() {
 
 export function WeatherWidgetSkeleton() {
   return (
-    <div className="rounded-2xl p-5 bg-white shadow-card space-y-4" aria-hidden="true">
+    <div className="rounded-2xl p-5 glass-card space-y-4" aria-hidden="true">
       <div className="flex items-center justify-between">
         <Skeleton height={20} width={120} />
         <Skeleton height={48} width={48} rounded="full" />

@@ -8,13 +8,13 @@
     <link id="favicon-svg" rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#285ccc" />
+    <meta name="theme-color" content="#F4ECD8" />
 
     <!-- SEO -->
-    <title>Voyager — Modern Glassmorphism Travel Explorer</title>
+    <title>Voyager — Atlas Travel Explorer</title>
     <meta
       name="description"
-      content="Voyager is a smart, glassmorphic travel discovery platform with real-time location detection, live weather, Pexels photography, and AI-powered trip itineraries."
+      content="Voyager is a smart, map-led travel discovery platform with real-time location detection, live weather, Pexels photography, and AI-powered trip itineraries."
     />
     <meta name="keywords" content="voyager, travel, destinations, itinerary, AI travel planner, weather, pexels, glassmorphism" />
 
@@ -24,16 +24,11 @@
     <meta property="og:image" content="/icon.png" />
     <meta property="og:type" content="website" />
 
-    <!-- Google Fonts: Refined, Elegant & Neat Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-
     <!-- Theme & Circular Favicon Generator Script -->
     <script>
       (function() {
         // Theme initialization
-        const savedTheme = localStorage.getItem('voyager-theme') || 'dark';
+        const savedTheme = localStorage.getItem('voyager-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', savedTheme);
 
         // Circular Tab Favicon generator

@@ -120,7 +120,7 @@ export default function App() {
                     </p>
                     <a
                       href="/"
-                      className="px-6 py-3 rounded-full bg-accent-500 hover:bg-accent-600 text-white font-bold text-sm shadow-md transition-all inline-flex items-center gap-2"
+                      className="px-6 py-3 rounded-full bg-accent-500 hover:bg-accent-600 text-onaccent font-bold text-sm shadow-md transition-all inline-flex items-center gap-2"
                     >
                       ← Return to Voyager Home
                     </a>

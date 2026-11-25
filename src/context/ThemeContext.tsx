@@ -15,8 +15,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('voyager-theme');
       if (saved === 'light' || saved === 'dark') return saved;
-      // Default to dark for premium glassmorphism
-      return 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
     return 'dark';
   });
@@ -24,6 +23,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const root = document.documentElement;
     root.setAttribute('data-theme', theme);
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'dark' ? '#0B1622' : '#F4ECD8');
     localStorage.setItem('voyager-theme', theme);
   }, [theme]);
 
