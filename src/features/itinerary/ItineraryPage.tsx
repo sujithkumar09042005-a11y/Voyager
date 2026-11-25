@@ -6,6 +6,7 @@ import type { Destination, ItineraryDay, ItineraryFormValues, ItineraryPace } fr
 import destinations from '../../data/destinations.json';
 import { useItinerary } from '../../hooks/useItinerary';
 import { AtlasMap } from '../atlas/AtlasMap';
+import { TripTicket } from './TripTicket';
 import { Button } from '../../components/ui/Button';
 import { CustomSelect } from '../../components/ui/CustomSelect';
 import { ItinerarySkeleton } from '../../components/ui/Skeleton';
@@ -153,179 +154,218 @@ export function ItineraryPage() {
 
   return (
     <main id="main-content" className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 relative">
-      {/* Ambient background mesh */}
-
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-10 text-center sm:text-left">
-          <div className="flex items-center justify-center sm:justify-start gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-accent-500 animate-pulse" />
-            <motion.p
-              className="text-xs font-bold uppercase tracking-widest text-accent-500"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              Smart AI Engine · Estimates in Indian Rupees (₹)
-            </motion.p>
-          </div>
+        <div className="mb-10 max-w-2xl">
+          <motion.p
+            className="legend-label mb-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            Route planner / prices in rupees
+          </motion.p>
           <motion.h1
             className="font-display text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)] mb-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
           >
-            Plan Your Journey
+            Draft a <em className="italic text-accent-500">route</em>
           </motion.h1>
           <motion.p
-            className="text-sm sm:text-base text-[var(--text-secondary)] max-w-xl leading-relaxed"
+            className="text-base text-[var(--text-secondary)] leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
           >
-            Choose your destination, preferred pace, and travel vibe. Voyager AI will craft an optimal day-by-day itinerary with exact timing and realistic Indian Rupee expenses.
+            Fill in three sheets. Voyager AI drafts a day-by-day plan with timings and local budget estimates, and your ticket updates as you go.
           </motion.p>
         </div>
 
-        {/* Form */}
-        {state.status !== 'success' && (
-          <motion.form
-            onSubmit={handleSubmit}
-            className="card-ledger p-6 sm:p-10 space-y-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-          >
-            {/* Destination Selector */}
-            <div>
-              <CustomSelect
-                id="destination-select"
-                label="Select Destination *"
-                placeholder="Search or choose a country / destination…"
-                searchable={true}
-                icon={<MapPin size={18} />}
-                value={formValues.destinationId}
-                onChange={(val) => setFormValues((prev) => ({ ...prev, destinationId: val }))}
-                options={ALL_DESTINATIONS.map((d) => ({
-                  value: d.id,
-                  label: `${d.name}, ${d.country}`,
-                  subtext: `${d.avgDailyBudget}/day`,
-                }))}
+        <div className={state.status === 'success' ? '' : 'grid lg:grid-cols-[minmax(0,1fr)_360px] gap-8 items-start'}>
+          {/* Form */}
+          {state.status !== 'success' && (
+            <motion.form
+              onSubmit={handleSubmit}
+              className="card-ledger overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              aria-label="Trip planner"
+            >
+              {/* Sheet 1: where */}
+              <section className="plan-sheet">
+                <div className="plan-sheet__head">
+                  <span className="plan-sheet__num" aria-hidden="true">01</span>
+                  <h2 className="plan-sheet__title">Where to</h2>
+                  <span className="plan-sheet__hint">Required</span>
+                </div>
+                <CustomSelect
+                  id="destination-select"
+                  label="Destination"
+                  placeholder="Search or choose a destination"
+                  searchable={true}
+                  icon={<MapPin size={18} />}
+                  value={formValues.destinationId}
+                  onChange={(val) => setFormValues((prev) => ({ ...prev, destinationId: val }))}
+                  options={ALL_DESTINATIONS.map((d) => ({
+                    value: d.id,
+                    label: `${d.name}, ${d.country}`,
+                    subtext: `${d.avgDailyBudget}/day`,
+                  }))}
+                />
+              </section>
+
+              {/* Sheet 2: how long and how fast */}
+              <section className="plan-sheet">
+                <div className="plan-sheet__head">
+                  <span className="plan-sheet__num" aria-hidden="true">02</span>
+                  <h2 className="plan-sheet__title">How long, how fast</h2>
+                </div>
+
+                <fieldset>
+                  <legend className="text-sm font-semibold text-[var(--text-primary)] mb-1">Trip length</legend>
+                  <div className="day-ruler" role="radiogroup" aria-label="Trip length in days">
+                    {DAYS_OPTIONS.map((d) => (
+                      <label key={d} className="day-ruler__stop">
+                        <input
+                          type="radio"
+                          name="days"
+                          value={d}
+                          className="sr-only"
+                          checked={formValues.days === d}
+                          onChange={() => setFormValues((prev) => ({ ...prev, days: d }))}
+                          aria-label={`${d} ${d === 1 ? 'day' : 'days'}`}
+                        />
+                        <span className="day-ruler__tick" aria-hidden="true" />
+                        <span className="day-ruler__num" aria-hidden="true">{d}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <p className="day-ruler__unit text-center mt-3">days</p>
+                </fieldset>
+
+                <fieldset className="mt-7">
+                  <legend className="text-sm font-semibold text-[var(--text-primary)] mb-3">Pace</legend>
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    {PACE_OPTIONS.map(({ value, label, icon: Icon, description }) => {
+                      const stops = value === 'relaxed' ? 2 : value === 'balanced' ? 4 : 6;
+                      return (
+                        <label key={value} className="block">
+                          <input
+                            type="radio"
+                            name="pace"
+                            value={value}
+                            className="sr-only"
+                            checked={formValues.pace === value}
+                            onChange={() => setFormValues((prev) => ({ ...prev, pace: value }))}
+                          />
+                          <span className="pace-card">
+                            <span className="pace-card__route" aria-hidden="true">
+                              {Array.from({ length: stops }).map((_, i) => (
+                                <span key={i} className="contents">
+                                  <i />
+                                  {i < stops - 1 && <b />}
+                                </span>
+                              ))}
+                            </span>
+                            <span className="flex items-center gap-2 mb-1">
+                              <Icon size={15} className="text-accent-500" aria-hidden="true" />
+                              <span className="text-sm font-bold text-[var(--text-primary)]">{label}</span>
+                            </span>
+                            <span className="block text-xs text-[var(--text-secondary)]">{description}</span>
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                </fieldset>
+              </section>
+
+              {/* Sheet 3: interests */}
+              <section className="plan-sheet">
+                <div className="plan-sheet__head">
+                  <span className="plan-sheet__num" aria-hidden="true">03</span>
+                  <h2 className="plan-sheet__title">What you love</h2>
+                  <span className="plan-sheet__hint">Pick any</span>
+                </div>
+                <fieldset>
+                  <legend className="sr-only">Travel interests</legend>
+                  <div className="flex flex-wrap gap-2">
+                    {INTEREST_OPTIONS.map((interest) => (
+                      <label key={interest}>
+                        <input
+                          type="checkbox"
+                          className="sr-only"
+                          checked={formValues.interests.includes(interest)}
+                          onChange={() => toggleInterest(interest)}
+                        />
+                        <span className="legend-chip">{interest}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              </section>
+
+              {/* Submit */}
+              <div className="plan-sheet" style={{ background: 'var(--surface-sunken)' }}>
+                {state.status === 'error' && (
+                  <div
+                    role="alert"
+                    className="mb-4 border border-[var(--danger)] rounded-md px-4 py-3 text-sm font-medium text-[var(--danger)]"
+                  >
+                    {state.message}
+                  </div>
+                )}
+                <Button
+                  type="submit"
+                  size="lg"
+                  loading={state.status === 'loading'}
+                  disabled={!formValues.destinationId}
+                  fullWidth
+                  leftIcon={<Sparkles size={18} />}
+                  className="bg-accent-500 hover:bg-accent-600 text-onaccent font-bold py-4"
+                >
+                  {state.status === 'loading' ? 'Drafting your route…' : 'Draft my route'}
+                </Button>
+                {!formValues.destinationId && (
+                  <p className="mt-3 text-xs text-[var(--text-muted)] text-center">
+                    Choose a destination in sheet 01 to continue.
+                  </p>
+                )}
+              </div>
+            </motion.form>
+          )}
+
+          {/* Live ticket */}
+          {state.status !== 'success' && (
+            <div className="lg:sticky lg:top-28">
+              <TripTicket
+                destination={selectedDestination}
+                days={formValues.days}
+                pace={formValues.pace}
+                interests={formValues.interests}
               />
             </div>
+          )}
+        </div>
 
-            {/* Days Count */}
-            <div>
-              <label className="block text-sm font-bold text-[var(--text-primary)] mb-2">
-                Trip Duration (Days)
-              </label>
-              <div className="flex flex-wrap gap-2.5">
-                {DAYS_OPTIONS.map((d) => (
-                  <button
-                    key={d}
-                    type="button"
-                    onClick={() => setFormValues((prev) => ({ ...prev, days: d }))}
-                    className={[
-                      'px-5 py-2.5 rounded-2xl text-sm font-bold transition-all',
-                      formValues.days === d
-                        ? 'bg-accent-500 text-onaccent shadow-lg'
-                        : 'glass-subtle text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--glass-border-subtle)]',
-                    ].join(' ')}
-                  >
-                    {d} {d === 1 ? 'Day' : 'Days'}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Travel Pace */}
-            <div>
-              <label className="block text-sm font-bold text-[var(--text-primary)] mb-2">
-                Travel Pace
-              </label>
-              <div className="grid sm:grid-cols-3 gap-3">
-                {PACE_OPTIONS.map(({ value, label, icon: Icon, description }) => (
-                  <button
-                    key={value}
-                    type="button"
-                    onClick={() => setFormValues((prev) => ({ ...prev, pace: value }))}
-                    className={[
-                      'p-4 rounded-2xl border text-left transition-all cursor-pointer',
-                      formValues.pace === value
-                        ? 'border-accent-500 bg-accent-500/10 shadow-md'
-                        : 'border-[var(--glass-border-subtle)] glass-subtle hover:border-[var(--glass-border)]',
-                    ].join(' ')}
-                  >
-                    <div className="flex items-center gap-2 mb-1">
-                      <Icon size={16} className={formValues.pace === value ? 'text-accent-500' : 'text-[var(--text-muted)]'} />
-                      <p className="text-sm font-bold text-[var(--text-primary)]">{label}</p>
-                    </div>
-                    <p className="text-xs text-[var(--text-secondary)]">{description}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Interests */}
-            <div>
-              <label className="block text-sm font-bold text-[var(--text-primary)] mb-2">
-                Travel Interests (Select all that apply)
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {INTEREST_OPTIONS.map((interest) => {
-                  const active = formValues.interests.includes(interest);
-                  return (
-                    <button
-                      key={interest}
-                      type="button"
-                      onClick={() => toggleInterest(interest)}
-                      className={[
-                        'px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all',
-                        active
-                          ? 'bg-accent-500 text-onaccent border-accent-500 shadow-md'
-                          : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:text-[var(--text-primary)]',
-                      ].join(' ')}
-                      aria-pressed={active}
-                    >
-                      {interest}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Error Message */}
-            {state.status === 'error' && (
-              <div className="glass-subtle border border-red-500/30 rounded-2xl px-5 py-3.5 text-sm text-red-500 font-medium">
-                {state.message}
-              </div>
-            )}
-
-            <Button
-              type="submit"
-              size="lg"
-              loading={state.status === 'loading'}
-              disabled={!formValues.destinationId}
-              fullWidth
-              leftIcon={<Sparkles size={18} />}
-              className="bg-accent-500 hover:bg-accent-600 font-bold shadow-xl hover:shadow-accent-500/30 py-4"
-            >
-              {state.status === 'loading'
-                ? 'Synthesizing Your Custom Itinerary with Gemini…'
-                : 'Generate Custom Itinerary'}
-            </Button>
-          </motion.form>
-        )}
-
-        {/* Loading Skeleton */}
+        {/* Loading: the route draws itself */}
         {state.status === 'loading' && (
           <motion.div
             className="mt-8 space-y-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            role="status"
           >
-            <div className="glass-panel p-4 rounded-2xl text-center">
-              <p className="text-sm font-semibold text-accent-500 animate-pulse">
-                ✨ Voyager AI is curating a {formValues.days}-day plan for {selectedDestination?.name} in Indian Rupees (₹)...
+            <div className="card-ledger p-5 flex items-center gap-4">
+              <svg width="96" height="28" viewBox="0 0 96 28" aria-hidden="true" className="flex-shrink-0">
+                <path className="draft-route" d="M4 22 C 24 2, 40 26, 56 12 S 84 4, 92 8" />
+                <circle cx="4" cy="22" r="3.5" fill="var(--accent-color)" />
+                <circle cx="92" cy="8" r="3.5" fill="var(--accent-color)" />
+              </svg>
+              <p className="text-sm font-medium text-[var(--text-primary)]">
+                Drafting a {formValues.days}-day route for {selectedDestination?.name}. This takes a few seconds.
               </p>
             </div>
             <ItinerarySkeleton />
@@ -335,11 +375,25 @@ export function ItineraryPage() {
         {/* Generated Success Itinerary */}
         {state.status === 'success' && (
           <motion.div
-            className="space-y-6"
+            className="space-y-6 max-w-4xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
+            {state.data.degraded && (
+              <div
+                role="alert"
+                className="border border-[var(--danger)] rounded-md px-4 py-3 text-sm text-[var(--danger)] flex flex-wrap items-center justify-between gap-3"
+              >
+                <span className="font-medium">
+                  The AI was unavailable, so this is a generic estimate built from the destination&apos;s highlights, not a personalised plan.
+                </span>
+                <Button variant="outline" size="sm" onClick={reset} className="border-[var(--danger)] text-[var(--danger)]">
+                  Try again
+                </Button>
+              </div>
+            )}
+
             {/* Itinerary Header */}
             <div className="card-ledger is-accent p-6 sm:p-8 flex items-start justify-between gap-4 flex-wrap">
               <div>
@@ -347,16 +401,16 @@ export function ItineraryPage() {
                   AI-drafted route
                 </span>
                 <h2 className="font-display text-2xl sm:text-3xl text-[var(--text-primary)] mt-1">
-                  {state.data.totalDays}-Day Itinerary for{' '}
-                  <span className="text-gradient-accent">{state.data.destinationName}</span>
+                  {state.data.totalDays}-day route for{' '}
+                  <span className="text-accent-500">{state.data.destinationName}</span>
                 </h2>
                 <div className="flex items-center gap-3 mt-2 text-xs text-[var(--text-muted)] font-medium flex-wrap">
                   <span className="capitalize">{state.data.pace} pace</span>
-                  <span>·</span>
-                  <span>Currency: Indian Rupee (₹)</span>
+                  <span aria-hidden="true">/</span>
+                  <span>Prices in rupees</span>
                   {state.data.interests.length > 0 && (
                     <>
-                      <span>·</span>
+                      <span aria-hidden="true">/</span>
                       <span>{state.data.interests.join(', ')}</span>
                     </>
                   )}
@@ -368,9 +422,9 @@ export function ItineraryPage() {
                 size="sm"
                 onClick={reset}
                 leftIcon={<RefreshCw size={14} />}
-                className="glass-subtle text-[var(--text-primary)] font-bold border-[var(--glass-border)]"
+                className="text-[var(--text-primary)] font-bold border-[var(--line)]"
               >
-                Plan Another Trip
+                Plan another trip
               </Button>
             </div>
 

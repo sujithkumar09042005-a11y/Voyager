@@ -96,6 +96,8 @@ export interface Itinerary {
   interests: string[];
   days: ItineraryDay[];
   generatedAt: Date;
+  /** True when the AI was unavailable and a generic plan was returned instead. */
+  degraded?: boolean;
 }
 
 export interface ItineraryFormValues {
@@ -116,6 +118,8 @@ export interface ChatMessage {
   content: string;
   timestamp: Date;
   isStreaming?: boolean;
+  /** True when this reply is a canned guide because the AI was unavailable. */
+  degraded?: boolean;
 }
 
 // ─── Geolocation Types ───────────────────────────────────────────────────────
