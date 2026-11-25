@@ -4,6 +4,7 @@ import { Camera, ArrowRight } from 'lucide-react';
 import type { Destination } from '../../types';
 import { useDestinationImage } from '../../hooks/usePexelsImage';
 import { formatCoordinates, formatVibeName } from '../../utils/formatters';
+import { Flag } from '../../components/ui/Flag';
 
 interface DestinationCardProps {
   destination: Destination;
@@ -11,6 +12,7 @@ interface DestinationCardProps {
 
 export function DestinationCard({ destination }: DestinationCardProps) {
   const [imgError, setImgError] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
 
   // Fetch live Pexels image with fallback
   const { data: pexelsData, isLoading: imgLoading } = useDestinationImage(
@@ -29,30 +31,35 @@ export function DestinationCard({ destination }: DestinationCardProps) {
     <Link
       to={`/destination/${destination.id}`}
       className="block h-full rounded-md"
-      aria-label={`${destination.name}, ${destination.country}. ${destination.tagline}`}
+      aria-label={`${destination.name}, ${destination.country}, ${destination.region}. ${destination.tagline}`}
     >
       <article className="group card-postcard">
         {/* Photo, with a perforated stamp and a postmark */}
         <div className="postcard-photo">
+          {imgFailed && (
+            <div className="photo-fallback" aria-hidden="true">
+              {destination.name}
+            </div>
+          )}
           <img
             src={imageSrc}
             alt=""
             loading="lazy"
             decoding="async"
-            onError={() => setImgError(true)}
-            className={`w-full h-full object-cover ${imgLoading ? 'opacity-0' : 'opacity-100'}`}
+            onError={() => (imageSrc === destination.fallbackImage ? setImgFailed(true) : setImgError(true))}
+            className={`w-full h-full object-cover ${imgLoading || imgFailed ? 'opacity-0' : 'opacity-100'}`}
           />
           <div className="postage-stamp" aria-hidden="true">
             <div className="stamp-inner">
-              <span className="stamp-code">{destination.currency.match(/[A-Z]{3}/)?.[0] ?? ''}</span>
-              <span>{destination.region}</span>
+              <span className="stamp-country">{destination.country}</span>
+              <span className="stamp-region">{destination.region}</span>
             </div>
           </div>
-          <div className={`postmark ${destination.country.length > 10 ? 'is-long' : ''}`} aria-hidden="true">
-            {destination.country}
+          <div className="flag-badge">
+            <Flag country={destination.country} />
           </div>
           {pexelsData?.photographer && (
-            <span className="absolute bottom-2 right-2 glass-dark text-xs px-2 py-0.5 rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
+            <span className="absolute bottom-2 right-2 glass-dark text-xs px-2 py-0.5 rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity">
               <Camera size={10} aria-hidden="true" />
               {pexelsData.photographer}
             </span>
@@ -71,11 +78,11 @@ export function DestinationCard({ destination }: DestinationCardProps) {
 
           <dl className="mt-4 grid grid-cols-2 gap-3 pt-3 border-t border-dotted border-[var(--line)] text-xs">
             <div>
-              <dt className="legend-label" style={{ fontSize: '0.62rem' }}>Best time</dt>
+              <dt className="legend-label" style={{ fontSize: '0.75rem' }}>Best time</dt>
               <dd className="mt-0.5 text-[var(--text-primary)] font-medium">{destination.bestTimeToVisit}</dd>
             </div>
             <div>
-              <dt className="legend-label" style={{ fontSize: '0.62rem' }}>Per day</dt>
+              <dt className="legend-label" style={{ fontSize: '0.75rem' }}>Per day</dt>
               <dd className="mt-0.5 text-[var(--text-primary)] font-bold">{destination.avgDailyBudget}</dd>
             </div>
           </dl>

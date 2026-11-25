@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowLeft, Calendar, Clock, Globe, MapPin,
+  ArrowLeft, Calendar, Clock, Globe,
   MessageCircle, Sparkles, Camera, ExternalLink,
   CreditCard
 } from 'lucide-react';
@@ -10,6 +10,7 @@ import type { Destination, Place } from '../../types';
 import destinations from '../../data/destinations.json';
 import { useWeather } from '../../hooks/useWeather';
 import { useDestinationImage, usePlaceImage } from '../../hooks/usePexelsImage';
+import { Flag } from '../../components/ui/Flag';
 import { AtlasMap } from '../atlas/AtlasMap';
 import { WeatherWidget } from '../../components/WeatherWidget';
 import { Button } from '../../components/ui/Button';
@@ -42,7 +43,7 @@ function PlaceCard({ place, onClick, index = 0 }: { place: Place; onClick: () =>
     >
       <div className="polaroid-photo">
         {imgFailed && (
-          <div className="absolute inset-0 flex items-center justify-center p-4 text-center font-display text-lg text-[var(--text-muted)]" aria-hidden="true">
+          <div className="photo-fallback" aria-hidden="true">
             {place.name}
           </div>
         )}
@@ -55,7 +56,7 @@ function PlaceCard({ place, onClick, index = 0 }: { place: Place; onClick: () =>
           className={`w-full h-full object-cover ${isLoading || imgFailed ? 'opacity-0' : 'opacity-100'}`}
         />
         {pexelsData?.photographer && (
-          <span className="absolute bottom-2 right-2 glass-dark text-xs px-2 py-0.5 rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity">
+          <span className="absolute bottom-2 right-2 glass-dark text-xs px-2 py-0.5 rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity">
             <Camera size={10} aria-hidden="true" />
             {pexelsData.photographer}
           </span>
@@ -64,7 +65,7 @@ function PlaceCard({ place, onClick, index = 0 }: { place: Place; onClick: () =>
 
       {/* Caption strip, like the white border of an instant photo */}
       <div className="pt-4 px-1 flex-1 flex flex-col">
-        <p className="legend-label mb-1" style={{ fontSize: '0.65rem' }}>
+        <p className="legend-label mb-1" style={{ fontSize: '0.75rem' }}>
           {String(index + 1).padStart(2, '0')} / {place.category}
         </p>
         <h3 className="font-display text-xl leading-snug text-[var(--text-primary)] group-hover:text-accent-500 transition-colors">
@@ -86,6 +87,7 @@ function PlaceCard({ place, onClick, index = 0 }: { place: Place; onClick: () =>
 
 function PlaceModal({ place, isOpen, onClose }: { place: Place | null; isOpen: boolean; onClose: () => void }) {
   const [imgError, setImgError] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
   const { data: pexelsData } = usePlaceImage(place?.name, place?.fallbackImage);
 
   if (!place) return null;
@@ -98,11 +100,12 @@ function PlaceModal({ place, isOpen, onClose }: { place: Place | null; isOpen: b
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
       <div className="overflow-hidden rounded-2xl">
         <div className="relative h-72 sm:h-88 overflow-hidden bg-[var(--surface-sunken)]">
+          {imgFailed && <div className="photo-fallback" aria-hidden="true" />}
           <img
             src={imageSrc}
-            alt={place.name}
-            onError={() => setImgError(true)}
-            className="w-full h-full object-cover"
+            alt={imgFailed ? '' : place.name}
+            onError={() => (imageSrc === place.fallbackImage ? setImgFailed(true) : setImgError(true))}
+            className={`w-full h-full object-cover ${imgFailed ? 'opacity-0' : ''}`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent" />
           <div className="absolute bottom-5 left-6 right-14 text-white">
@@ -145,6 +148,7 @@ export function DestinationDetailPage() {
   const navigate = useNavigate();
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
   const [heroImgError, setHeroImgError] = useState(false);
+  const [heroFailed, setHeroFailed] = useState(false);
 
   const destination = ALL_DESTINATIONS.find((d) => d.id === id);
 
@@ -185,12 +189,13 @@ export function DestinationDetailPage() {
 
       {/* ─── Hero Image ──────────────────────────────────────────── */}
       <div className="relative h-[65vh] min-h-[460px] overflow-hidden bg-[var(--surface-sunken)]">
+        {heroFailed && <div className="photo-fallback" aria-hidden="true" />}
         <img
           src={heroImageSrc}
-          alt={`${destination.name}, ${destination.country}`}
-          onError={() => setHeroImgError(true)}
+          alt={heroFailed ? '' : `${destination.name}, ${destination.country}`}
+          onError={() => (heroImageSrc === destination.fallbackImage ? setHeroFailed(true) : setHeroImgError(true))}
           className={`w-full h-full object-cover transition-opacity duration-700 ${
-            heroLoading ? 'opacity-0' : 'opacity-100'
+            heroLoading || heroFailed ? 'opacity-0' : 'opacity-100'
           }`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/40 to-transparent" />
@@ -243,8 +248,8 @@ export function DestinationDetailPage() {
               {destination.name}
             </h1>
             <div className="flex items-center gap-2 mt-1.5 sm:mt-2 text-white/90 font-semibold text-xs sm:text-base">
-              <MapPin size={15} className="text-accent-400 flex-shrink-0" />
-              <span>{destination.country}</span>
+              <Flag country={destination.country} className="w-6 h-6 rounded-full flex-shrink-0 border border-white/60" />
+              <span>{destination.country}, {destination.region}</span>
             </div>
           </motion.div>
         </div>
