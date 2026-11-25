@@ -10,6 +10,7 @@ import type { Destination, Place } from '../../types';
 import destinations from '../../data/destinations.json';
 import { useWeather } from '../../hooks/useWeather';
 import { useDestinationImage, usePlaceImage } from '../../hooks/usePexelsImage';
+import { AtlasMap } from '../atlas/AtlasMap';
 import { WeatherWidget } from '../../components/WeatherWidget';
 import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
@@ -21,6 +22,7 @@ const ALL_DESTINATIONS = destinations as Destination[];
 
 function PlaceCard({ place, onClick }: { place: Place; onClick: () => void }) {
   const [imgError, setImgError] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
   const { data: pexelsData, isLoading } = usePlaceImage(place.name, place.fallbackImage);
 
   const imageSrc = imgError
@@ -30,21 +32,26 @@ function PlaceCard({ place, onClick }: { place: Place; onClick: () => void }) {
   return (
     <motion.button
       onClick={onClick}
-      className="group text-left glass-card place-card-interactive overflow-hidden w-full flex flex-col h-full rounded-3xl border border-[var(--glass-border)] cursor-pointer"
-      whileHover={{ y: -6, scale: 1.015 }}
-      whileTap={{ scale: 0.98 }}
+      className="group text-left glass-card place-card-interactive overflow-hidden w-full flex flex-col h-full rounded-2xl border border-[var(--glass-border)] cursor-pointer"
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.99 }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
       aria-label={`View details for ${place.name}`}
     >
       {/* Image */}
-      <div className="relative h-52 overflow-hidden bg-surface-200 w-full">
+      <div className="relative h-52 overflow-hidden bg-[var(--surface-sunken)] w-full">
+        {imgFailed && (
+          <div className="absolute inset-0 flex items-center justify-center p-4 text-center font-display text-lg text-[var(--text-muted)]" aria-hidden="true">
+            {place.name}
+          </div>
+        )}
         <img
           src={imageSrc}
-          alt={place.name}
+          alt={imgFailed ? '' : place.name}
           loading="lazy"
-          onError={() => setImgError(true)}
+          onError={() => (imageSrc === place.fallbackImage ? setImgFailed(true) : setImgError(true))}
           className={`w-full h-full object-cover group-hover:scale-108 transition-all duration-700 ${
-            isLoading ? 'opacity-0' : 'opacity-100'
+            isLoading || imgFailed ? 'opacity-0' : 'opacity-100'
           }`}
         />
         <div className="absolute top-3 left-3">
@@ -54,7 +61,7 @@ function PlaceCard({ place, onClick }: { place: Place; onClick: () => void }) {
         </div>
         {pexelsData?.photographer && (
           <div className="absolute bottom-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity">
-            <span className="glass-dark text-white/95 text-2xs px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
+            <span className="glass-dark text-white/95 text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
               <Camera size={10} />
               {pexelsData.photographer}
             </span>
@@ -95,8 +102,8 @@ function PlaceModal({ place, isOpen, onClose }: { place: Place | null; isOpen: b
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
-      <div className="overflow-hidden rounded-3xl">
-        <div className="relative h-72 sm:h-88 overflow-hidden bg-surface-200">
+      <div className="overflow-hidden rounded-2xl">
+        <div className="relative h-72 sm:h-88 overflow-hidden bg-[var(--surface-sunken)]">
           <img
             src={imageSrc}
             alt={place.name}
@@ -108,7 +115,7 @@ function PlaceModal({ place, isOpen, onClose }: { place: Place | null; isOpen: b
             <span className="glass-dark text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 inline-block">
               {place.category}
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold">{place.name}</h2>
+            <h2 className="font-display text-2xl sm:text-3xl">{place.name}</h2>
           </div>
           {pexelsData?.photographer && (
             <div className="absolute top-4 left-4">
@@ -158,7 +165,7 @@ export function DestinationDetailPage() {
   if (!destination) {
     return (
       <main className="min-h-screen flex items-center justify-center pt-24 px-4">
-        <div className="text-center glass-panel p-8 rounded-3xl max-w-md">
+        <div className="text-center glass-panel p-8 rounded-2xl max-w-md">
           <p className="font-display text-2xl font-bold text-[var(--text-primary)] mb-4">Destination not found</p>
           <Button onClick={() => navigate('/explore')} leftIcon={<ArrowLeft size={16} />}>
             Back to Voyager Explorer
@@ -183,7 +190,7 @@ export function DestinationDetailPage() {
       <div className="background-mesh" aria-hidden="true" />
 
       {/* ─── Hero Image ──────────────────────────────────────────── */}
-      <div className="relative h-[65vh] min-h-[460px] overflow-hidden bg-surface-200">
+      <div className="relative h-[65vh] min-h-[460px] overflow-hidden bg-[var(--surface-sunken)]">
         <img
           src={heroImageSrc}
           alt={`${destination.name}, ${destination.country}`}
@@ -200,7 +207,7 @@ export function DestinationDetailPage() {
             <Button
               variant="ghost"
               size="sm"
-              className="glass-dark text-white hover:bg-white/20 rounded-full text-xs sm:text-sm px-3.5 py-1.5"
+              className="glass-dark text-white hover-tint rounded-full text-xs sm:text-sm px-3.5 py-1.5"
               leftIcon={<ArrowLeft size={14} />}
             >
               <span className="hidden sm:inline">All Destinations</span>
@@ -213,7 +220,7 @@ export function DestinationDetailPage() {
               href={pexelsHero.photographerUrl}
               target="_blank"
               rel="noreferrer"
-              className="glass-dark text-white/90 hover:text-white text-2xs sm:text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors shadow-sm max-w-[180px] sm:max-w-none truncate"
+              className="glass-dark text-white/90 hover:text-white text-xs sm:text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors shadow-sm max-w-[180px] sm:max-w-none truncate"
             >
               <Camera size={11} className="flex-shrink-0" />
               <span className="truncate">Photo: {pexelsHero.photographer}</span>
@@ -229,16 +236,16 @@ export function DestinationDetailPage() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-2 mb-2 sm:mb-3 flex-wrap">
-              <span className="glass-dark text-white text-2xs sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full">
+              <span className="glass-dark text-white text-xs sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full">
                 {destination.region}
               </span>
               {destination.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="glass-dark text-white/90 text-2xs sm:text-xs px-2.5 sm:px-3 py-1 rounded-full font-medium">
+                <span key={tag} className="glass-dark text-white/90 text-xs sm:text-xs px-2.5 sm:px-3 py-1 rounded-full font-medium">
                   {formatVibeName(tag)}
                 </span>
               ))}
             </div>
-            <h1 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl text-white leading-[1.02]">
               {destination.name}
             </h1>
             <div className="flex items-center gap-2 mt-1.5 sm:mt-2 text-white/90 font-semibold text-xs sm:text-base">
@@ -300,12 +307,12 @@ export function DestinationDetailPage() {
                     value: `${destination.currency}`
                   },
                 ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="glass-card p-4 sm:p-5 rounded-3xl flex flex-col justify-between">
+                  <div key={label} className="glass-card p-4 sm:p-5 rounded-2xl flex flex-col justify-between">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-7 h-7 rounded-lg glass-subtle flex items-center justify-center text-accent-500 flex-shrink-0">
                         <Icon size={14} />
                       </div>
-                      <span className="text-2xs text-[var(--text-muted)] font-bold uppercase tracking-wider">
+                      <span className="text-xs text-[var(--text-muted)] font-bold uppercase tracking-wider">
                         {label}
                       </span>
                     </div>
@@ -366,9 +373,18 @@ export function DestinationDetailPage() {
               />
             </motion.div>
 
+            {/* Location on the atlas */}
+            <section className="glass-panel p-4 rounded-2xl space-y-3" aria-label={`${destination.name} on the map`}>
+              <p className="legend-label">Location</p>
+              <AtlasMap compact focusId={destination.id} visibleIds={[destination.id]} />
+              <p className="text-xs text-[var(--text-muted)]">
+                {destination.coordinates.lat.toFixed(2)}, {destination.coordinates.lng.toFixed(2)}
+              </p>
+            </section>
+
             {/* AI Itinerary Planner CTA */}
             <motion.div
-              className="glass-panel p-6 rounded-3xl space-y-4 border border-accent-500/30"
+              className="glass-panel p-6 rounded-2xl space-y-4 border border-accent-500/30"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -399,7 +415,7 @@ export function DestinationDetailPage() {
 
             {/* Chatbot CTA */}
             <motion.div
-              className="glass-panel p-6 rounded-3xl space-y-4"
+              className="glass-panel p-6 rounded-2xl space-y-4"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}

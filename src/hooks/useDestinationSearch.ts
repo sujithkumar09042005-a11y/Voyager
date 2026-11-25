@@ -38,8 +38,11 @@ function useDebounce<T>(value: T, delay: number): T {
 }
 
 export function useDestinationSearch() {
+  const [initialQuery] = useState(() =>
+    typeof window === 'undefined' ? '' : (new URLSearchParams(window.location.search).get('q') ?? ''),
+  );
   const [filters, setFilters] = useState<ExplorerFilters>({
-    query:   '',
+    query:   initialQuery,
     regions: [],
     tags:    [],
     budget:  'all',

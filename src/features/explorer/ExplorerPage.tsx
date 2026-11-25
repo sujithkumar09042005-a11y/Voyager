@@ -4,11 +4,12 @@ import {
   Globe, X, Navigation, Search, Sparkles, SlidersHorizontal,
   Compass, RotateCcw, Landmark, Building2, Mountain, Waves,
   UtensilsCrossed, Trees, Heart, ShoppingBag, Flame, Sun,
-  IndianRupee
+  IndianRupee, LayoutGrid, Map as MapIcon
 } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { DestinationCard } from './DestinationCard';
 import { useDestinationSearch } from '../../hooks/useDestinationSearch';
+import { AtlasMap } from '../atlas/AtlasMap';
 import { LocationDetectorModal } from '../../components/LocationDetectorModal';
 import { formatVibeName } from '../../utils/formatters';
 
@@ -90,7 +91,7 @@ function getVibeIcon(tag: string) {
 function EmptyState({ onClear }: { onClear: () => void }) {
   return (
     <motion.div
-      className="col-span-full flex flex-col items-center py-20 text-center glass-dock rounded-4xl p-8 sm:p-12 border border-[var(--glass-border)] shadow-2xl my-6"
+      className="col-span-full flex flex-col items-center py-20 text-center glass-dock rounded-2xl p-8 sm:p-12 border border-[var(--glass-border)] shadow-glass-md my-6"
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -108,7 +109,7 @@ function EmptyState({ onClear }: { onClear: () => void }) {
         variant="primary"
         onClick={onClear}
         leftIcon={<RotateCcw size={15} />}
-        className="font-bold bg-accent-500 hover:bg-accent-600 text-white shadow-lg hover:shadow-accent-500/30 px-6 py-3 rounded-full"
+        className="font-bold bg-accent-500 hover:bg-accent-600 text-onaccent shadow-lg hover:shadow-accent-500/30 px-6 py-3 rounded-full"
       >
         Reset All Filters
       </Button>
@@ -121,6 +122,7 @@ function EmptyState({ onClear }: { onClear: () => void }) {
 export function ExplorerPage() {
   const [locationModalOpen, setLocationModalOpen] = useState(false);
   const [showVibeDrawer, setShowVibeDrawer] = useState(false);
+  const [view, setView] = useState<'list' | 'map'>('list');
 
   const {
     filters,
@@ -164,24 +166,18 @@ export function ExplorerPage() {
 
   return (
     <main id="main-content" className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 relative">
-      {/* Ambient background mesh */}
-      <div className="background-mesh" aria-hidden="true" />
-
       <div className="max-w-7xl mx-auto">
         {/* ─── Hero Header & Location Action ──────────────────────────── */}
         <div className="mb-6 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
           <div>
-            <div className="flex items-center gap-2 mb-2 sm:mb-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-accent-500 animate-pulse" />
-              <span className="text-2xs font-extrabold uppercase tracking-widest text-accent-500">
-                Global Travel Catalog · {results.length} of {totalCount} Escapes
-              </span>
-            </div>
-            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight">
+            <p className="legend-label mb-2">
+              Index of destinations / {results.length} of {totalCount}
+            </p>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl">
               Destination Explorer
             </h1>
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl mt-1.5 sm:mt-2 leading-relaxed font-medium">
-              Discover 34 handpicked destinations across 7 continents with live meteorological intelligence and Indian Rupee (₹) daily estimates.
+            <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl mt-2 leading-relaxed">
+              {totalCount} destinations across {allRegions.length} regions, with live weather and daily budgets in rupees.
             </p>
           </div>
 
@@ -199,7 +195,7 @@ export function ExplorerPage() {
             {isFiltered && (
               <button
                 onClick={clearFilters}
-                className="glass-subtle px-3 sm:px-3.5 py-2.5 rounded-full text-xs font-bold text-accent-500 hover:bg-accent-500 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm flex-shrink-0"
+                className="glass-subtle px-3 sm:px-3.5 py-2.5 rounded-full text-xs font-bold text-accent-500 hover:bg-accent-500 hover:text-onaccent transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm flex-shrink-0"
                 title="Reset all active filters"
               >
                 <RotateCcw size={12} />
@@ -210,7 +206,7 @@ export function ExplorerPage() {
         </div>
 
         {/* ─── Modern Slick Glass Filter Dock ─────────────────────────── */}
-        <div className="glass-dock p-3.5 sm:p-6 rounded-3xl sm:rounded-4xl mb-8 sm:mb-12 space-y-4 sm:space-y-5 border border-[var(--glass-border)] shadow-2xl relative overflow-hidden">
+        <div className="glass-dock p-3.5 sm:p-6 rounded-2xl mb-8 sm:mb-12 space-y-4 sm:space-y-5 border border-[var(--glass-border)] shadow-glass-md relative overflow-hidden">
           {/* Subtle ambient light gradient accent */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-accent-500/10 via-amber-400/5 to-transparent rounded-full blur-3xl pointer-events-none" />
 
@@ -227,7 +223,7 @@ export function ExplorerPage() {
                 type="text"
                 value={filters.query}
                 onChange={(e) => setFilters((prev) => ({ ...prev, query: e.target.value }))}
-                placeholder="Search by country, city, culture, or vibe (e.g. Kyoto, Rajasthan, Bali, Amalfi, Temples)..."
+                placeholder="Search destinations, e.g. Kyoto"
                 className="w-full pl-11 pr-28 py-3.5 rounded-full glass-subtle text-[var(--text-primary)] placeholder-[var(--input-placeholder)] border border-[var(--glass-border)] focus:outline-none focus:border-accent-500 focus:ring-4 focus:ring-accent-500/20 text-xs sm:text-sm font-medium transition-all shadow-inner"
                 aria-label="Search destinations"
               />
@@ -242,7 +238,7 @@ export function ExplorerPage() {
                     <X size={14} />
                   </button>
                 ) : (
-                  <span className="text-2xs font-mono font-bold text-[var(--text-muted)] px-2 py-0.5 rounded-full glass-subtle hidden sm:inline">
+                  <span className="text-xs font-mono font-bold text-[var(--text-muted)] px-2 py-0.5 rounded-full glass-subtle hidden sm:inline">
                     {results.length} found
                   </span>
                 )}
@@ -253,7 +249,7 @@ export function ExplorerPage() {
             <div className="w-full lg:w-auto flex items-center justify-between sm:justify-start gap-1 p-1 rounded-full glass-subtle border border-[var(--glass-border-subtle)] flex-shrink-0">
               <div className="flex items-center gap-1 px-2.5 text-accent-500 font-extrabold text-xs hidden sm:flex">
                 <IndianRupee size={12} />
-                <span className="text-2xs uppercase tracking-wider text-[var(--text-muted)]">Daily:</span>
+                <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">Daily:</span>
               </div>
               {[
                 { id: 'all',    label: 'All' },
@@ -270,8 +266,8 @@ export function ExplorerPage() {
                     className={[
                       'px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap',
                       active
-                        ? 'bg-accent-500 text-white shadow-md scale-102'
-                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/10',
+                        ? 'bg-accent-500 text-onaccent shadow-md scale-102'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover-tint',
                     ].join(' ')}
                   >
                     {label}
@@ -300,11 +296,11 @@ export function ExplorerPage() {
           {/* ─── Level 2: Sleek Continental Region Segmented Ribbon ──── */}
           <div className="pt-2 border-t border-[var(--glass-border-subtle)] space-y-2 relative z-10">
             <div className="flex items-center justify-between">
-              <span className="text-2xs uppercase tracking-widest font-extrabold text-[var(--text-muted)] flex items-center gap-1.5">
+              <span className="text-xs uppercase tracking-widest font-extrabold text-[var(--text-muted)] flex items-center gap-1.5">
                 <Globe size={12} className="text-accent-500" />
                 Filter by Continent
               </span>
-              <span className="text-2xs text-[var(--text-muted)] font-semibold">
+              <span className="text-xs text-[var(--text-muted)] font-semibold">
                 {filters.regions.length === 0 ? 'All 7 Continents Active' : `${filters.regions.length} selected`}
               </span>
             </div>
@@ -317,13 +313,13 @@ export function ExplorerPage() {
                 className={[
                   'px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap border cursor-pointer flex-shrink-0',
                   filters.regions.length === 0
-                    ? 'bg-accent-500 text-white border-accent-500 shadow-md scale-102'
+                    ? 'bg-accent-500 text-onaccent border-accent-500 shadow-md scale-102'
                     : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:text-[var(--text-primary)] hover:border-accent-500/40',
                 ].join(' ')}
               >
-                <Globe size={14} className={filters.regions.length === 0 ? 'text-white' : 'text-accent-500'} />
+                <Globe size={14} className={filters.regions.length === 0 ? 'text-onaccent' : 'text-accent-500'} />
                 <span>All Continents</span>
-                <span className="text-2xs opacity-80 font-mono">({totalCount})</span>
+                <span className="text-xs opacity-80 font-mono">({totalCount})</span>
               </button>
 
               {/* Individual Continents with Sleek Vector Icons */}
@@ -340,11 +336,11 @@ export function ExplorerPage() {
                     className={[
                       'px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap border cursor-pointer flex-shrink-0',
                       active
-                        ? 'bg-accent-500 text-white border-accent-500 shadow-md scale-102'
+                        ? 'bg-accent-500 text-onaccent border-accent-500 shadow-md scale-102'
                         : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:text-[var(--text-primary)] hover:border-accent-500/40',
                     ].join(' ')}
                   >
-                    <IconComponent size={14} className={active ? 'text-white' : meta.accentColor} />
+                    <IconComponent size={14} className={active ? 'text-onaccent' : meta.accentColor} />
                     <span>{region}</span>
                   </button>
                 );
@@ -393,11 +389,11 @@ export function ExplorerPage() {
                         className={[
                           'px-3.5 py-2 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 border cursor-pointer shadow-sm',
                           active
-                            ? 'bg-accent-500 text-white border-accent-500 shadow-glow-accent scale-105'
+                            ? 'bg-accent-500 text-onaccent border-accent-500 shadow-glow-accent scale-105'
                             : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:border-accent-500 hover:text-[var(--text-primary)] hover:bg-white/15',
                         ].join(' ')}
                       >
-                        <VibeIcon size={13} className={active ? 'text-white' : color} />
+                        <VibeIcon size={13} className={active ? 'text-onaccent' : color} />
                         <span>{formatVibeName(tag)}</span>
                       </button>
                     );
@@ -414,7 +410,7 @@ export function ExplorerPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <span className="text-2xs font-extrabold uppercase tracking-widest text-[var(--text-muted)] mr-1">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-[var(--text-muted)] mr-1">
                 Active Filters:
               </span>
 
@@ -495,6 +491,32 @@ export function ExplorerPage() {
         </div>
 
         {/* ─── Destination Grid ───────────────────────────────────────── */}
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-sm text-[var(--text-muted)]" aria-live="polite">
+            {results.length} {results.length === 1 ? 'destination' : 'destinations'}
+          </p>
+          <div className="glass-pill p-1 flex" role="group" aria-label="Results view">
+            {(['list', 'map'] as const).map((v) => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setView(v)}
+                aria-pressed={view === v}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 ${view === v ? 'bg-accent-500 text-onaccent' : 'text-[var(--text-secondary)]'}`}
+              >
+                {v === 'list' ? <LayoutGrid size={13} aria-hidden="true" /> : <MapIcon size={13} aria-hidden="true" />}
+                {v === 'list' ? 'List' : 'Map'}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {view === 'map' && results.length > 0 && (
+          <div className="mb-8">
+            <AtlasMap visibleIds={results.map((d) => d.id)} />
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {results.length > 0 ? (
             results.map((destination) => (

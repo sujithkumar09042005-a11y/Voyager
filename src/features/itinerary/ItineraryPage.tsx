@@ -5,6 +5,7 @@ import { ChevronDown, Clock, MapPin, RefreshCw, Sparkles, Coffee, Scale, Zap } f
 import type { Destination, ItineraryDay, ItineraryFormValues, ItineraryPace } from '../../types';
 import destinations from '../../data/destinations.json';
 import { useItinerary } from '../../hooks/useItinerary';
+import { AtlasMap } from '../atlas/AtlasMap';
 import { Button } from '../../components/ui/Button';
 import { CustomSelect } from '../../components/ui/CustomSelect';
 import { ItinerarySkeleton } from '../../components/ui/Skeleton';
@@ -30,20 +31,20 @@ function DayAccordion({ day }: { day: ItineraryDay }) {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="glass-panel overflow-hidden rounded-3xl border border-[var(--glass-border)] shadow-glass-sm">
+    <div className="glass-panel overflow-hidden rounded-2xl border border-[var(--glass-border)] shadow-glass-sm">
       {/* Day header */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 text-left hover:bg-white/5 transition-colors focus:outline-none cursor-pointer"
+        className="w-full flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 text-left hover-tint transition-colors focus:outline-none cursor-pointer"
         aria-expanded={open}
       >
         <div className="flex items-center gap-2.5 sm:gap-3.5">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-2xl bg-accent-500 text-white text-xs sm:text-sm font-bold flex items-center justify-center flex-shrink-0 shadow-md">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-2xl bg-accent-500 text-onaccent text-xs sm:text-sm font-bold flex items-center justify-center flex-shrink-0 shadow-md">
             {day.dayNumber}
           </div>
           <div>
             <p className="font-display font-bold text-sm sm:text-lg text-[var(--text-primary)]">{day.title}</p>
-            <p className="text-2xs sm:text-xs text-[var(--text-muted)] font-medium">{day.theme}</p>
+            <p className="text-xs sm:text-xs text-[var(--text-muted)] font-medium">{day.theme}</p>
           </div>
         </div>
         <ChevronDown
@@ -81,7 +82,7 @@ function DayAccordion({ day }: { day: ItineraryDay }) {
                         </span>
                       )}
                       {stop.category && (
-                        <span className="glass-subtle text-2xs px-2.5 py-0.5 rounded-full text-[var(--text-muted)] font-medium">
+                        <span className="glass-subtle text-xs px-2.5 py-0.5 rounded-full text-[var(--text-muted)] font-medium">
                           {stop.category}
                         </span>
                       )}
@@ -102,7 +103,7 @@ function DayAccordion({ day }: { day: ItineraryDay }) {
               {day.tips && (
                 <div className="mt-4 glass-subtle border border-accent-500/30 rounded-2xl px-4 py-3">
                   <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                    <span className="font-bold text-accent-500">💡 Voyager Tip: </span>
+                    <span className="font-bold text-accent-500">Tip: </span>
                     {day.tips}
                   </p>
                 </div>
@@ -152,7 +153,6 @@ export function ItineraryPage() {
   return (
     <main id="main-content" className="min-h-screen pt-28 pb-20 px-4 sm:px-6 lg:px-8 relative">
       {/* Ambient background mesh */}
-      <div className="background-mesh" aria-hidden="true" />
 
       <div className="max-w-4xl mx-auto">
         {/* Header */}
@@ -168,7 +168,7 @@ export function ItineraryPage() {
             </motion.p>
           </div>
           <motion.h1
-            className="font-display text-4xl sm:text-5xl font-extrabold text-[var(--text-primary)] tracking-tight mb-3"
+            className="font-display text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)] mb-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
@@ -189,7 +189,7 @@ export function ItineraryPage() {
         {state.status !== 'success' && (
           <motion.form
             onSubmit={handleSubmit}
-            className="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 shadow-2xl border border-[var(--glass-border)]"
+            className="glass-panel p-6 sm:p-10 rounded-2xl space-y-8 shadow-glass-md border border-[var(--glass-border)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
@@ -226,7 +226,7 @@ export function ItineraryPage() {
                     className={[
                       'px-5 py-2.5 rounded-2xl text-sm font-bold transition-all',
                       formValues.days === d
-                        ? 'bg-accent-500 text-white shadow-lg'
+                        ? 'bg-accent-500 text-onaccent shadow-lg'
                         : 'glass-subtle text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--glass-border-subtle)]',
                     ].join(' ')}
                   >
@@ -280,7 +280,7 @@ export function ItineraryPage() {
                       className={[
                         'px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all',
                         active
-                          ? 'bg-accent-500 text-white border-accent-500 shadow-md'
+                          ? 'bg-accent-500 text-onaccent border-accent-500 shadow-md'
                           : 'glass-subtle text-[var(--text-secondary)] border-[var(--glass-border-subtle)] hover:text-[var(--text-primary)]',
                       ].join(' ')}
                       aria-pressed={active}
@@ -340,12 +340,12 @@ export function ItineraryPage() {
             transition={{ duration: 0.5 }}
           >
             {/* Itinerary Header */}
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl flex items-start justify-between gap-4 flex-wrap">
+            <div className="glass-panel p-6 sm:p-8 rounded-2xl flex items-start justify-between gap-4 flex-wrap">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-accent-500">
-                  Custom AI Generated Trip
+                <span className="legend-label">
+                  AI-drafted route
                 </span>
-                <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mt-1">
+                <h2 className="font-display text-2xl sm:text-3xl text-[var(--text-primary)] mt-1">
                   {state.data.totalDays}-Day Itinerary for{' '}
                   <span className="text-gradient-accent">{state.data.destinationName}</span>
                 </h2>
@@ -371,6 +371,12 @@ export function ItineraryPage() {
               >
                 Plan Another Trip
               </Button>
+            </div>
+
+            {/* Where this trip is */}
+            <div className="glass-panel p-4 rounded-2xl">
+              <p className="legend-label mb-3">On the atlas</p>
+              <AtlasMap compact focusId={state.data.destinationId} visibleIds={[state.data.destinationId]} />
             </div>
 
             {/* Day Accordions */}

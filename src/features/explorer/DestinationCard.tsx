@@ -27,15 +27,15 @@ export function DestinationCard({ destination }: DestinationCardProps) {
   return (
     <Link
       to={`/destination/${destination.id}`}
-      className="block h-full focus-visible:outline-2 focus-visible:outline-accent-500 rounded-3xl"
+      className="block h-full focus-visible:outline-2 focus-visible:outline-accent-500 rounded-2xl"
     >
       <motion.article
-        className="group relative h-full glass-card place-card-interactive card-glow-hover overflow-hidden flex flex-col rounded-3xl border border-[var(--glass-border)] cursor-pointer"
-        whileHover={{ y: -6, scale: 1.015 }}
+        className="group relative h-full glass-card place-card-interactive card-glow-hover overflow-hidden flex flex-col rounded-2xl border border-[var(--glass-border)] cursor-pointer"
+        whileHover={{ y: -4 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
         {/* Image Container */}
-        <div className="relative h-56 overflow-hidden bg-surface-200">
+        <div className="relative h-56 overflow-hidden bg-[var(--surface-sunken)]">
           <img
             src={imageSrc}
             alt={`${destination.name}, ${destination.country}`}
@@ -56,7 +56,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
           {/* Photographer attribution badge */}
           {pexelsData?.photographer && (
             <div className="absolute bottom-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <span className="glass-dark text-white/95 text-2xs px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
+              <span className="glass-dark text-white/95 text-xs px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
                 <Camera size={10} />
                 <span>{pexelsData.photographer}</span>
               </span>
@@ -69,7 +69,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
           <div>
             {/* Title & Location */}
             <div className="flex items-start justify-between gap-2 mb-1.5">
-              <h3 className="font-display font-bold text-xl text-[var(--text-primary)] leading-tight group-hover:text-accent-500 transition-colors">
+              <h3 className="font-display font-semibold text-xl text-[var(--text-primary)] leading-tight group-hover:text-accent-500 transition-colors">
                 {destination.name}
               </h3>
               <div className="flex items-center gap-1 text-xs text-[var(--text-muted)] flex-shrink-0 mt-0.5 font-medium">
@@ -92,7 +92,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
                 <span>{destination.bestTimeToVisit}</span>
               </span>
               <span className="font-bold text-accent-500 text-xs sm:text-sm">
-                {destination.avgDailyBudget} <span className="text-2xs font-normal text-[var(--text-muted)]">/day</span>
+                {destination.avgDailyBudget} <span className="text-xs font-normal text-[var(--text-muted)]">/day</span>
               </span>
             </div>
 
@@ -101,7 +101,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
               {destination.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="glass-subtle text-[var(--text-secondary)] text-2xs font-semibold px-2.5 py-1 rounded-full"
+                  className="border border-[var(--line)] text-[var(--text-secondary)] text-xs font-medium px-2.5 py-1 rounded-full"
                 >
                   {formatVibeName(tag)}
                 </span>
@@ -111,7 +111,7 @@ export function DestinationCard({ destination }: DestinationCardProps) {
         </div>
 
         {/* Hover CTA Strip */}
-        <div className="bg-gradient-to-r from-accent-500 to-cyan-500 text-white text-center py-2.5 text-xs font-bold tracking-wide uppercase flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <div className="bg-gradient-to-r from-accent-500 to-accent-400 text-onaccent text-center py-2.5 text-xs font-bold tracking-wide uppercase flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <span>Explore Destination</span>
           <ArrowRight size={13} />
         </div>
