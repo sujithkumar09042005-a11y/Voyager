@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Navigation } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { LocationDetectorModal } from './LocationDetectorModal';
+import { LampCord } from './LampCord';
 
 const NAV_LINKS = [
   { to: '/explore',   label: 'Explore' },
@@ -13,7 +14,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [locationModalOpen, setLocationModalOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const location = useLocation();
   const drawerRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -50,8 +51,6 @@ export function Navbar() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [mobileOpen]);
 
-  const nextTheme = theme === 'dark' ? 'light' : 'dark';
-
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40">
@@ -65,7 +64,7 @@ export function Navbar() {
                 </span>
                 <span className="flex flex-col leading-none">
                   <span className="font-display text-2xl text-[var(--text-primary)]">Voyager</span>
-                  <span className="legend-label mt-1 hidden sm:block" style={{ fontSize: '0.6rem' }}>
+                  <span className="legend-label mt-1 hidden sm:block" style={{ fontSize: '0.75rem' }}>
                     Atlas of destinations
                   </span>
                 </span>
@@ -96,28 +95,7 @@ export function Navbar() {
                   INR
                 </span>
 
-                <button
-                  type="button"
-                  onClick={toggleTheme}
-                  className="w-11 h-11 rounded-full flex items-center justify-center border border-[var(--line)] text-[var(--text-primary)] hover:border-accent-500"
-                  aria-label={`Switch to ${nextTheme} chart`}
-                  title={`Switch to ${nextTheme} chart`}
-                >
-                  {/* Compass: the needle swings between day chart (north) and night chart (south) */}
-                  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                    <motion.g
-                      initial={false}
-                      animate={{ rotate: theme === 'dark' ? 180 : 0 }}
-                      transition={{ type: 'spring', stiffness: 160, damping: 9 }}
-                      style={{ originX: '12px', originY: '12px' }}
-                    >
-                      <path d="M12 3.5 L14.6 12 L12 11 L9.4 12 Z" fill="var(--accent-color)" />
-                      <path d="M12 20.5 L9.4 12 L12 13 L14.6 12 Z" fill="currentColor" opacity="0.55" />
-                    </motion.g>
-                    <circle cx="12" cy="12" r="1.3" fill="currentColor" />
-                  </svg>
-                </button>
+                <LampCord />
 
                 <button
                   ref={menuButtonRef}
@@ -175,7 +153,7 @@ export function Navbar() {
                 </li>
               </ul>
               <p className="px-4 pb-4 text-xs text-[var(--text-muted)]">
-                Prices in Indian rupees. Currently on the {theme === 'dark' ? 'night' : 'day'} chart.
+                Prices in Indian rupees. Theme: {theme === 'dark' ? 'night' : 'day'}. Pull the cord to switch.
               </p>
             </motion.div>
           )}

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useLayoutEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -20,12 +20,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return 'dark';
   });
 
-  useEffect(() => {
+  // Layout effect so the attribute is applied inside a view transition's synchronous update
+  useLayoutEffect(() => {
     const root = document.documentElement;
     root.setAttribute('data-theme', theme);
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#0B1622' : '#F4ECD8');
+      ?.setAttribute('content', theme === 'dark' ? '#0D1517' : '#F2EFE6');
     localStorage.setItem('voyager-theme', theme);
   }, [theme]);
 

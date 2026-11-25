@@ -61,7 +61,7 @@ export default {
         sans:    ['Inter Variable', 'Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        '2xs': ['0.625rem', { lineHeight: '1rem' }],
+        '2xs': ['0.75rem', { lineHeight: '1rem' }],
       },
       borderRadius: {
         '3xl': '1.5rem',
