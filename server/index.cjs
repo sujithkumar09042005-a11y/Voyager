@@ -15,7 +15,13 @@ require('dotenv').config();
 const app  = express();
 const PORT = 3001;
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+// Vite's default dev port, plus any extra origins from DEV_ORIGINS (comma separated),
+// e.g. DEV_ORIGINS=http://localhost:8123 when the frontend runs on another port.
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',
+  ...(process.env.DEV_ORIGINS ? process.env.DEV_ORIGINS.split(',').map((o) => o.trim()) : []),
+];
+app.use(cors({ origin: ALLOWED_ORIGINS }));
 app.use(express.json({ limit: '10mb' }));
 
 // ─── Favicon generator endpoint ───────────────────────────────────────────────
