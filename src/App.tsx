@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { Routes, Route, useLocation, matchPath } from 'react-router-dom';
+import { AnimatePresence, MotionConfig, motion } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ChatbotPanel } from './features/chatbot/ChatbotPanel';
+import destinations from './data/destinations.json';
+import type { Destination } from './types';
 import { HeroSection } from './features/hero/HeroSection';
 import { ExplorerPage } from './features/explorer/ExplorerPage';
 import { DestinationDetailPage } from './features/destination-detail/DestinationDetailPage';
@@ -28,13 +30,10 @@ function ScrollToTop() {
 function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{
-        duration: 0.35,
-        ease: [0.22, 1, 0.36, 1], // Smooth Apple / fluid deceleration curve
-      }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.16, ease: 'easeOut' }}
       className="w-full flex-1 flex flex-col"
     >
       {children}
@@ -42,15 +41,42 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** After a route change, move keyboard and screen-reader focus to the new page's heading. */
+function FocusOnNavigate() {
+  const { pathname } = useLocation();
+  const first = useRef(true);
+
+  useEffect(() => {
+    if (first.current) {
+      first.current = false; // do not steal focus on the initial page load
+      return;
+    }
+    const id = window.setTimeout(() => {
+      const h1 = document.querySelector<HTMLElement>('main h1');
+      if (h1) {
+        h1.setAttribute('tabindex', '-1');
+        h1.focus({ preventScroll: true });
+      }
+    }, 200); // after the exit animation has finished
+    return () => window.clearTimeout(id);
+  }, [pathname]);
+
+  return null;
+}
+
 // ─── App ──────────────────────────────────────────────────────────────────────
 
 export default function App() {
   const location = useLocation();
+  const destinationId = matchPath('/destination/:id', location.pathname)?.params.id;
+  const chatDestination = (destinations as Destination[]).find((d) => d.id === destinationId);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen flex flex-col relative">
       {/* Scroll restorative controller */}
       <ScrollToTop />
+      <FocusOnNavigate />
 
       {/* Interactive Custom Cursor */}
       <CustomCursor />
@@ -62,9 +88,6 @@ export default function App() {
       >
         Skip to main content
       </a>
-
-      {/* Global Ambient Mesh Gradient */}
-      <div className="background-mesh" aria-hidden="true" />
 
       {/* Persistent Navigation */}
       <Navbar />
@@ -133,10 +156,12 @@ export default function App() {
       </div>
 
       {/* Global Voyager AI chatbot */}
-      <ChatbotPanel />
+      {/* On a destination page the assistant is scoped to that destination */}
+      <ChatbotPanel key={chatDestination?.id ?? 'global'} destination={chatDestination} />
 
       {/* Full Modern Glassmorphic Footer */}
       <Footer />
     </div>
+    </MotionConfig>
   );
 }

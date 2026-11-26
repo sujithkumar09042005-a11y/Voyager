@@ -30,11 +30,12 @@ export interface ChatResponsePayload {
 
 export async function sendChatMessage(
   payload: ChatRequestPayload,
+  signal?: AbortSignal,
 ): Promise<ChatResponsePayload> {
   const response = await axios.post<ChatResponsePayload>(
     `${BASE_URL}/chat`,
     payload,
-    { timeout: 30000 },
+    { timeout: 30000, signal },
   );
   return response.data;
 }

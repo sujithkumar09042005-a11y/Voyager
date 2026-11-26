@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { sendChatMessage } from '../lib/gemini';
 import type { ChatMessage, Destination } from '../types';
 
@@ -20,6 +20,7 @@ export function useItineraryAssistant(destination?: Destination) {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError]         = useState<string | null>(null);
+  const abortRef                  = useRef<AbortController | null>(null);
 
   const sendMessage = useCallback(
     async (content: string) => {
@@ -33,6 +34,8 @@ export function useItineraryAssistant(destination?: Destination) {
       setMessages((prev) => [...prev, userMessage]);
       setIsLoading(true);
       setError(null);
+      const controller = new AbortController();
+      abortRef.current = controller;
 
       try {
         const payload = {
@@ -52,7 +55,7 @@ export function useItineraryAssistant(destination?: Destination) {
           }),
         };
 
-        const response = await sendChatMessage(payload);
+        const response = await sendChatMessage(payload, controller.signal);
 
         const assistantMessage: ChatMessage = {
           id:        generateId(),
@@ -64,20 +67,28 @@ export function useItineraryAssistant(destination?: Destination) {
 
         setMessages((prev) => [...prev, assistantMessage]);
       } catch (err) {
+        // The user pressed Stop: not an error, so show nothing
+        if (controller.signal.aborted) return;
         const errorText =
           err instanceof Error
             ? err.message
             : 'Something went wrong. Please try again.';
         setError(errorText);
       } finally {
+        if (abortRef.current === controller) abortRef.current = null;
         setIsLoading(false);
       }
     },
     [messages, destination],
   );
 
+  const stop = useCallback(() => {
+    abortRef.current?.abort();
+  }, []);
+
   const clearError = useCallback(() => setError(null), []);
   const clearChat  = useCallback(() => {
+    abortRef.current?.abort();
     setMessages([
       {
         id:        generateId(),
@@ -96,6 +107,7 @@ export function useItineraryAssistant(destination?: Destination) {
     isLoading,
     error,
     sendMessage,
+    stop,
     clearError,
     clearChat,
   };

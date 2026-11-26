@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Send, X, RefreshCw, AlertCircle, Bot, Sparkles } from 'lucide-react';
+import { MessageCircle, Send, X, RefreshCw, AlertCircle, Bot, Sparkles, Square } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import type { Destination } from '../../types';
 import { useItineraryAssistant } from '../../hooks/useItineraryAssistant';
@@ -9,13 +9,31 @@ interface ChatbotPanelProps {
   destination?: Destination;
 }
 
+/** Starter questions. On a destination page they name the place, which gives better answers. */
+function getSuggestions(destination?: Destination): string[] {
+  if (destination) {
+    return [
+      `What should I eat in ${destination.name}?`,
+      `How many days do I need in ${destination.name}?`,
+      `What is a realistic daily budget for ${destination.name}?`,
+      `What should I pack for ${destination.name}?`,
+    ];
+  }
+  return [
+    'Where should I go for a first trip abroad?',
+    'Best beach destinations in March?',
+    'Plan a 5 day trip on a mid-range budget',
+    'Which destinations are good for food lovers?',
+  ];
+}
+
 export function ChatbotPanel({ destination }: ChatbotPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [input,  setInput]  = useState('');
   const messagesEndRef       = useRef<HTMLDivElement>(null);
   const inputRef             = useRef<HTMLInputElement>(null);
 
-  const { messages, isLoading, error, sendMessage, clearError, clearChat } =
+  const { messages, isLoading, error, sendMessage, stop, clearError, clearChat } =
     useItineraryAssistant(destination);
 
   // Auto-scroll to latest message
@@ -104,7 +122,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                 'inset-0 sm:inset-auto',
                 'sm:bottom-6 sm:right-6',
                 'sm:w-[460px] sm:h-[640px]',
-                'glass-panel sm:rounded-3xl shadow-2xl',
+                'bg-[var(--surface)] sm:rounded-2xl shadow-2xl',
                 'flex flex-col overflow-hidden',
                 'border border-[var(--glass-border)]',
               ].join(' ')}
@@ -118,34 +136,34 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
             >
               {/* Header */}
               <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--glass-border-subtle)] bg-[var(--glass-bg-subtle)] flex-shrink-0">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-2xl bg-accent-500 text-onaccent flex items-center justify-center shadow-md">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-9 h-9 flex-shrink-0 rounded-2xl bg-accent-500 text-onaccent flex items-center justify-center shadow-md">
                     <Bot size={18} />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <p className="text-sm font-bold leading-tight text-[var(--text-primary)]">
+                      <p className="text-sm font-bold leading-tight text-[var(--text-primary)] truncate">
                         Voyager AI Assistant
                       </p>
                       <Sparkles size={13} className="text-accent-500" />
                     </div>
-                    <p className="text-2xs text-[var(--text-muted)] leading-none mt-0.5">
-                      {destination ? `Specialized in ${destination.name}, ${destination.country}` : 'Global Travel Guide · Prices in INR (₹)'}
+                    <p className="text-xs text-[var(--text-muted)] leading-none mt-1">
+                      {destination ? `Specialized in ${destination.name}, ${destination.country}` : 'Global travel guide'}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 flex-shrink-0">
                   <button
                     onClick={clearChat}
-                    className="p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors focus:outline-none"
-                    aria-label="Clear chat history"
-                    title="Clear chat"
+                    className="min-h-[44px] px-3 rounded-xl flex items-center gap-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover-tint transition-colors"
+                    aria-label="Start a new chat"
                   >
-                    <RefreshCw size={15} />
+                    <RefreshCw size={14} aria-hidden="true" />
+                    <span className="whitespace-nowrap">New chat</span>
                   </button>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors focus:outline-none"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text-primary)] hover-tint transition-colors"
                     aria-label="Close chat"
                   >
                     <X size={17} />
@@ -155,7 +173,7 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
 
               {/* Messages Container */}
               <div
-                className="flex-1 overflow-y-auto px-5 py-5 space-y-4"
+                className="flex-1 overflow-y-auto px-5 py-5 space-y-4 bg-[var(--surface)]"
                 role="log"
                 aria-label="Chat messages"
                 aria-live="polite"
@@ -224,17 +242,35 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                   </div>
                 )}
 
+                {messages.length <= 1 && !isLoading && (
+                  <div className="pt-1" aria-label="Suggested questions">
+                    <p className="legend-label mb-2" style={{ fontSize: '0.75rem' }}>Try asking</p>
+                    <div className="flex flex-wrap gap-2">
+                      {getSuggestions(destination).map((q) => (
+                        <button
+                          key={q}
+                          type="button"
+                          onClick={() => sendMessage(q)}
+                          className="min-h-[44px] text-left px-3.5 py-2 rounded-full border border-[var(--line)] bg-[var(--surface-raised)] text-sm text-[var(--text-primary)] hover:border-accent-500"
+                        >
+                          {q}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div ref={messagesEndRef} />
               </div>
 
               {/* Error banner */}
               {error && (
-                <div className="px-4 py-2.5 mx-4 mb-2 bg-red-500/15 border border-red-500/30 rounded-xl flex items-center justify-between text-xs text-red-400">
+                <div role="alert" className="px-4 py-2.5 mx-4 mb-2 border border-[var(--danger)] rounded-xl flex items-center justify-between text-sm text-[var(--danger)]">
                   <div className="flex items-center gap-2">
                     <AlertCircle size={14} className="flex-shrink-0" />
                     <span>{error}</span>
                   </div>
-                  <button onClick={clearError} className="hover:text-white ml-2 text-xs underline">
+                  <button onClick={clearError} className="ml-2 min-h-[44px] px-2 text-sm underline">
                     Dismiss
                   </button>
                 </div>
@@ -249,28 +285,36 @@ export function ChatbotPanel({ destination }: ChatbotPanelProps) {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder={
-                      destination
-                        ? `Ask about ${destination.name} (e.g. food, budget in ₹, customs)...`
-                        : 'Ask about any destination, costs in ₹, or trip ideas…'
-                    }
-                    className="flex-1 glass-subtle text-[var(--text-primary)] placeholder-[var(--input-placeholder)] text-xs sm:text-sm px-4 py-3 rounded-2xl border border-[var(--glass-border)] focus:outline-none focus:border-accent-500 transition-colors font-medium"
+                    placeholder={destination ? `Ask about ${destination.name}` : 'Ask about any destination'}
+                    className="flex-1 glass-subtle text-[var(--text-primary)] placeholder-[var(--input-placeholder)] text-sm px-4 py-3 rounded-2xl border border-[var(--glass-border)] focus:outline-none focus:border-accent-500 transition-colors font-medium"
                     disabled={isLoading}
                     aria-label="Message to Voyager travel assistant"
                   />
-                  <button
-                    type="submit"
-                    disabled={!input.trim() || isLoading}
-                    className={[
-                      'w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all focus:outline-none shadow-md',
-                      input.trim() && !isLoading
-                        ? 'bg-accent-500 hover:bg-accent-600 text-onaccent cursor-pointer hover:scale-105'
-                        : 'glass-subtle text-[var(--text-muted)] cursor-not-allowed opacity-50',
-                    ].join(' ')}
-                    aria-label="Send message"
-                  >
-                    <Send size={16} />
-                  </button>
+                  {isLoading ? (
+                    <button
+                      type="button"
+                      onClick={stop}
+                      className="min-h-[44px] px-4 rounded-2xl flex items-center gap-2 flex-shrink-0 border border-[var(--line)] bg-[var(--surface-raised)] text-sm font-semibold text-[var(--text-primary)] hover:border-accent-500"
+                      aria-label="Stop generating"
+                    >
+                      <Square size={13} aria-hidden="true" fill="currentColor" />
+                      Stop
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={!input.trim()}
+                      className={[
+                        'w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 transition-all shadow-md',
+                        input.trim()
+                          ? 'bg-accent-500 hover:bg-accent-600 text-onaccent cursor-pointer'
+                          : 'bg-[var(--surface-sunken)] text-[var(--text-muted)] cursor-not-allowed',
+                      ].join(' ')}
+                      aria-label="Send message"
+                    >
+                      <Send size={16} />
+                    </button>
+                  )}
                 </form>
               </div>
             </motion.div>
