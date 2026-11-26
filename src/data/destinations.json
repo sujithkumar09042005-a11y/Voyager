@@ -44,7 +44,7 @@
         "category": "Monument",
         "description": "A five-storey pink sandstone façade with 953 ornate lattice windows designed for royal ladies to view city life.",
         "recommendedTime": "1–2 hours",
-        "fallbackImage": "https://images.unsplash.com/photo-1603262110263-fb010d6e75dc?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/40082898/pexels-photo-40082898.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -132,7 +132,7 @@
         "category": "Neighborhood",
         "description": "Kyoto's most storied geisha district, lined with traditional ochaya teahouses.",
         "recommendedTime": "2–4 hours",
-        "fallbackImage": "https://images.unsplash.com/photo-1576670159805-381a9ee2dc3f?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/5745824/pexels-photo-5745824.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -172,7 +172,7 @@
         "category": "Museum",
         "description": "The world's foremost art museum, home to the Mona Lisa, Venus de Milo, and Winged Victory.",
         "recommendedTime": "3–5 hours",
-        "fallbackImage": "https://images.unsplash.com/photo-1431274172761-fcdab704a114?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/38548927/pexels-photo-38548927.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -316,7 +316,7 @@
         "category": "Village",
         "description": "A cascade of terracotta and pastel buildings clinging to the cliffside above turquoise Mediterranean water.",
         "recommendedTime": "Full day",
-        "fallbackImage": "https://images.unsplash.com/photo-1512422747500-b870fd893b64?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/36366053/pexels-photo-36366053.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -460,7 +460,7 @@
         "category": "Nature",
         "description": "Cascading emerald stepped paddies supported by ancient cooperative subak water management.",
         "recommendedTime": "1–2 hours",
-        "fallbackImage": "https://images.unsplash.com/photo-1531819678-eb0a94a07c00?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/36828569/pexels-photo-36828569.jpeg?auto=compress&cs=tinysrgb&w=800"
       },
       {
         "id": "tanah-lot",
@@ -780,7 +780,7 @@
         "category": "Park",
         "description": "843 acres of curated woodlands, lakes, and pathways framed by Manhattan's iconic skyline.",
         "recommendedTime": "2–4 hours",
-        "fallbackImage": "https://images.unsplash.com/photo-1575037614876-c38a4d44f5ed?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/29073691/pexels-photo-29073691.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -876,7 +876,7 @@
         "category": "Archaeological Site",
         "description": "The legendary mountain pass framing the first view of the stone citadel at sunrise.",
         "recommendedTime": "3 hours",
-        "fallbackImage": "https://images.unsplash.com/photo-1580881112016-d7e6a7b7d48e?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/13923043/pexels-photo-13923043.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -908,7 +908,7 @@
         "category": "Glacier",
         "description": "A gargantuan ice wall rising 60m above Lago Argentino with thunderous calving events.",
         "recommendedTime": "Half day",
-        "fallbackImage": "https://images.unsplash.com/photo-1531150113527-23e31f38d4ae?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/26781692/pexels-photo-26781692.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -1068,7 +1068,7 @@
         "category": "Square",
         "description": "Marrakech's beating heart — storytellers, musicians, and evening grills under glowing lantern smoke.",
         "recommendedTime": "2–4 hours",
-        "fallbackImage": "https://images.unsplash.com/photo-1597212720158-ce4daa17d9b1?w=800&q=80"
+        "fallbackImage": "https://images.pexels.com/photos/37651105/pexels-photo-37651105.jpeg?auto=compress&cs=tinysrgb&w=800"
       }
     ]
   },
@@ -1124,7 +1124,7 @@
       "history",
       "cycling"
     ],
-    "fallbackImage": "https://images.unsplash.com/photo-1584003564911-f4ec900c3a38?w=1200&q=80",
+    "fallbackImage": "https://images.pexels.com/photos/38354532/pexels-photo-38354532.jpeg?auto=compress&cs=tinysrgb&w=1200",
     "places": [
       {
         "id": "canal-ring",
