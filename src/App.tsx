@@ -44,13 +44,13 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
 /** After a route change, move keyboard and screen-reader focus to the new page's heading. */
 function FocusOnNavigate() {
   const { pathname } = useLocation();
-  const first = useRef(true);
+  // Compare with the previous path instead of counting renders: StrictMode runs effects twice in
+  // development, which would make a "first render" flag fire on the initial page load.
+  const previousPath = useRef(pathname);
 
   useEffect(() => {
-    if (first.current) {
-      first.current = false; // do not steal focus on the initial page load
-      return;
-    }
+    if (previousPath.current === pathname) return;
+    previousPath.current = pathname;
     const id = window.setTimeout(() => {
       const h1 = document.querySelector<HTMLElement>('main h1');
       if (h1) {

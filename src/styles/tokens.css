@@ -166,6 +166,8 @@ input::placeholder, textarea::placeholder { color: var(--input-placeholder); opa
   border-radius: inherit;
 }
 input:focus-visible, textarea:focus-visible, select:focus-visible { outline-offset: 1px; }
+/* A heading that receives focus after navigation is not interactive, so it needs no ring */
+h1[tabindex='-1']:focus { outline: none; }
 
 .skip-to-content {
   position: fixed; top: -120px; left: 1.5rem; z-index: 99999;
