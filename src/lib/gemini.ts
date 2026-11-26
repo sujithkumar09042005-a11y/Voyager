@@ -61,7 +61,8 @@ export async function generateItinerary(
   const response = await axios.post<Itinerary>(
     `${BASE_URL}/itinerary`,
     payload,
-    { timeout: 60000 }, // Itinerary generation can take longer
+    // The server gives up after about 50s; wait slightly longer so its answer, even an error, arrives
+    { timeout: 70000 },
   );
   return response.data;
 }

@@ -35,10 +35,13 @@ export function useItinerary() {
 
         setState({ status: 'success', data: itinerary });
       } catch (err) {
+        // Prefer the server's own explanation (for example "The AI is busy") over axios's generic text
+        const serverMessage = (err as { response?: { data?: { error?: string } } })?.response?.data?.error;
         const message =
-          err instanceof Error
+          serverMessage ??
+          (err instanceof Error && !/status code|timeout|Network Error/i.test(err.message)
             ? err.message
-            : 'Failed to generate itinerary. Please try again.';
+            : 'The trip could not be drafted. Please try again in a moment.');
         setState({ status: 'error', message });
       }
     },

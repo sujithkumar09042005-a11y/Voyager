@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Clock, MapPin, RefreshCw, Sparkles, Coffee, Scale, Zap } from 'lucide-react';
+import { ChevronDown, Clock, MapPin, Minus, Plus, RefreshCw, Sparkles, Coffee, Scale, Zap } from 'lucide-react';
 import type { Destination, ItineraryDay, ItineraryFormValues, ItineraryPace } from '../../types';
 import destinations from '../../data/destinations.json';
 import { useItinerary } from '../../hooks/useItinerary';
@@ -10,6 +10,7 @@ import { TripTicket } from './TripTicket';
 import { Button } from '../../components/ui/Button';
 import { CustomSelect } from '../../components/ui/CustomSelect';
 import { ItinerarySkeleton } from '../../components/ui/Skeleton';
+import { DAY_PRESETS, LONG_TRIP_DAYS, MAX_TRIP_DAYS, clampDays } from '../../lib/tripLimits';
 
 const ALL_DESTINATIONS = destinations as Destination[];
 
@@ -24,7 +25,6 @@ const INTEREST_OPTIONS = [
   'Art & Museums', 'Local Shopping', 'Nightlife', 'Adventure Sports', 'Wellness & Spa', 'Photography'
 ];
 
-const DAYS_OPTIONS = [1, 2, 3, 4, 5, 7, 10, 14];
 
 // ─── Day Accordion ────────────────────────────────────────────────────────────
 
@@ -131,6 +131,15 @@ export function ItineraryPage() {
     interests:     [],
   });
 
+  // The typed text is kept separately so the field can be empty or half-typed without snapping back
+  const [daysText, setDaysText] = useState(String(formValues.days));
+
+  const setDays = (days: number) => {
+    const clamped = clampDays(days);
+    setFormValues((prev) => ({ ...prev, days: clamped }));
+    setDaysText(String(clamped));
+  };
+
   const selectedDestination = ALL_DESTINATIONS.find(
     (d) => d.id === formValues.destinationId,
   );
@@ -225,8 +234,8 @@ export function ItineraryPage() {
 
                 <fieldset>
                   <legend className="text-sm font-semibold text-[var(--text-primary)] mb-1">Trip length</legend>
-                  <div className="day-ruler" role="radiogroup" aria-label="Trip length in days">
-                    {DAYS_OPTIONS.map((d) => (
+                  <div className="day-ruler" role="radiogroup" aria-label="Quick trip length in days">
+                    {DAY_PRESETS.map((d) => (
                       <label key={d} className="day-ruler__stop">
                         <input
                           type="radio"
@@ -234,7 +243,7 @@ export function ItineraryPage() {
                           value={d}
                           className="sr-only"
                           checked={formValues.days === d}
-                          onChange={() => setFormValues((prev) => ({ ...prev, days: d }))}
+                          onChange={() => setDays(d)}
                           aria-label={`${d} ${d === 1 ? 'day' : 'days'}`}
                         />
                         <span className="day-ruler__tick" aria-hidden="true" />
@@ -242,7 +251,59 @@ export function ItineraryPage() {
                       </label>
                     ))}
                   </div>
-                  <p className="day-ruler__unit text-center mt-3">days</p>
+
+                  {/* Any length up to the limit */}
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <label htmlFor="trip-days" className="text-sm text-[var(--text-secondary)]">
+                      Or enter any length, up to {MAX_TRIP_DAYS} days
+                    </label>
+                    <div className="inline-flex items-center border border-[var(--line)] rounded-md bg-[var(--surface-raised)]">
+                      <button
+                        type="button"
+                        onClick={() => setDays(formValues.days - 1)}
+                        disabled={formValues.days <= 1}
+                        className="w-11 h-11 flex items-center justify-center text-[var(--text-primary)] disabled:opacity-40"
+                        aria-label="One day fewer"
+                      >
+                        <Minus size={16} aria-hidden="true" />
+                      </button>
+                      <input
+                        id="trip-days"
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        value={daysText}
+                        onChange={(e) => {
+                          const digits = e.target.value.replace(/\D/g, '').slice(0, 3);
+                          setDaysText(digits);
+                          if (digits !== '') {
+                            // Keep the live ticket in step while typing, without rewriting what is typed
+                            setFormValues((prev) => ({ ...prev, days: clampDays(Number(digits)) }));
+                          }
+                        }}
+                        onBlur={() => setDays(daysText === '' ? formValues.days : Number(daysText))}
+                        className="w-16 h-11 text-center bg-transparent text-base font-semibold text-[var(--text-primary)] border-x border-[var(--line)] focus:outline-none tabular-nums"
+                        aria-describedby="trip-days-hint"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setDays(formValues.days + 1)}
+                        disabled={formValues.days >= MAX_TRIP_DAYS}
+                        className="w-11 h-11 flex items-center justify-center text-[var(--text-primary)] disabled:opacity-40"
+                        aria-label="One day more"
+                      >
+                        <Plus size={16} aria-hidden="true" />
+                      </button>
+                    </div>
+                    <span className="text-sm text-[var(--text-muted)]">days</span>
+                  </div>
+                  <p id="trip-days-hint" className="mt-2 text-sm text-[var(--text-muted)]" aria-live="polite">
+                    {Number(daysText) > MAX_TRIP_DAYS
+                      ? `The longest trip we can plan is ${MAX_TRIP_DAYS} days, so we will use ${MAX_TRIP_DAYS}.`
+                      : formValues.days > LONG_TRIP_DAYS
+                        ? 'Long trips are drafted in sections and can take up to a minute.'
+                        : ''}
+                  </p>
                 </fieldset>
 
                 <fieldset className="mt-7">
@@ -365,7 +426,7 @@ export function ItineraryPage() {
                 <circle cx="92" cy="8" r="3.5" fill="var(--accent-color)" />
               </svg>
               <p className="text-sm font-medium text-[var(--text-primary)]">
-                Drafting a {formValues.days}-day route for {selectedDestination?.name}. This takes a few seconds.
+                Drafting a {formValues.days}-day route for {selectedDestination?.name}. {formValues.days > LONG_TRIP_DAYS ? 'Long trips are drafted in sections and can take up to a minute.' : 'This takes a few seconds.'}
               </p>
             </div>
             <ItinerarySkeleton />
