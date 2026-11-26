@@ -29,12 +29,25 @@ interface Itinerary {
   degraded?: boolean;
 }
 
+// Ordered by measured reliability and speed (4 calls each, one session): the first two answered
+// every time; gemini-flash-latest failed or timed out on every call. Re-check this order
+// occasionally, because model availability changes.
 const CANDIDATE_MODELS = [
-  'gemini-flash-latest',
-  'gemini-flash-lite-latest',
   'gemini-3.5-flash-lite',
+  'gemini-flash-lite-latest',
+  'gemini-3.6-flash',
   'gemini-3.5-flash',
+  'gemini-flash-latest',
 ];
+
+/** Give up on one model after `ms` so a hung request cannot use the whole client timeout. */
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} timed out after ${ms / 1000}s`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
 
 function buildItineraryPrompt(
   destination: {
@@ -114,7 +127,7 @@ async function tryGenerateItinerary(
     },
   });
 
-  const result = await model.generateContent(prompt);
+  const result = await withTimeout(model.generateContent(prompt), 20000, modelName);
   const text = result.response
     .text()
     .trim()

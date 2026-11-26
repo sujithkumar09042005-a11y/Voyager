@@ -55,20 +55,13 @@
             // Add fine outer ring with theme accent
             ctx.beginPath();
             ctx.arc(size / 2, size / 2, size / 2 - 2, 0, Math.PI * 2);
-            ctx.strokeStyle = '#285ccc';
+            ctx.strokeStyle = '#0B6B6F';
             ctx.lineWidth = 4;
             ctx.stroke();
 
             const roundUrl = canvas.toDataURL('image/png');
             const pngLink = document.getElementById('favicon-png');
             if (pngLink) pngLink.href = roundUrl;
-
-            // Persist to public/favicon.png via proxy
-            fetch('http://localhost:3001/api/save-favicon', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ dataUrl: roundUrl, filename: 'favicon.png' })
-            }).catch(() => {});
           };
         } catch (e) {
           console.error(e);

@@ -8,8 +8,6 @@
 
 const express   = require('express');
 const cors      = require('cors');
-const fs        = require('fs');
-const path      = require('path');
 require('dotenv').config();
 
 const app  = express();
@@ -24,31 +22,27 @@ const ALLOWED_ORIGINS = [
 app.use(cors({ origin: ALLOWED_ORIGINS }));
 app.use(express.json({ limit: '10mb' }));
 
-// ─── Favicon generator endpoint ───────────────────────────────────────────────
-
-app.post('/api/save-favicon', (req, res) => {
-  try {
-    const { dataUrl, filename } = req.body;
-    const base64Data = dataUrl.replace(/^data:image\/png;base64,/, '');
-    const targetPath = path.join(__dirname, '..', 'public', filename || 'favicon.png');
-    fs.writeFileSync(targetPath, base64Data, 'base64');
-    console.log('Saved round favicon to:', targetPath);
-    res.json({ success: true, path: targetPath });
-  } catch (err) {
-    console.error('Error saving favicon:', err);
-    res.status(500).json({ error: err.message });
-  }
-});
-
 // ─── Chat handler ─────────────────────────────────────────────────────────────
 
+// Ordered by measured reliability and speed (4 calls each, one session): the first two answered
+// every time; gemini-flash-latest failed or timed out on every call. Re-check this order
+// occasionally, because model availability changes.
 const CANDIDATE_MODELS = [
-  'gemini-flash-latest',
-  'gemini-flash-lite-latest',
   'gemini-3.5-flash-lite',
+  'gemini-flash-lite-latest',
   'gemini-3.6-flash',
   'gemini-3.5-flash',
+  'gemini-flash-latest',
 ];
+
+/** Give up on one model after `ms` so a hung request cannot use the whole client timeout. */
+function withTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} timed out after ${ms / 1000}s`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
 
 app.post('/api/chat', async (req, res) => {
   const { GoogleGenerativeAI } = require('@google/generative-ai');
@@ -97,7 +91,7 @@ IMPORTANT: Whenever quoting prices, budgets, meal costs, or ticket estimates, AL
           generationConfig: { maxOutputTokens: 8192, temperature: 0.7 },
         });
 
-        const result = await chat.sendMessage(lastMessage.content);
+        const result = await withTimeout(chat.sendMessage(lastMessage.content), 10000, modelName);
         const text = result.response.text();
         if (text && text.trim().length > 0) {
           return res.json({ content: text });
@@ -152,17 +146,26 @@ Currency Requirement: Quote any estimated costs, fees, or food recommendations s
 Structure:
 {"destinationName":"string","totalDays":number,"pace":"string","interests":[],"days":[{"dayNumber":1,"title":"string","theme":"string","stops":[{"time":"HH:MM","place":"string","category":"string","notes":"string (include realistic ₹ price estimates if applicable)","durationMinutes":number}],"tips":"string (include ₹ budget tips)"}]}`;
 
-    const model  = genAI.getGenerativeModel({
-      model: 'gemini-3.5-flash',
-      generationConfig: {
-        responseMimeType: 'application/json',
-        temperature: 0.5,
-      },
-    });
-
-    const result = await model.generateContent(prompt);
-    const text = result.response.text().trim();
-    const itinerary = JSON.parse(text);
+    let itinerary = null;
+    for (const modelName of CANDIDATE_MODELS) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: modelName,
+          generationConfig: { responseMimeType: 'application/json', temperature: 0.5 },
+        });
+        const result = await withTimeout(model.generateContent(prompt), 20000, modelName);
+        const parsed = JSON.parse(result.response.text().trim());
+        if (parsed.days && Array.isArray(parsed.days)) {
+          itinerary = parsed;
+          break;
+        }
+      } catch (e) {
+        console.warn(`[Proxy Itinerary Fallback] Model ${modelName} failed, trying next:`, e.message);
+      }
+    }
+    if (!itinerary) {
+      return res.status(503).json({ error: 'The AI is busy right now. Please try again in a moment.' });
+    }
 
     res.json({ ...itinerary, destinationId: formValues.destinationId, generatedAt: new Date() });
   } catch (err) {

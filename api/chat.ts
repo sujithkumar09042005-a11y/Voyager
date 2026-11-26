@@ -9,13 +9,25 @@ Guidelines:
 - Never truncate or cut off your response mid-thought.`;
 
 // Multi-model resilience pool: cascades across separate Google AI quota buckets
+// Ordered by measured reliability and speed (4 calls each, one session): the first two answered
+// every time; gemini-flash-latest failed or timed out on every call. Re-check this order
+// occasionally, because model availability changes.
 const CANDIDATE_MODELS = [
-  'gemini-flash-latest',
-  'gemini-flash-lite-latest',
   'gemini-3.5-flash-lite',
+  'gemini-flash-lite-latest',
   'gemini-3.6-flash',
   'gemini-3.5-flash',
+  'gemini-flash-latest',
 ];
+
+/** Give up on one model after `ms` so a hung request cannot use the whole client timeout. */
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label} timed out after ${ms / 1000}s`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS Headers
@@ -92,7 +104,7 @@ Tailor your responses to this destination when relevant.`;
           },
         });
 
-        const result = await chat.sendMessage(lastMessage.content);
+        const result = await withTimeout(chat.sendMessage(lastMessage.content), 10000, modelName);
         const responseText = result.response.text();
 
         if (responseText && responseText.trim().length > 0) {
