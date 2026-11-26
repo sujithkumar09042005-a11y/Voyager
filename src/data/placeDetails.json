@@ -1,0 +1,799 @@
+{
+  "amber-fort": {
+    "era": "Capital until 1727",
+    "history": "Amber Fort, also called Amer Fort, sits on a hill above Maota Lake and was the seat of the Kachwaha rulers. Jai Singh I expanded it in the early 1600s, and later rulers made improvements over the next 150 years, until the capital moved to the new city of Jaipur in 1727. Its sandstone and marble palace, with a mirror hall called the Sheesh Mahal, is a fine example of Rajput architecture.",
+    "fee": {
+      "kind": "paid",
+      "currency": "INR",
+      "from": 100,
+      "to": 500,
+      "note": "The lower price is for Indian adults and the higher for foreign adults. Guides and the evening show cost extra."
+    },
+    "hours": "About 08:00 to 17:30 daily",
+    "tips": [
+      "Arrive at opening to beat the heat and the tour groups",
+      "Wear shoes with good grip, because the ramp and cobbles are steep",
+      "A licensed guide or audio guide makes the mirror hall and royal rooms much easier to follow"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Amber_Fort"
+  },
+  "lake-pichola": {
+    "era": "Created 1362",
+    "history": "Lake Pichola is an artificial lake, created in 1362 and named after the nearby village of Picholi. Maharana Udai Singh II founded Udaipur beside it in 1559, and the City Palace was built along its eastern shore over the following centuries. The lake and the palaces around it still define the city's skyline.",
+    "fee": {
+      "kind": "varies",
+      "note": "The lake shore is free to walk. Boat rides and the City Palace museum are ticketed separately, and boat prices depend on the route and time of day."
+    },
+    "hours": "Lake shore open all day; City Palace museum roughly 09:30 to 17:30",
+    "tips": [
+      "Go for a boat ride about an hour before sunset",
+      "Buy City Palace tickets at the gate or online to skip the longest queue",
+      "The ghats near Gangaur are a free place to watch the evening light"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Lake_Pichola"
+  },
+  "hawa-mahal": {
+    "era": "Built 1799",
+    "history": "Maharaja Sawai Pratap Singh built the Hawa Mahal in 1799, and the architect Lal Chand Ustad gave it a honeycomb of nearly a thousand small windows. They let the women of the royal household watch street festivals without being seen, and let the breeze cool the rooms, which explains the name Palace of Winds. It stands at the edge of the City Palace complex in Jaipur.",
+    "fee": {
+      "kind": "paid",
+      "currency": "INR",
+      "from": 50,
+      "to": 200,
+      "note": "The lower price is for Indian visitors and the higher for foreign visitors."
+    },
+    "hours": "About 09:00 to 17:00 daily",
+    "tips": [
+      "The best photo of the front is from a rooftop cafe across the street",
+      "Go in the morning, when the pink sandstone catches the sun",
+      "Inside is small; most visitors need under an hour"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Hawa_Mahal"
+  },
+  "alleppey-houseboat": {
+    "era": "Traditional craft",
+    "history": "The kettuvallam, meaning boat with knots, was a rice barge built from planks lashed together with coir rope instead of nails, and it carried cargo through the backwaters of Kerala for centuries. As road transport replaced it, many of these boats were converted into floating guest rooms, and cruising them became one of Kerala's best-known tourist experiences.",
+    "fee": {
+      "kind": "varies",
+      "note": "Prices depend on boat size, air conditioning, meals and whether you take a day cruise or stay overnight."
+    },
+    "hours": "Day cruises usually run late morning to late afternoon",
+    "tips": [
+      "Compare day cruises and overnight stays, because a day trip is often enough",
+      "Book through a registered operator and check what meals are included",
+      "Bring a hat and sunscreen, since the water gives little shade"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Kettuvallam"
+  },
+  "munnar-tea": {
+    "era": "From the 1800s",
+    "history": "Munnar sits about 1,600 metres up in the Western Ghats, and planters began turning its hills into tea estates in the late 1800s. Tea still dominates the town's economy, and the estates are now a major draw for walkers and photographers.",
+    "fee": {
+      "kind": "varies",
+      "note": "Walking and driving through the estates is free. Tea museums and factory tours charge a small fee."
+    },
+    "hours": "Estates are open to view all day; factory and museum hours vary",
+    "tips": [
+      "Early morning gives the clearest views and the coolest air",
+      "Carry a light jacket, because the hills are noticeably cooler than the coast",
+      "Taste the tea at a factory shop, where it is usually cheaper than in town"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Munnar"
+  },
+  "fushimi-inari": {
+    "era": "Founded 711",
+    "history": "Fushimi Inari-taisha is the head shrine of the Shinto god Inari, and tradition dates its founding to 711. Its thousands of vermilion torii gates were donated over the centuries by merchants and businesses hoping for good fortune. The gates line trails that climb the wooded mountain behind the shrine for about four kilometres.",
+    "fee": {
+      "kind": "free",
+      "note": "Entry is free and there is no ticket."
+    },
+    "hours": "Open 24 hours, every day",
+    "tips": [
+      "Go at dawn or after dark for far fewer people",
+      "The full climb takes about two hours; many visitors turn back at the first viewpoint",
+      "Bring water, because there are few places to buy it on the upper trails"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Fushimi_Inari-taisha"
+  },
+  "arashiyama-bamboo": {
+    "era": "Scenic area",
+    "history": "The bamboo grove lies in Arashiyama, a scenic district on the western edge of Kyoto that has drawn visitors for many centuries. Tall moso bamboo lines a path of a few hundred metres, and the Japanese Ministry of the Environment counts the sound of wind in the stalks as part of the country's soundscape.",
+    "fee": {
+      "kind": "free",
+      "note": "Walking through the grove is free."
+    },
+    "hours": "Open all day; best visited early",
+    "tips": [
+      "Come before 08:00 for the quietest, most photogenic light",
+      "Combine it with Tenryu-ji temple next door, which is ticketed",
+      "Please do not touch or carve the bamboo"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Bamboo_Forest_(Kyoto)"
+  },
+  "gion-district": {
+    "era": "Entertainment district",
+    "history": "Gion grew up in front of Yasaka Shrine to serve travellers and worshippers, and it developed into one of the best-known geisha districts in Japan. Its wooden teahouses and narrow lanes have been preserved as a historic area. The trained entertainers here are called geiko in Kyoto and maiko when they are apprentices.",
+    "fee": {
+      "kind": "free",
+      "note": "Walking the streets is free. Teahouse dining and performances are priced separately."
+    },
+    "hours": "Streets open all day; best around dusk",
+    "tips": [
+      "Hanami-koji lane is the main street for spotting geiko and maiko in the evening",
+      "Do not chase or block them for photos; private lanes are marked",
+      "Reserve a performance or teahouse meal ahead if you want an inside view"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Gion"
+  },
+  "eiffel-tower": {
+    "era": "Built 1887-1889",
+    "history": "Gustave Eiffel's company built the tower between 1887 and 1889 as the entrance arch of the 1889 World's Fair in Paris. It was meant to stand for about twenty years, but its value as a radio mast helped it stay. At roughly 330 metres, it was the tallest structure in the world until the 1930s.",
+    "fee": {
+      "kind": "paid",
+      "currency": "EUR",
+      "from": 12,
+      "to": 40,
+      "note": "Prices depend on whether you take the stairs or the lift and how high you go. The summit is the most expensive."
+    },
+    "hours": "Roughly 09:00 to 23:00, later in summer",
+    "tips": [
+      "Book timed tickets online well ahead, because walk-up queues can last hours",
+      "The stairs to the second floor are cheaper than the lift",
+      "For the best view of the tower itself, go to the Trocadero or the Champ de Mars"
+    ],
+    "officialUrl": "https://www.toureiffel.paris",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+  },
+  "louvre": {
+    "era": "Palace to museum",
+    "history": "The Louvre began as a fortress built by King Philip II in the late 12th century, then became a royal palace. It opened as a public museum in 1793, during the French Revolution. The glass pyramid in the courtyard, designed by I. M. Pei, was added in 1989 and is now the main entrance.",
+    "fee": {
+      "kind": "paid",
+      "currency": "EUR",
+      "from": 22,
+      "to": 32,
+      "note": "Visitors from outside the European Union may pay more than the standard price. Check the current rate before you buy."
+    },
+    "hours": "About 09:00 to 18:00; closed on Tuesdays, open late some evenings",
+    "tips": [
+      "Pre-book a timed slot online and enter by a quieter door if allowed",
+      "Do not try to see everything; pick two or three wings",
+      "The Mona Lisa room is crowded all day, so go to it first or last"
+    ],
+    "officialUrl": "https://www.louvre.fr",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Louvre"
+  },
+  "oia-village": {
+    "era": "Rebuilt after 1956",
+    "history": "Oia sits on the northern tip of Santorini, on the rim of a volcanic caldera left by a huge eruption in the Bronze Age. A captains' village in its past, it was badly damaged by an earthquake in 1956 and rebuilt, with many cave houses restored as hotels and homes. The white and blue buildings and the sunsets over the caldera are what draw visitors.",
+    "fee": {
+      "kind": "free",
+      "note": "Walking the village is free."
+    },
+    "hours": "Always open; sunset is the busiest hour",
+    "tips": [
+      "Sunset spots fill an hour or more beforehand, so arrive early or watch from a quieter lane",
+      "Wear flat shoes, since the marble paths are slippery",
+      "Visit in spring or autumn to avoid the heaviest crowds"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Oia,_Greece"
+  },
+  "burj-khalifa": {
+    "era": "Opened 2010",
+    "history": "The Burj Khalifa was designed by Skidmore, Owings and Merrill and opened in January 2010 after about six years of construction. At 829.8 metres it is the tallest structure in the world. Its stepped, spiralling shape is designed to reduce the effect of wind.",
+    "fee": {
+      "kind": "paid",
+      "currency": "AED",
+      "from": 150,
+      "to": 500,
+      "note": "The price depends on the level, with the highest deck costing most, and it rises at sunset."
+    },
+    "hours": "Roughly 10:00 to 23:00 daily",
+    "tips": [
+      "Book online for a sunset slot, which costs more but gives two views in one visit",
+      "Arrive early, because security and lift queues add time",
+      "The fountain show at the base is free and runs in the evening"
+    ],
+    "officialUrl": "https://www.burjkhalifa.ae",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Burj_Khalifa"
+  },
+  "desert-safari": {
+    "era": "Modern tourism",
+    "history": "Dubai grew from a small trading and pearling town, and the desert behind it has long been the home of Bedouin communities who lived by herding and trade. Today's desert safaris combine dune driving with camel rides, sandboarding and a camp dinner, a way for visitors to meet the landscape that the city grew out of.",
+    "fee": {
+      "kind": "paid",
+      "currency": "AED",
+      "from": 100,
+      "to": 300,
+      "note": "Prices vary with the operator, the length of the trip and whether dinner and private transport are included."
+    },
+    "hours": "Most trips run from mid-afternoon to evening",
+    "tips": [
+      "Pick an operator that follows the rules for protected desert areas",
+      "Skip the dune drive if you get motion sick, or sit at the front",
+      "Wear light clothes for the day and take a layer for the cooler night"
+    ]
+  },
+  "colosseum": {
+    "era": "Built AD 72-80",
+    "history": "Emperor Vespasian began the Colosseum in AD 72 and his son Titus opened it in AD 80, with further work under Domitian. It is the largest ancient amphitheatre ever built, and it hosted gladiator contests and public spectacles in front of tens of thousands of people. Earthquakes and stone-robbing damaged it in later centuries, but a large part still stands.",
+    "fee": {
+      "kind": "paid",
+      "currency": "EUR",
+      "from": 16,
+      "to": 24,
+      "note": "The standard ticket usually also covers the Roman Forum and Palatine Hill. Arena floor and underground tours cost more."
+    },
+    "hours": "Daily from about 08:30 until roughly an hour before sunset",
+    "tips": [
+      "Buy a timed ticket online, because queues at the gate can be very long",
+      "Book the combined entry so you can see the Forum and Palatine too",
+      "Visit the Forum first in the morning heat, then the Colosseum later"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Colosseum"
+  },
+  "trevi-fountain": {
+    "era": "Completed 1762",
+    "history": "Nicola Salvi designed the Trevi Fountain, and Giuseppe Pannini finished it in 1762. Standing about 26 metres high, it is the largest Baroque fountain in Rome. Its water comes from an aqueduct of ancient Roman origin. The custom of tossing a coin over your shoulder is said to ensure a return to Rome.",
+    "fee": {
+      "kind": "free",
+      "note": "Viewing is free. Check locally for any new rules about access to the basin area."
+    },
+    "hours": "Always open; quietest very early or late",
+    "tips": [
+      "Go before 08:00 or after 22:00 to avoid the crowds",
+      "Keep a firm hold of your bag, as it is a pickpocket hotspot",
+      "Throw coins with your right hand over your left shoulder, as the tradition says"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Trevi_Fountain"
+  },
+  "positano": {
+    "era": "Roman settlement c. 100 BC",
+    "history": "Positano climbs a steep hillside on the Amalfi Coast. The first archaeological evidence dates to the first century BC, when luxurious Roman villas were built along this coast, and Romans began settling here around 100 BC. The Villa di Positano was first described in 1758 by Karl Weber, who also oversaw the excavations at Herculaneum and Pompeii.",
+    "fee": {
+      "kind": "free",
+      "note": "Walking the town and beaches is free. Sunbed rental and boat trips cost extra."
+    },
+    "hours": "Always open; most shops and restaurants open late morning",
+    "tips": [
+      "Wear comfortable shoes, because the town is mostly stairs",
+      "The ferry is the easiest way in during summer, when the coast road is jammed",
+      "Spring and autumn are far calmer than July and August"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Positano"
+  },
+  "sagrada-familia": {
+    "era": "Begun 1882",
+    "history": "Construction of the Sagrada Familia began in 1882, and Antoni Gaudi took over the design the following year and worked on it until his death in 1926. It was consecrated as a basilica by Pope Benedict XVI in 2010, and building continues, funded largely by ticket sales and donations. Its facades and towers are among the most recognisable works of Catalan Modernism.",
+    "fee": {
+      "kind": "paid",
+      "currency": "EUR",
+      "from": 26,
+      "to": 40,
+      "note": "The basic ticket covers the basilica; towers and guided or audio options cost more."
+    },
+    "hours": "Roughly 09:00 to 18:00, with later opening on Sundays",
+    "tips": [
+      "Tickets are timed and sell out, so book online days ahead",
+      "Choose a morning slot for the best stained-glass light on the east side",
+      "Add a tower only if you are comfortable with narrow stairs"
+    ],
+    "officialUrl": "https://sagradafamilia.org",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia"
+  },
+  "park-guell": {
+    "era": "Built 1900-1914",
+    "history": "Eusebi Guell commissioned Antoni Gaudi to design a garden city for wealthy residents on a hill above Barcelona. The plan sold few plots, but the park was built between 1900 and 1914. It was opened to the public in 1926 and is part of the UNESCO listing for the works of Gaudi.",
+    "fee": {
+      "kind": "paid",
+      "currency": "EUR",
+      "from": 10,
+      "to": 14,
+      "note": "The monumental zone needs a timed ticket, while other parts of the park are free to enter."
+    },
+    "hours": "Roughly 09:30 to 19:30, shorter in winter",
+    "tips": [
+      "Book the timed entry for the monumental zone in advance",
+      "Go early, before the terrace and the dragon staircase fill up",
+      "The surrounding free areas also have good city views"
+    ],
+    "officialUrl": "https://www.parkguell.barcelona",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Park_G%C3%BCell"
+  },
+  "hagia-sophia": {
+    "era": "Built 532-537",
+    "history": "Emperor Justinian I had the Hagia Sophia built in under six years, and it opened in 537 as the main church of the Byzantine Empire. It became a mosque after the Ottoman conquest of Constantinople in 1453, a museum in 1935, and a mosque again in 2020. Its huge central dome was an engineering milestone and influenced mosque design for centuries afterwards.",
+    "fee": {
+      "kind": "paid",
+      "currency": "EUR",
+      "from": 25,
+      "note": "Foreign visitors pay a ticket price to enter the upper level. Rules and prices have changed in recent years, so check before you go."
+    },
+    "hours": "Open daily; visits pause during prayer times",
+    "tips": [
+      "Dress modestly, and women should carry a headscarf",
+      "Plan around prayer times, when parts are closed to tourists",
+      "Combine it with the Blue Mosque, which is a short walk away and free"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Hagia_Sophia"
+  },
+  "grand-bazaar": {
+    "era": "Begun 1455",
+    "history": "Sultan Mehmed II had the first core of the Grand Bazaar built soon after taking Constantinople in 1453, and it grew over the following centuries into a maze of covered streets. Today it has several thousand shops across more than sixty streets, selling carpets, ceramics, lamps, jewellery and leather goods.",
+    "fee": {
+      "kind": "free",
+      "note": "Entry is free."
+    },
+    "hours": "Roughly 09:00 to 19:00; closed on Sundays",
+    "tips": [
+      "Bargaining is expected; start well below the first price",
+      "Learn the main gates so you can find your way out",
+      "Visit midweek, since weekends and cruise days are the busiest"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Grand_Bazaar,_Istanbul"
+  },
+  "balloon-flight": {
+    "era": "Volcanic landscape",
+    "history": "Cappadocia's soft rock was laid down by ancient volcanic eruptions and then carved by wind and water into the fairy chimneys and valleys seen today. People dug homes, churches and storerooms into it for centuries. Balloon flights over the region began in the late 20th century and are now one of the most popular activities in Turkey.",
+    "fee": {
+      "kind": "varies",
+      "note": "Prices are per person and depend on the operator, the length of the flight and whether it is a standard or small-basket trip."
+    },
+    "hours": "Flights launch at sunrise, weather permitting",
+    "tips": [
+      "Book several days ahead and keep one spare day, since flights are cancelled in high wind",
+      "Dress in warm layers, as it is cold before sunrise",
+      "Choose a licensed operator with a good safety record"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Cappadocia"
+  },
+  "tegallalang-rice": {
+    "era": "Subak tradition",
+    "history": "The terraces near Ubud are watered by the subak system, a Balinese cooperative approach to irrigation that is tied to temples and rice rituals. UNESCO recognised it in 2012 as part of the Cultural Landscape of Bali Province. Farmers here still grow rice on the steep hillsides, so the fields are a working landscape and not only a viewpoint.",
+    "fee": {
+      "kind": "paid",
+      "currency": "IDR",
+      "from": 15000,
+      "to": 50000,
+      "note": "Small entry donations are common. Swings, photo props and cafes charge extra."
+    },
+    "hours": "Roughly 08:00 to 18:00",
+    "tips": [
+      "Go at opening for soft light and fewer people",
+      "Stay on the marked paths so you do not damage the terraces",
+      "Bring small cash for the donation points"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Subak_(irrigation)"
+  },
+  "tanah-lot": {
+    "era": "16th century",
+    "history": "Tanah Lot is a Hindu sea temple built on an offshore rock, and tradition credits the 16th-century priest Dang Hyang Nirartha with founding it. At high tide the temple is cut off from the shore, and only worshippers may enter it. Visitors come for the view at sunset and for the cliffside temples nearby.",
+    "fee": {
+      "kind": "paid",
+      "currency": "IDR",
+      "from": 60000,
+      "note": "The ticket is for foreign visitors and covers the temple grounds and viewing areas."
+    },
+    "hours": "Roughly 07:00 to 19:00",
+    "tips": [
+      "Arrive an hour before sunset for a good viewpoint",
+      "Check the tide, since the rock is easier to reach at low tide",
+      "Dress modestly and follow temple rules, as it is an active place of worship"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Tanah_Lot"
+  },
+  "gardens-by-the-bay": {
+    "era": "Opened 2012",
+    "history": "Gardens by the Bay opened in 2012 on reclaimed land beside Marina Bay. Its Supertrees are tall vertical gardens that collect energy and act as vents for the conservatories. The two domes hold plants from cool and dry regions around the world.",
+    "fee": {
+      "kind": "paid",
+      "currency": "SGD",
+      "from": 32,
+      "to": 59,
+      "note": "The outdoor gardens are free. The price covers the indoor domes and rises when you combine attractions."
+    },
+    "hours": "Outdoor gardens open from 05:00 to 02:00; domes roughly 09:00 to 21:00",
+    "tips": [
+      "Visit the Supertree Grove in the evening for the light show, which is free",
+      "Go to the domes in the heat of the day, as they are air conditioned",
+      "Book online to skip the queue"
+    ],
+    "officialUrl": "https://www.gardensbythebay.com.sg",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Gardens_by_the_Bay"
+  },
+  "marina-bay-sands": {
+    "era": "Opened 2010",
+    "history": "Marina Bay Sands is an integrated resort that opened in 2010, and the architect Moshe Safdie designed its three hotel towers, joined at the top by the SkyPark. It was described at its opening as the world's most expensive stand-alone casino property. The SkyPark has an observation deck, and the pool on top is for hotel guests.",
+    "fee": {
+      "kind": "paid",
+      "currency": "SGD",
+      "from": 32,
+      "to": 35,
+      "note": "The price is for the observation deck only. The infinity pool is for hotel guests."
+    },
+    "hours": "Roughly 09:30 to 22:00 for the observation deck",
+    "tips": [
+      "Go near sunset to see the bay by day and by night",
+      "Book online, because deck capacity is limited",
+      "The free light and water show at the front starts after dark"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Marina_Bay_Sands"
+  },
+  "tower-bridge": {
+    "era": "Built 1886-1894",
+    "history": "Tower Bridge was built between 1886 and 1894 and designed by Horace Jones with the engineer John Wolfe Barry. It combines a bascule bridge, which lifts to let ships through, with suspension sections. It is a Grade I listed structure and one of the best-known symbols of London.",
+    "fee": {
+      "kind": "paid",
+      "currency": "GBP",
+      "from": 12,
+      "to": 14,
+      "note": "The price is for the Tower Bridge Exhibition, which includes the glass-floored walkway. Walking across the bridge is free."
+    },
+    "hours": "Exhibition about 09:30 to 18:00; the bridge itself is always open",
+    "tips": [
+      "Check the lift schedule online if you want to see the bridge open",
+      "The glass floor is on the high-level walkway, so go on a clear day",
+      "The view from the riverside near the Tower of London is free"
+    ],
+    "officialUrl": "https://www.towerbridge.org.uk",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Tower_Bridge"
+  },
+  "british-museum": {
+    "era": "Founded 1753",
+    "history": "The British Museum was founded in 1753, built around the collection of the physician Sir Hans Sloane, and it opened to the public in 1759. It is regarded as the world's first national public museum. Its collection of about eight million objects documents human history and culture from its beginnings to the present.",
+    "fee": {
+      "kind": "free",
+      "note": "Entry to the permanent collection is free. Special exhibitions are ticketed."
+    },
+    "hours": "Roughly 10:00 to 17:00 daily; some galleries close earlier",
+    "tips": [
+      "Book a free timed slot online, since it can be crowded",
+      "Pick a few galleries, such as Egypt, Greece and Asia",
+      "Check which rooms are open before you go, as some are closed for work"
+    ],
+    "officialUrl": "https://www.britishmuseum.org",
+    "sourceUrl": "https://en.wikipedia.org/wiki/British_Museum"
+  },
+  "overwater-bungalows": {
+    "era": "From the 1960s",
+    "history": "The overwater bungalow began in French Polynesia in the 1960s, and the Maldives adopted the idea for its small resort islands, where each resort usually has its own island. The villas sit on stilts above a lagoon, with steps down into the water. They are now one of the best-known ways to stay in the Maldives.",
+    "fee": {
+      "kind": "varies",
+      "note": "This is a place to stay, not a ticketed sight. Prices depend on the resort, the season and the room type."
+    },
+    "hours": "Not applicable; check-in is usually in the afternoon",
+    "tips": [
+      "Book the transfer, since resorts are reached by speedboat or seaplane",
+      "Choose a resort with a house reef if you want to snorkel from the villa",
+      "Check what is included, because food and activities can add up"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Maldives"
+  },
+  "wat-arun": {
+    "era": "Ayutthaya era onward",
+    "history": "Wat Arun stands on the west bank of the Chao Phraya River in Bangkok and is named after Aruna, the dawn god. A temple has stood here since the Ayutthaya period, and its tall central prang, decorated with porcelain, was raised in the early 19th century. It is one of the best-known landmarks in Thailand.",
+    "fee": {
+      "kind": "paid",
+      "currency": "THB",
+      "from": 100,
+      "note": "The ticket price applies to foreign visitors."
+    },
+    "hours": "Roughly 08:00 to 18:00",
+    "tips": [
+      "Dress modestly with covered shoulders and knees",
+      "Cross by the small ferry from Tha Tien pier",
+      "Visit near sunset for the view back across the river"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Wat_Arun"
+  },
+  "phi-phi": {
+    "era": "Tsunami and recovery",
+    "history": "The Phi Phi Islands lie off the Krabi coast, with Ko Phi Phi Don the largest and most visited, and Ko Phi Phi Le known for its cliffs and Maya Bay. The islands were badly hit by the 2004 tsunami. Maya Bay, made famous by a 2000 film, was closed in 2018 to let the coral recover and reopened with limits on visitor numbers.",
+    "fee": {
+      "kind": "paid",
+      "currency": "THB",
+      "from": 400,
+      "note": "A national park fee applies to foreign visitors for some sites, and boat trips are priced separately."
+    },
+    "hours": "Boat tours usually run during the day",
+    "tips": [
+      "Choose a tour that respects the visitor limits at Maya Bay",
+      "Use reef-safe sunscreen to protect the coral",
+      "Go in the dry season, roughly November to April, for calmer seas"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Phi_Phi_Islands"
+  },
+  "jungfraujoch": {
+    "era": "Railway opened 1912",
+    "history": "The Jungfraujoch is a saddle between the Jungfrau and the Monch at about 3,460 metres. A rack railway, running largely through a tunnel inside the mountains, opened to the station here in 1912, and it remains the highest railway station in Europe. The Sphinx Observatory above it is used for scientific research.",
+    "fee": {
+      "kind": "paid",
+      "currency": "CHF",
+      "from": 200,
+      "to": 260,
+      "note": "The price is for the return trip from Interlaken. Rail passes can reduce it."
+    },
+    "hours": "Trains run daily; the last return is in the late afternoon",
+    "tips": [
+      "Check the webcam first, since cloud can hide the views entirely",
+      "Take warm clothes and sunglasses, as it is cold and bright",
+      "Go slowly, because the altitude can cause headaches"
+    ],
+    "officialUrl": "https://www.jungfrau.ch",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Jungfraujoch"
+  },
+  "norway-aurora": {
+    "era": "Natural phenomenon",
+    "history": "The aurora is caused by charged particles from the sun striking gases high in the atmosphere. In northern Norway it is most often seen between roughly September and April, when nights are dark. Tromso is a popular base because it lies under the auroral zone and has several guided options.",
+    "fee": {
+      "kind": "varies",
+      "note": "Guided trips are priced per person, and prices depend on the operator, the length and whether meals are included."
+    },
+    "hours": "Tours usually leave in the evening",
+    "tips": [
+      "Book a multi-night stay, because clear skies are not guaranteed",
+      "Dress in thermal layers, since you will wait outside in the cold",
+      "Pick an operator that tracks cloud cover and moves to clear skies"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Aurora"
+  },
+  "giza-pyramids": {
+    "era": "Built c. 2600-2500 BC",
+    "history": "The Giza pyramid complex holds the pyramids of Khufu, Khafre and Menkaure, along with the Great Sphinx, all built during the Fourth Dynasty of the Old Kingdom between about 2600 and 2500 BC. The Great Pyramid of Khufu was one of the Seven Wonders of the Ancient World and is the only one still largely standing. The site also includes temples, cemeteries and the remains of a workers' village.",
+    "fee": {
+      "kind": "varies",
+      "note": "A site ticket is required, and entering a pyramid or the Sphinx area costs extra. Foreign visitors pay more than Egyptians."
+    },
+    "hours": "Roughly 08:00 to 17:00",
+    "tips": [
+      "Go at opening, when it is cooler and quieter",
+      "Agree prices for camel and horse rides before you start",
+      "Take a hat and water, since there is little shade"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Giza_pyramid_complex"
+  },
+  "shibuya-crossing": {
+    "era": "Opened 1973",
+    "history": "Shibuya Scramble Crossing has been described as the world's busiest pedestrian crossing, with up to 1,000 to 2,000 people crossing in a single green light. It was inaugurated in 1973 and became a symbol of Tokyo through its frequent appearances in film and television. Traffic stops in every direction, so people cross diagonally as well as straight.",
+    "fee": {
+      "kind": "free",
+      "note": "The crossing itself is free."
+    },
+    "hours": "Always open; busiest in the evening",
+    "tips": [
+      "For a view from above, try the Shibuya Sky deck or the cafe overlooking the crossing",
+      "Go after dark for the neon light",
+      "Keep to the edges of the crowd if you want to stop for photos"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Shibuya_Crossing"
+  },
+  "central-park": {
+    "era": "Opened 1858-1876",
+    "history": "Central Park is the first landscaped public park in the United States, with a design by Frederick Law Olmsted and Calvert Vaux chosen in 1858 and construction continuing for many years. It covers 843 acres in Manhattan. It is managed by the Central Park Conservancy under a contract with the city and is the most visited urban park in the country.",
+    "fee": {
+      "kind": "free",
+      "note": "Entry is free. Boat rental, the zoo and some attractions charge separately."
+    },
+    "hours": "Open daily from 06:00 to 01:00",
+    "tips": [
+      "Pick one area, such as Bethesda Terrace, the Mall or the Reservoir",
+      "Rent a bike for the main loop",
+      "Visit in autumn for the colours"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Central_Park"
+  },
+  "table-mountain": {
+    "era": "Cableway opened 1929",
+    "history": "Table Mountain is a flat-topped sandstone mountain that rises above Cape Town. The aerial cableway opened in 1929, and the mountain was voted one of the New 7 Wonders of Nature in 2011. The rotating cable car and the many hiking routes make it easy to reach the top.",
+    "fee": {
+      "kind": "paid",
+      "currency": "ZAR",
+      "from": 400,
+      "to": 500,
+      "note": "The price is for the cableway return ticket. Hiking up is free."
+    },
+    "hours": "Cableway about 08:00 to 18:00, depending on season and weather",
+    "tips": [
+      "Check whether the cableway is running, since wind and cloud can close it",
+      "Go early or late to avoid the long midday queue",
+      "If you hike, start early and carry plenty of water"
+    ],
+    "officialUrl": "https://www.tablemountain.net",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Table_Mountain"
+  },
+  "old-city-walls": {
+    "era": "12th-17th century",
+    "history": "The Walls of Dubrovnik are a series of defensive stone walls around the old city, and rampart building followed city statutes of 1272. The main walls were built and strengthened between the 12th and 17th centuries. They run for almost two kilometres around the old town.",
+    "fee": {
+      "kind": "paid",
+      "currency": "EUR",
+      "from": 35,
+      "to": 40,
+      "note": "The ticket covers a walk along the full wall circuit."
+    },
+    "hours": "Roughly 08:00 to 19:30 in summer, earlier closing in winter",
+    "tips": [
+      "Walk the wall early or late, because midday sun on the stone is intense",
+      "The circuit takes about two hours with photo stops",
+      "Bring water, as there is little shade"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Walls_of_Dubrovnik"
+  },
+  "sun-gate": {
+    "era": "Inca era",
+    "history": "Inti Punku, the Sun Gate, was an Inca checkpoint at the entry to Machu Picchu on the old Inca Trail. Travellers arriving on foot would see the citadel below, and at the right time of year the sun rises through the gate. It remains one of the best places to look down on Machu Picchu.",
+    "fee": {
+      "kind": "paid",
+      "currency": "PEN",
+      "from": 152,
+      "note": "The price is for the Machu Picchu entry ticket, which must be booked in advance for a set time slot. Routes and prices change, so check the official site."
+    },
+    "hours": "Machu Picchu is open daily; entry is by timed slot",
+    "tips": [
+      "Book your Machu Picchu ticket and route weeks ahead",
+      "Allow about an hour each way for the walk from the main site",
+      "Bring a rain layer, as the weather changes fast"
+    ],
+    "officialUrl": "https://www.machupicchu.gob.pe",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Inti_Punku"
+  },
+  "perito-moreno": {
+    "era": "Glacier in a national park",
+    "history": "The Perito Moreno Glacier is in Los Glaciares National Park in Santa Cruz Province, Argentina. It is known for an unusually long period of stability, and glaciologists still debate the reason. A complex feedback between the glacier and the lake in front of it shapes how the ice front moves.",
+    "fee": {
+      "kind": "varies",
+      "note": "A national park entry fee applies, and boat and ice-trekking tours are extra. Argentine prices change often, so check the current rate."
+    },
+    "hours": "Park open daily; hours vary by season",
+    "tips": [
+      "Walk the park's boardwalks for views from several heights",
+      "Dress warmly, because the wind off the ice is cold",
+      "Book ice trekking ahead in peak summer"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Perito_Moreno_Glacier"
+  },
+  "jokulsarlon": {
+    "era": "Formed from the 1930s",
+    "history": "Jokulsarlon is a glacial lake in the south of Vatnajokull National Park. It began to form in the 1930s as the Breidamerkurjokull glacier retreated, and it has been growing since. Icebergs break off the glacier into the lake and then drift out to sea, washing up as pieces of ice on the nearby black sand beach.",
+    "fee": {
+      "kind": "free",
+      "note": "Viewing the lagoon and the beach is free. Boat tours cost extra."
+    },
+    "hours": "Always open; boat tours run in the warmer months",
+    "tips": [
+      "Walk across to the Diamond Beach nearby for ice on black sand",
+      "Check the road and weather in winter",
+      "Book boat tours ahead in summer"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/J%C3%B6kuls%C3%A1rl%C3%B3n"
+  },
+  "sydney-opera-house": {
+    "era": "Opened 1973",
+    "history": "The Sydney Opera House was designed by the Danish architect Jorn Utzon, who won an international competition in 1957, and it was opened in 1973. Its sail-like shells are among the most recognisable buildings in the world. UNESCO added it to the World Heritage List in 2007.",
+    "fee": {
+      "kind": "varies",
+      "note": "Walking around the building is free. Guided tours and performances are priced separately."
+    },
+    "hours": "Grounds open all day; tour and show times vary",
+    "tips": [
+      "Take a guided tour to see inside the halls",
+      "See it from a ferry or from the Botanic Garden for the best photo",
+      "Book performances early for popular dates"
+    ],
+    "officialUrl": "https://www.sydneyoperahouse.com",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Sydney_Opera_House"
+  },
+  "boudhanath": {
+    "era": "Ancient stupa",
+    "history": "Boudhanath is one of the largest spherical stupas in Nepal, and its all-seeing eyes look out from the tower above the dome. It became a centre of Tibetan Buddhism after many Tibetans settled here from 1959. It is part of the Kathmandu Valley UNESCO World Heritage Site, and the earthquake of 2015 damaged the spire, which was restored the following year.",
+    "fee": {
+      "kind": "paid",
+      "currency": "NPR",
+      "from": 400,
+      "note": "The price is for foreign visitors."
+    },
+    "hours": "Open all day; most atmospheric at dawn and dusk",
+    "tips": [
+      "Walk the circuit clockwise, as the pilgrims do",
+      "Visit at dusk when butter lamps are lit",
+      "The rooftop cafes around the square have good views"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Boudha_Stupa"
+  },
+  "milford-sound": {
+    "era": "Carved by glaciers",
+    "history": "Milford Sound is a fiord in Fiordland National Park, carved by glaciers during the ice ages, with cliffs rising steeply from the water. The Maori name is Piopiotahi. It is a popular boat trip, and rain can create hundreds of temporary waterfalls.",
+    "fee": {
+      "kind": "varies",
+      "note": "Cruise prices depend on the operator, the length of the trip and the time of day. Viewing from the shore is free."
+    },
+    "hours": "Cruises run through the day; most leave between 09:00 and 15:00",
+    "tips": [
+      "Check the road, since avalanches and weather can close it",
+      "Book a cruise in the middle of the day for the best light",
+      "Rainy days give more waterfalls, so do not cancel for weather alone"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Milford_Sound"
+  },
+  "djemaa-el-fna": {
+    "era": "11th century onward",
+    "history": "Jemaa el-Fnaa is the main square and market of the medina in Marrakech, and it has been a gathering place since the city was founded in the 11th century. UNESCO recognised its storytelling, music and performance traditions as intangible cultural heritage. By day it hosts juice sellers and snake charmers, and by night it fills with food stalls.",
+    "fee": {
+      "kind": "free",
+      "note": "The square is free to enter. Photos of performers often cost a tip."
+    },
+    "hours": "Always open; busiest from late afternoon",
+    "tips": [
+      "Agree a price before taking photos of performers",
+      "Eat at stalls with numbered tickets and busy crowds",
+      "Keep valuables close in the evening crowds"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Jemaa_el-Fnaa"
+  },
+  "chichen-itza": {
+    "era": "Maya city",
+    "history": "Chichen Itza was a large Maya city that flourished in the Terminal Classic period and was a major regional centre. Its best-known structure is the stepped pyramid El Castillo, also called the Temple of Kukulcan. Around the spring and autumn equinoxes, the afternoon sun creates a shadow that looks like a serpent moving down the stairway. It was named one of the New Seven Wonders of the World in 2007.",
+    "fee": {
+      "kind": "paid",
+      "currency": "MXN",
+      "from": 600,
+      "to": 700,
+      "note": "The price combines federal and state entry fees and is for foreign visitors. It changes from year to year."
+    },
+    "hours": "Roughly 08:00 to 17:00 daily",
+    "tips": [
+      "Go at opening to beat both the heat and the tour buses",
+      "You cannot climb the pyramid, so enjoy it from the ground",
+      "Bring a hat and water, because there is little shade"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Chichen_Itza"
+  },
+  "canal-ring": {
+    "era": "Dug from 1613",
+    "history": "The Grachtengordel, or canal ring, was planned during the Dutch Golden Age and dug from the early 17th century, creating a belt of waterways and narrow merchant houses around the old centre of Amsterdam. It is protected as a UNESCO World Heritage Site, listed in 2010, and is one of the best examples of large-scale urban planning from the period.",
+    "fee": {
+      "kind": "free",
+      "note": "Walking the canals is free. Canal cruises cost extra."
+    },
+    "hours": "Always open; cruises run all day and into the evening",
+    "tips": [
+      "Take a canal cruise for a different view of the facades",
+      "Cycle with care and follow the local bike rules",
+      "Walk the Herengracht and Keizersgracht for the best houses"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Grachtengordel"
+  },
+  "the-treasury": {
+    "era": "1st century BC to AD",
+    "history": "Al-Khazneh, the Treasury, is a rock-cut tomb in Petra carved by the Nabataeans, probably around the 1st century BC or AD. It is among the most elaborate monuments in the city. The Swiss explorer Johann Ludwig Burckhardt brought Petra to Western attention in 1812. The name comes from a local legend of hidden treasure.",
+    "fee": {
+      "kind": "paid",
+      "currency": "JOD",
+      "from": 50,
+      "to": 60,
+      "note": "The ticket covers entry to Petra. It is included in the Jordan Pass."
+    },
+    "hours": "Roughly 06:00 to 18:00 in summer",
+    "tips": [
+      "Walk in through the Siq canyon in the morning for the famous reveal",
+      "Wear sturdy shoes and carry plenty of water",
+      "Allow two days if you want to see the full site"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Al-Khazneh"
+  },
+  "christ-redeemer": {
+    "era": "Built 1922-1931",
+    "history": "Christ the Redeemer is an Art Deco statue of Jesus on top of Corcovado mountain in Rio de Janeiro. It was designed by the French sculptor Paul Landowski with the Brazilian engineer Heitor da Silva Costa and completed in 1931. It was voted one of the New 7 Wonders of the World.",
+    "fee": {
+      "kind": "varies",
+      "note": "A combined transport and entry ticket is needed, and the price depends on how you go up, by train, van or on foot."
+    },
+    "hours": "Roughly 08:00 to 19:00 daily",
+    "tips": [
+      "Check the weather, as cloud often hides the statue",
+      "Take the train through the Tijuca forest for a scenic ride",
+      "Go early to avoid the longest queues"
+    ],
+    "sourceUrl": "https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)"
+  }
+}

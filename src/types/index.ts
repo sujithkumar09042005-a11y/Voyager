@@ -16,6 +16,27 @@ export interface Place {
   liveImage?: string;
 }
 
+/** What it costs to get in. Amounts are approximate and in the local currency. */
+export type EntryFee =
+  | { kind: 'free'; note?: string }
+  | { kind: 'paid'; currency: string; from: number; to?: number; note?: string }
+  | { kind: 'varies'; note: string };
+
+/** Visitor information for one place, kept separate from the basic Place record. */
+export interface PlaceDetails {
+  /** Short era label, for example "Built 1887-1889". */
+  era: string;
+  /** Two or three sentences of history. */
+  history: string;
+  fee: EntryFee;
+  /** Typical opening hours, approximate. */
+  hours: string;
+  tips: string[];
+  officialUrl?: string;
+  /** Wikipedia article used as the source for the history. */
+  sourceUrl?: string;
+}
+
 export interface Destination {
   id: string;
   name: string;

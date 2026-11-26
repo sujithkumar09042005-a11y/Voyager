@@ -7,6 +7,8 @@ interface ModalProps {
   isOpen:   boolean;
   onClose:  () => void;
   title?:   string;
+  /** Accessible name for the dialog when no visible title is shown. */
+  ariaLabel?: string;
   children: React.ReactNode;
   size?:    'sm' | 'md' | 'lg' | 'xl';
   className?: string;
@@ -22,23 +24,28 @@ const SIZE_CLASSES = {
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
-export function Modal({ isOpen, onClose, title, children, size = 'md', className = '' }: ModalProps) {
+export function Modal({ isOpen, onClose, title, ariaLabel, children, size = 'md', className = '' }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<Element | null>(null);
 
-  // Focus trap
+  // Focus trap: move focus into the dialog on open, and put it back where it was on close
   useEffect(() => {
-    if (isOpen) {
-      previousFocusRef.current = document.activeElement;
-      // Focus first focusable element in modal
+    if (!isOpen) return;
+    previousFocusRef.current = document.activeElement;
+    // Focus first focusable element in modal
+    const raf = requestAnimationFrame(() => {
+      const focusable = modalRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);
+      focusable?.[0]?.focus();
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      // The cleanup runs when the dialog closes (or unmounts). Wait a frame so the dialog's own
+      // controls have stopped holding focus, then return it to whatever opened the dialog.
+      const trigger = previousFocusRef.current as HTMLElement | null;
       requestAnimationFrame(() => {
-        const focusable = modalRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);
-        focusable?.[0]?.focus();
+        if (trigger && document.contains(trigger)) trigger.focus?.();
       });
-    } else {
-      // Return focus to trigger element
-      (previousFocusRef.current as HTMLElement)?.focus?.();
-    }
+    };
   }, [isOpen]);
 
   // Keyboard handler
@@ -103,6 +110,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md', className
             role="dialog"
             aria-modal="true"
             aria-labelledby={title ? 'modal-title' : undefined}
+            aria-label={title ? undefined : ariaLabel}
           >
             <motion.div
               ref={modalRef}

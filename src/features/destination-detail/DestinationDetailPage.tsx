@@ -12,6 +12,7 @@ import { useWeather } from '../../hooks/useWeather';
 import { useDestinationImage, usePlaceImage } from '../../hooks/usePexelsImage';
 import { Flag } from '../../components/ui/Flag';
 import { AtlasMap } from '../atlas/AtlasMap';
+import { PlaceDetailsPanel } from './PlaceDetailsPanel';
 import { WeatherWidget } from '../../components/WeatherWidget';
 import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
@@ -97,7 +98,7 @@ function PlaceModal({ place, isOpen, onClose }: { place: Place | null; isOpen: b
     : (pexelsData?.url ?? place.fallbackImage);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="lg">
+    <Modal isOpen={isOpen} onClose={onClose} size="xl" ariaLabel={`${place.name}: history, entry fee and visitor tips`}>
       <div className="overflow-hidden rounded-2xl">
         <div className="relative h-72 sm:h-88 overflow-hidden bg-[var(--surface-sunken)]">
           {imgFailed && <div className="photo-fallback" aria-hidden="true" />}
@@ -112,7 +113,7 @@ function PlaceModal({ place, isOpen, onClose }: { place: Place | null; isOpen: b
             <span className="glass-dark text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 inline-block">
               {place.category}
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl">{place.name}</h2>
+            <h2 className="font-display text-2xl sm:text-3xl text-white">{place.name}</h2>
           </div>
           {pexelsData?.photographer && (
             <div className="absolute top-4 left-4">
@@ -129,12 +130,9 @@ function PlaceModal({ place, isOpen, onClose }: { place: Place | null; isOpen: b
             </div>
           )}
         </div>
-        <div className="p-6 sm:p-8 space-y-4">
-          <p className="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base">{place.description}</p>
-          <div className="flex items-center gap-2.5 text-sm text-[var(--text-primary)] glass-subtle rounded-2xl px-5 py-3.5 border border-[var(--glass-border)]">
-            <Clock size={18} className="text-accent-500 flex-shrink-0" />
-            <span>Recommended time: <strong className="font-bold text-accent-500">{place.recommendedTime}</strong></span>
-          </div>
+        <div className="p-6 sm:p-8 space-y-6">
+          <p className="font-display text-lg sm:text-xl leading-snug text-[var(--text-primary)]">{place.description}</p>
+          <PlaceDetailsPanel place={place} />
         </div>
       </div>
     </Modal>
